@@ -10,10 +10,11 @@
 class VAO {
 private:
     GLuint VAO_id = 0;
+    size_t vertex_count = 0;
 public:
     VAO();
     VAO(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
-    static void set_vertex(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
+    void add_vertex(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
     void bind_vertex_array() const;
 };
 

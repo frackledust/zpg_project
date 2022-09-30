@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(zpg_project)
 
-set(SOURCE_FILES main.cpp VAO.cpp VBO.cpp VBO.h ShaderManager.cpp ShaderManager.h Window.cpp Window.h App.cpp App.h)
+set(SOURCE_FILES main.cpp VAO.cpp VBO.cpp VBO.h ShaderManager.cpp ShaderManager.h Window.cpp Window.h App.cpp App.h CallbackController.cpp CallbackController.h)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 

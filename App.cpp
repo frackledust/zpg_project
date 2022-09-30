@@ -4,6 +4,28 @@
 
 #include "App.h"
 
+App::App() {
+    CallbackController::bind_callbacks();
+    App::init_glfw();
+}
+
+App::~App() {
+    delete window;
+    glfwTerminate();
+}
+
+
+App::App(int width, int height) : App() {
+    this->set_window(width, height);
+
+    init_glew();
+}
+
+void App::set_window(int width, int height) {
+    window = new Window(width, height, "Hi");
+}
+
+
 void App::init_glfw() {
 
     if (!glfwInit()) {
@@ -28,3 +50,27 @@ void App::print_info() {
     glfwGetVersion(&major, &minor, &revision);
     printf("Using GLFW %i.%i.%i\n", major, minor, revision);
 }
+
+void App::draw_frame(ShaderManager* shaderManager, VAO* vao) {
+
+    window->clear_view();
+
+    shaderManager->use_shaders();
+    vao->bind_vertex_array();
+
+    // draw_frame
+    glDrawArrays(GL_POLYGON, 0, 4); //mode,first,count
+    //
+
+    glfwPollEvents();
+    window->update_view();
+}
+
+bool App::is_open() {
+    return window->is_open();
+}
+
+
+
+
+

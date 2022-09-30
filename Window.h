@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include "GLFW/glfw3.h"
+#include "CallbackController.h"
 
 class Window {
     GLFWwindow* window;
@@ -18,7 +19,10 @@ public:
     ~Window();
 
     bool is_open() const;
+    void clear_view();
     void update_view() const;
+
+    void bind_callbacks();
 };
 
 
