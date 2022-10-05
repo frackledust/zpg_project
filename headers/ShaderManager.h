@@ -19,6 +19,7 @@ public:
     void add_shader(GLenum shader_type, const char** source);
     int link_shaders() const;
     void use_shaders() const;
+    int link_matrix(const char *matrix_name) const;
 };
 
 

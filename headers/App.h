@@ -4,8 +4,12 @@
 
 #ifndef ZPG_PROJECT_APP_H
 #define ZPG_PROJECT_APP_H
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include "glm/fwd.hpp"
+#include "glm/detail/type_mat4x4.hpp"
 
 #include <cstdio>
 #include <cstdlib>
@@ -13,11 +17,13 @@
 #include "CallbackController.h"
 #include "Window.h"
 #include "ShaderManager.h"
-#include "VAO.h"
+#include "Drawable.h"
 
 class App {
 public:
     Window *window;
+    std::vector<Drawable*> drawables;
+    ShaderManager* shaderManager;
 
     App();
     ~App();
@@ -28,10 +34,11 @@ public:
     static void init_glfw();
     static void init_glew();
     static void print_info();
-
-    void draw_frame(ShaderManager* shaderManager, VAO* vao);
+    void add_drawable(Drawable *drawable);
 
     bool is_open();
+
+    void draw_frame();
 };
 
 

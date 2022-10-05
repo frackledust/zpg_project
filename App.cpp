@@ -51,16 +51,17 @@ void App::print_info() {
     printf("Using GLFW %i.%i.%i\n", major, minor, revision);
 }
 
-void App::draw_frame(ShaderManager* shaderManager, VAO* vao) {
-
+void App::draw_frame() {
     window->clear_view();
 
     shaderManager->use_shaders();
-    vao->bind_vertex_array();
+    for(auto& drawable : drawables){
 
-    // draw_frame
-    glDrawArrays(GL_POLYGON, 0, 4); //mode,first,count
-    //
+        drawable->dataModel->vao->bind_vertex_array();
+        glUniformMatrix4fv(0, 1, GL_FALSE, &drawable->matrix[0][0]);
+        glDrawArrays(drawable->dataModel->mode, 0, drawable->dataModel->vertex_count); //mode,first,count
+
+    }
 
     glfwPollEvents();
     window->update_view();
@@ -69,6 +70,12 @@ void App::draw_frame(ShaderManager* shaderManager, VAO* vao) {
 bool App::is_open() {
     return window->is_open();
 }
+
+void App::add_drawable(Drawable* drawable) {
+    drawables.push_back(drawable);
+}
+
+
 
 
 

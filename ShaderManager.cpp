@@ -34,3 +34,7 @@ int ShaderManager::link_shaders() const {
 void ShaderManager::use_shaders() const {
     glUseProgram(this->shaderProgram);
 }
+
+int ShaderManager::link_matrix(const char* matrix_name) const {
+    return glGetUniformLocation(this->shaderProgram, matrix_name);
+}
