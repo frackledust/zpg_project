@@ -55,19 +55,16 @@ void App::draw_frame() {
     window->clear_view();
 
     shaderManager->use_shaders();
+
     for(auto& drawable : drawables){
-
-        drawable->dataModel->vao->bind_vertex_array();
-        glUniformMatrix4fv(0, 1, GL_FALSE, &drawable->matrix[0][0]);
-        glDrawArrays(drawable->dataModel->mode, 0, drawable->dataModel->vertex_count); //mode,first,count
-
+        drawable->render();
     }
 
     glfwPollEvents();
     window->update_view();
 }
 
-bool App::is_open() {
+bool App::is_open() const {
     return window->is_open();
 }
 

@@ -2,7 +2,14 @@
 // Created by pavli on 30/09/2022.
 //
 
+
 #include "ShaderManager.h"
+ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_shader, const char *matrix_name) {
+    this->add_shader(GL_VERTEX_SHADER, &vertex_shader);
+    this->add_shader(GL_FRAGMENT_SHADER, &fragment_shader);
+    this->link_shaders();
+    std::cout << "MATRIX ID: " << this->link_matrix("modelMatrix") << "\n";
+}
 
 void ShaderManager::add_shader(GLenum shader_type, const char** source) {
     GLuint shader = glCreateShader(shader_type);

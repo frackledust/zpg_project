@@ -10,7 +10,14 @@
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 #include <glm/glm.hpp>
 
-const glm::mat4 M = glm::rotate(glm::mat4(1.0f), 1.10f, glm::vec3(0.0f, 1.0f, 0.0f));
+const glm::mat4 M = glm::rotate(glm::mat4(1.0f), 1.0f, glm::vec3(0.0f, 0.0f, 1.0f));
+
+const float c[4][2][4] ={
+        { { -1, -.5f, .5f, 1 }, { 1, 1, 1, 1 } },
+        { { -1, .5f, .5f, 1 }, { 1, 0, 1, 1 } },
+        { { -0.7, .5f, .5f, 1 }, { 0, 0, 1, 1 } },
+        { { -0.7, -.5f, .5f, 1 }, { 0, 1, 1, 1 } },
+};
 
 const float b[4][2][4] ={
         { { -.5f, -.5f, .5f, 1 }, { 1, 1, 0, 1 } },

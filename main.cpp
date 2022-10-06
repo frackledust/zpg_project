@@ -22,22 +22,16 @@ int main()
     App* app = new App(800, 600);
     CallbackController::bind_callbacks();
 
-    //what is this?
     glfwSwapInterval(1);
 
-    //data layer
+    auto square2 = new Drawable(sizeof(c), c, 4, 4, true, M);
+    app->add_drawable(square2);
+
     auto square = new Drawable(sizeof(b), b, 4, 4, true, M);
-    app->drawables.push_back(square);
+    app->add_drawable(square);
 
-    //shaders
-    auto *shaderManager = new ShaderManager();
-    shaderManager->add_shader(GL_VERTEX_SHADER, &vertex_shader);
-    shaderManager->add_shader(GL_FRAGMENT_SHADER, &fragment_shader);
-    shaderManager->link_shaders();
-    std::cout << shaderManager->link_matrix("modelMatrix") << "\n";
+    app->shaderManager = new ShaderManager(vertex_shader, fragment_shader, "modelMatrix");
 
-
-    app->shaderManager = shaderManager;
     while (app->is_open()) {
         app->draw_frame();
     }

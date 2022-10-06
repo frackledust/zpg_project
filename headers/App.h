@@ -20,9 +20,10 @@
 #include "Drawable.h"
 
 class App {
-public:
+private:
     Window *window;
     std::vector<Drawable*> drawables;
+public:
     ShaderManager* shaderManager;
 
     App();
@@ -34,9 +35,10 @@ public:
     static void init_glfw();
     static void init_glew();
     static void print_info();
-    void add_drawable(Drawable *drawable);
 
-    bool is_open();
+    __attribute__((unused)) void add_drawable(Drawable *drawable);
+
+    bool is_open() const;
 
     void draw_frame();
 };

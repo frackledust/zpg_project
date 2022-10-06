@@ -12,14 +12,16 @@
 class DataModel {
 private:
     VBO* vbo;
+    VAO* vao;
+
+    GLenum mode;
     int vertex_size;
+    int vertex_count;
     bool has_colour;
 public:
     DataModel(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
 
-    VAO* vao;
-    int vertex_count;
-    GLenum mode;
+    void draw() const;
 };
 
 

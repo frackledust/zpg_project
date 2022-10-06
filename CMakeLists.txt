@@ -4,7 +4,7 @@ project(zpg_project)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/headers)
 
-set(SOURCE_FILES main.cpp ShaderManager.cpp Window.cpp App.cpp CallbackController.cpp Drawable.cpp)
+set(SOURCE_FILES main.cpp ShaderManager.cpp Window.cpp App.cpp CallbackController.cpp Drawable.cpp Transformable.cpp)
 set(MODEL_FILES VAO.cpp VBO.cpp DataModel.cpp)
 set(DATA_FILES data/SquareColor.h data/SquareRotate.h)
 

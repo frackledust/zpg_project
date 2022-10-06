@@ -24,3 +24,8 @@ DataModel::DataModel(GLsizeiptr size, const void *data, int vertex_count, int ve
         vao->add_vertex(1, vertex_count, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void*)(vertex_size* sizeof(float)));
     }
 }
+
+void DataModel::draw() const {
+    this->vao->bind_vertex_array();
+    glDrawArrays(this->mode, 0, this->vertex_count); //mode,first,count
+}
