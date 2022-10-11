@@ -4,16 +4,21 @@
 
 
 #include "ShaderManager.h"
-ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_shader, const char *matrix_name) {
+
+ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_shader) {
     this->add_shader(GL_VERTEX_SHADER, &vertex_shader);
     this->add_shader(GL_FRAGMENT_SHADER, &fragment_shader);
     this->link_shaders();
-    std::cout << "MATRIX ID: " << this->link_matrix("modelMatrix") << "\n";
+}
+
+ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_shader, const char *matrix_name)
+: ShaderManager(vertex_shader, fragment_shader){
+    this->matrixID = this->link_matrix_name(matrix_name);
 }
 
 void ShaderManager::add_shader(GLenum shader_type, const char** source) {
     GLuint shader = glCreateShader(shader_type);
-    shader_ids.push_back(shader);
+    shaderIds.push_back(shader);
     glShaderSource(shader, 1, source, nullptr);
     glCompileShader(shader);
     glAttachShader(this->shaderProgram, shader);
@@ -42,6 +47,12 @@ void ShaderManager::use_shaders() const {
     glUseProgram(this->shaderProgram);
 }
 
-int ShaderManager::link_matrix(const char* matrix_name) const {
-    return glGetUniformLocation(this->shaderProgram, matrix_name);
+int ShaderManager::link_matrix_name(const char* matrix_name) {
+    this->matrixID = glGetUniformLocation(this->shaderProgram, matrix_name);
+    std::cout << "MATRIX ID: " << this->matrixID << "\n";
+    return this->matrixID;
+}
+
+void ShaderManager::use_matrix(glm::mat4 matrix) const {
+    glUniformMatrix4fv(this->matrixID, 1, GL_FALSE, &matrix[0][0]);
 }

@@ -14,7 +14,7 @@ Window::Window(int width, int height, const char* title) : width(width), height(
 
     glfwMakeContextCurrent(this->window);
 
-    glViewport(0, 0, width, height);
+    glViewport(0, 0, width, height); // window size
 }
 
 Window::~Window() {

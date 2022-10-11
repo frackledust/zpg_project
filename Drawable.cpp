@@ -14,8 +14,8 @@ Drawable::Drawable(GLsizeiptr size, const void *data, int vertex_count, int vert
 }
 
 void Drawable::render() {
-
-    glUniformMatrix4fv(0, 1, GL_FALSE, &matrix[0][0]);
+    shaderManager->use_shaders();
+    shaderManager->use_matrix(matrix);
     dataModel->draw();
 }
 

@@ -54,8 +54,6 @@ void App::print_info() {
 void App::draw_frame() {
     window->clear_view();
 
-    shaderManager->use_shaders();
-
     for(auto& drawable : drawables){
         drawable->render();
     }
