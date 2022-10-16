@@ -15,6 +15,7 @@
 
 // DATA
 #include "SquareColor.h"
+#include "axes.h"
 
 int main()
 {
@@ -30,6 +31,10 @@ int main()
     auto shape_one = new Drawable(sizeof(data), data, VERTEX_COUNT, VERTEX_SIZE, true);
     shape_one->link_shader(first_shader);
     app->add_drawable(shape_one);
+
+    auto shape_two = new Drawable(sizeof(ax), ax, 4, 3, true);
+    shape_two->link_shader(first_shader);
+    app->add_drawable(shape_two);
 
     while (app->is_open()) {
         app->draw_frame();

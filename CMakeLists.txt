@@ -5,7 +5,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/headers)
 include_directories(${PROJECT_SOURCE_DIR}/data)
 
-set(SOURCE_FILES main.cpp ShaderManager.cpp Window.cpp App.cpp CallbackController.cpp Drawable.cpp Transformable.cpp Camera.cpp Camera.h)
+set(SOURCE_FILES main.cpp ShaderManager.cpp Window.cpp App.cpp CallbackController.cpp Drawable.cpp Transformable.cpp Camera.cpp Rotate.cpp)
 set(MODEL_FILES VAO.cpp VBO.cpp DataModel.cpp)
 
 link_directories(${PROJECT_SOURCE_DIR}/lib/lib-mingw-w64)
