@@ -26,6 +26,8 @@ public:
 
 
     Drawable * add_transformation(Transformable *transformation);
+
+    Transformable * get_transformation();
 };
 
 

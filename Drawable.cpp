@@ -28,3 +28,7 @@ Drawable * Drawable::add_transformation(Transformable *transformation) {
     this->transformable->components.push_back(transformation);
     return this;
 }
+
+Transformable * Drawable::get_transformation() {
+    return this->transformable;
+}

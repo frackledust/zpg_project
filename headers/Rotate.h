@@ -11,7 +11,7 @@
 class Rotate : public Transformable {
     float angle = 10;
     bool move = false;
-    glm::vec3 direction = glm::vec3(0.0, 0.0, 1.0);
+    glm::vec3 direction = glm::vec3(1.0, 0.0, 0.0);
 public:
     Rotate() = default;
     explicit Rotate(float angle, glm::vec3 direction) : angle(angle), direction(direction){}
