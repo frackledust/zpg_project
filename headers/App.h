@@ -21,6 +21,7 @@
 #include "Window.h"
 #include "ShaderManager.h"
 #include "Drawable.h"
+#include "Camera.h"
 
 class App {
 private:
@@ -28,6 +29,7 @@ private:
     std::vector<Drawable*> drawables;
 public:
     ShaderManager* shaderManager;
+    Camera* camera;
 
     App();
     ~App();

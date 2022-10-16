@@ -28,6 +28,7 @@ bool Window::is_open() const {
 
 void Window::clear_view() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
 }
 
 
@@ -51,6 +52,6 @@ void Window::bind_callbacks() {
 }
 
 glm::mat4 Window::get_projection(float d) const {
-    return glm::perspective(d, (float) height/ (float) width, 0.1f, 100.0f);
+    return glm::perspective(d, (float) width/ (float) height, 0.1f, 100.0f);
 }
 

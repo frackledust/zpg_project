@@ -23,9 +23,9 @@ int main()
 
     glfwSwapInterval(1);
     auto first_shader = new ShaderManager(vertex_shader, fragment_shader);
-    int projection = first_shader->link_matrix_name("projection");
-    int view = first_shader->link_matrix_name("view");
-    int model = first_shader->link_matrix_name("model");
+    first_shader->link_matrix_name("projection");
+    first_shader->link_matrix_name("view");
+    first_shader->link_matrix_name("model");
 
     auto shape_one = new Drawable(sizeof(data), data, VERTEX_COUNT, VERTEX_SIZE, true);
     shape_one->link_shader(first_shader);

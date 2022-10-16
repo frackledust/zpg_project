@@ -17,7 +17,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 class Window {
-    GLFWwindow* window;
     int width;
     int height;
 public:
@@ -31,6 +30,8 @@ public:
     void bind_callbacks();
 
     glm::mat4 get_projection(float d) const;
+
+    GLFWwindow* window;
 };
 
 
