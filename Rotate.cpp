@@ -10,3 +10,9 @@ glm::mat4 Rotate::transform() const {
     a = move ? (float)glfwGetTime() * a : a;
     return glm::rotate(trans, a, direction);;
 }
+
+glm::mat4 Rotate::transform(glm::mat4 mat) const {
+    auto a = glm::radians(angle);
+    a = move ? (float)glfwGetTime() * a : a;
+    return glm::rotate(mat, a, direction);;
+}

@@ -25,6 +25,6 @@ Drawable * Drawable::link_shader(ShaderManager * shader) {
 }
 
 Drawable * Drawable::add_transformation(Transformable *transformation) {
-    this->transformable = transformation;
+    this->transformable->components.push_back(transformation);
     return this;
 }

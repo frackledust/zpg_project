@@ -29,7 +29,8 @@ int main() {
 
     app->add_drawable(new Drawable(sizeof(data), data, VERTEX_COUNT, VERTEX_SIZE, true))
             ->link_shader(first_shader)
-            ->add_transformation(new Rotate(90, glm::vec3(1.0, 1.0, 0.0), true));
+            ->add_transformation(new Rotate(10, glm::vec3(0.0, 0.0, 1.0), true))
+            ->add_transformation(new Rotate(90, glm::vec3(1.0, 0.0, 0.0), true));
 
     app->add_drawable(new Drawable(sizeof(ax), ax, 4, 3, true))
             ->link_shader(first_shader);

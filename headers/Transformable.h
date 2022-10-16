@@ -10,11 +10,14 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <vector>
 
 
 class Transformable {
 public:
+    std::vector<Transformable*> components;
     virtual glm::mat4 transform() const;
+    virtual glm::mat4 transform(glm::mat4 mat) const;
 };
 
 
