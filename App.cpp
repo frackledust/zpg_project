@@ -23,6 +23,9 @@ App::App(int width, int height) : App() {
 
 void App::set_window(int width, int height) {
     window = new Window(width, height, "Hi");
+
+    glEnable(GL_DEPTH_TEST);
+//    glDepthFunc(GL_LESS);
 }
 
 
@@ -53,6 +56,17 @@ void App::print_info() {
 
 void App::draw_frame() {
     window->clear_view();
+
+    auto proj = window->get_projection(glm::radians(45.0f));
+
+    const float radius = 10.0f;
+    float camX = sin(glfwGetTime()) * radius;
+    float camZ = cos(glfwGetTime()) * radius;
+    glm::mat4 view;
+    view = glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+    glUniformMatrix4fv(0, 1, GL_FALSE, &proj[0][0]);
+    glUniformMatrix4fv(1, 1, GL_FALSE, &view[0][0]);
+
 
     for(auto& drawable : drawables){
         drawable->render();

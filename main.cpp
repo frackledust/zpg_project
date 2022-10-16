@@ -8,15 +8,13 @@
 #include <cstdlib>
 #include <iostream>
 //
+#include "Drawable.h"
 #include "ShaderManager.h"
 #include "App.h"
 #include "CallbackController.h"
 
 // DATA
-//#include "SquareColor.h"
-//#include "SquareRotate.h"
-#include "TwoInOne.h"
-#include "Drawable.h"
+#include "SquareColor.h"
 
 int main()
 {
@@ -24,24 +22,20 @@ int main()
     CallbackController::bind_callbacks();
 
     glfwSwapInterval(1);
-    auto shader = new ShaderManager(vertex_shader, fragment_shader);
-    shader->link_matrix_name("modelMatrix");
+    auto first_shader = new ShaderManager(vertex_shader, fragment_shader);
+    int projection = first_shader->link_matrix_name("projection");
+    int view = first_shader->link_matrix_name("view");
+    int model = first_shader->link_matrix_name("model");
 
-    auto shader2 = new ShaderManager(vertex_shader2, fragment_shader2);
-    shader2->link_matrix_name("modelMatrix");
-
-    auto square = new Drawable(sizeof(data1), data1, 5, 4, true, M);
-    square->link_shader(shader);
-    app->add_drawable(square);
-
-    auto triangle = new Drawable(sizeof(data2), data2, 3, 4, false, M2);
-    triangle->link_shader(shader2);
-    app->add_drawable(triangle);
+    auto shape_one = new Drawable(sizeof(data), data, VERTEX_COUNT, VERTEX_SIZE, true);
+    shape_one->link_shader(first_shader);
+    app->add_drawable(shape_one);
 
     while (app->is_open()) {
         app->draw_frame();
     }
 
     delete app;
+
     exit(EXIT_SUCCESS);
 }

@@ -5,9 +5,17 @@
 #ifndef ZPG_PROJECT_TRANSFORMABLE_H
 #define ZPG_PROJECT_TRANSFORMABLE_H
 
+#include "GLFW/glfw3.h"
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 class Transformable {
-
+public:
+    Transformable() = default;
+    glm::mat4 transform();
 };
 
 

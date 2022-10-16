@@ -6,18 +6,19 @@
 #define ZPG_PROJECT_DRAWABLE_H
 
 #include "DataModel.h"
+#include <GLFW/glfw3.h>
 #include "glm/fwd.hpp"
 #include "glm/detail/type_mat4x4.hpp"
 #include "ShaderManager.h"
+#include "Transformable.h"
 
 class Drawable {
 private:
     DataModel * dataModel;
     ShaderManager* shaderManager;
-    glm::mat4 matrix;
+    Transformable* transformable;
 public:
     Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
-    Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color, glm::mat4 matrix);
 
     void link_shader(ShaderManager * shader);
     void render();

@@ -50,3 +50,7 @@ void Window::bind_callbacks() {
 
 }
 
+glm::mat4 Window::get_projection(float d) const {
+    return glm::perspective(d, (float) height/ (float) width, 0.1f, 100.0f);
+}
+

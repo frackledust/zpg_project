@@ -49,10 +49,10 @@ void ShaderManager::use_shaders() const {
 
 int ShaderManager::link_matrix_name(const char* matrix_name) {
     this->matrixID = glGetUniformLocation(this->shaderProgram, matrix_name);
-    std::cout << "MATRIX ID: " << this->matrixID << "\n";
+    std::cout << "MATRIX " << matrix_name << " ID: " << this->matrixID << "\n";
     return this->matrixID;
 }
 
-void ShaderManager::use_matrix(glm::mat4 matrix) const {
-    glUniformMatrix4fv(this->matrixID, 1, GL_FALSE, &matrix[0][0]);
+void ShaderManager::set_uniform(int matrix_id, glm::mat4 matrix) const {
+
 }

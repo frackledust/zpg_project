@@ -15,7 +15,6 @@ VBO::VBO(GLsizeiptr size, const void *data) : VBO() {
 
 void VBO::set_buffer(GLsizeiptr size, const void *data) {
     glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
-//    this->bind_buffer();
 }
 
 void VBO::bind_buffer() const {

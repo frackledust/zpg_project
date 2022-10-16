@@ -12,16 +12,11 @@ DataModel::DataModel(GLsizeiptr size, const void *data, int vertex_count, int ve
     this->vao = new VAO();
     int stride = has_color ? 2 * vertex_size : vertex_size;
 
-    if(vertex_count == 3){
-        this->mode = GL_TRIANGLES;
-    }else{
-        this->mode = GL_POLYGON;
-    }
+    this->mode = GL_TRIANGLES;
 
-
-    vao->add_vertex(0, 4, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void*)(0* sizeof(float)));
+    vao->add_vertex(0, vertex_size, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void*)(0* sizeof(float)));
     if (has_colour){
-        vao->add_vertex(1, 4, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void*)(vertex_size* sizeof(float)));
+        vao->add_vertex(1, vertex_size, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void*)(vertex_size* sizeof(float)));
     }
 }
 

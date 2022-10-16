@@ -10,6 +10,12 @@
 #include "GLFW/glfw3.h"
 #include "CallbackController.h"
 
+#include "glm/fwd.hpp"
+#include "glm/detail/type_mat4x4.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 class Window {
     GLFWwindow* window;
     int width;
@@ -23,6 +29,8 @@ public:
     void update_view() const;
 
     void bind_callbacks();
+
+    glm::mat4 get_projection(float d) const;
 };
 
 

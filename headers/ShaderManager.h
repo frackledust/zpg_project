@@ -28,7 +28,7 @@ public:
     int link_shaders() const;
     void use_shaders() const;
     int link_matrix_name(const char *matrix_name);
-    void use_matrix(glm::mat4 matrix) const;
+    void set_uniform(int matrix_id, glm::mat4 matrix) const;
 
 
 };

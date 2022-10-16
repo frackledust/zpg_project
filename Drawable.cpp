@@ -8,14 +8,12 @@ Drawable::Drawable(GLsizeiptr size, const void *data, int vertex_count, int vert
     this->dataModel = new DataModel(size, data, vertex_count, vertex_size, has_color);
 }
 
-Drawable::Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color, glm::mat4 matrix)
-:   Drawable(size, data, vertex_count, vertex_size, has_color){
-    this->matrix = matrix;
-}
-
 void Drawable::render() {
+
+    auto model = transformable->transform();
+    glUniformMatrix4fv(2, 1, GL_FALSE, &model[0][0]);
+
     shaderManager->use_shaders();
-    shaderManager->use_matrix(matrix);
     dataModel->draw();
 }
 
