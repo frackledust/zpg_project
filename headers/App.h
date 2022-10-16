@@ -41,7 +41,7 @@ public:
     static void init_glew();
     static void print_info();
 
-    __attribute__((unused)) void add_drawable(Drawable *drawable);
+    __attribute__((unused)) Drawable * add_drawable(Drawable *drawable);
 
     bool is_open() const;
 

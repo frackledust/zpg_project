@@ -9,10 +9,13 @@
 #include "Transformable.h"
 
 class Rotate : public Transformable {
-    int angle = 10;
+    float angle = 10;
+    bool move = false;
+    glm::vec3 direction = glm::vec3(0.0, 0.0, 1.0);
 public:
     Rotate() = default;
-    explicit Rotate(int angle) : angle(angle){}
+    explicit Rotate(float angle, glm::vec3 direction) : angle(angle), direction(direction){}
+    explicit Rotate(float angle, glm::vec3 direction, bool move) : angle(angle), direction(direction), move(move){}
     glm::mat4 transform() const override;
 };
 

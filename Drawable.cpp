@@ -19,10 +19,12 @@ void Drawable::render() {
     dataModel->draw();
 }
 
-void Drawable::link_shader(ShaderManager * shader) {
+Drawable * Drawable::link_shader(ShaderManager * shader) {
     this->shaderManager = shader;
+    return this;
 }
 
-void Drawable::add_transformation(Transformable *transformation) {
+Drawable * Drawable::add_transformation(Transformable *transformation) {
     this->transformable = transformation;
+    return this;
 }

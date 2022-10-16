@@ -21,11 +21,11 @@ private:
 public:
     Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
 
-    void link_shader(ShaderManager * shader);
+    Drawable * link_shader(ShaderManager * shader);
     void render();
 
 
-    void add_transformation(Transformable *transformation);
+    Drawable * add_transformation(Transformable *transformation);
 };
 
 

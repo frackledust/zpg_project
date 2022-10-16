@@ -27,7 +27,7 @@ const char* fragment_shader =
         "}";
 
 
-const int VERTEX_COUNT = 4;
+const int VERTEX_COUNT = 36;
 const float data[] ={
         -1.0f,-1.0f,-1.0f,0.583f,  0.771f,  0.014f,
         -1.0f,-1.0f, 1.0f,0.609f,  0.115f,  0.436f,

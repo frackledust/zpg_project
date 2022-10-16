@@ -78,8 +78,9 @@ bool App::is_open() const {
     return window->is_open();
 }
 
-void App::add_drawable(Drawable *drawable) {
+Drawable * App::add_drawable(Drawable *drawable) {
     drawables.push_back(drawable);
+    return drawable;
 }
 
 
