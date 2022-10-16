@@ -11,6 +11,7 @@
 #include "glm/detail/type_mat4x4.hpp"
 #include "ShaderManager.h"
 #include "Transformable.h"
+#include "Rotate.h"
 
 class Drawable {
 private:
@@ -24,6 +25,7 @@ public:
     void render();
 
 
+    void add_transformation(Transformable *transformation);
 };
 
 

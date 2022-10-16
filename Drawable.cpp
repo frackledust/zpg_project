@@ -4,8 +4,10 @@
 
 #include "Drawable.h"
 
+
 Drawable::Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color) {
     this->dataModel = new DataModel(size, data, vertex_count, vertex_size, has_color);
+    this->transformable = new Transformable();
 }
 
 void Drawable::render() {
@@ -19,4 +21,8 @@ void Drawable::render() {
 
 void Drawable::link_shader(ShaderManager * shader) {
     this->shaderManager = shader;
+}
+
+void Drawable::add_transformation(Transformable *transformation) {
+    this->transformable = transformation;
 }

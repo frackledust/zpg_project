@@ -6,8 +6,14 @@
 #define ZPG_PROJECT_ROTATE_H
 
 
-class Rotate {
+#include "Transformable.h"
 
+class Rotate : public Transformable {
+    int angle = 10;
+public:
+    Rotate() = default;
+    explicit Rotate(int angle) : angle(angle){}
+    glm::mat4 transform() const override;
 };
 
 

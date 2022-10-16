@@ -34,6 +34,7 @@ int main()
 
     auto shape_two = new Drawable(sizeof(ax), ax, 4, 3, true);
     shape_two->link_shader(first_shader);
+    shape_two->add_transformation(new Rotate());
     app->add_drawable(shape_two);
 
     while (app->is_open()) {

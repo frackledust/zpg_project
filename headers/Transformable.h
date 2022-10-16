@@ -14,8 +14,7 @@
 
 class Transformable {
 public:
-    Transformable() = default;
-    glm::mat4 transform();
+    virtual glm::mat4 transform() const;
 };
 
 
