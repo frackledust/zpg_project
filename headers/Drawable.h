@@ -10,13 +10,13 @@
 #include "glm/fwd.hpp"
 #include "glm/detail/type_mat4x4.hpp"
 #include "ShaderManager.h"
-#include "Transformable.h"
 #include "Rotate.h"
+#include "TransformCollection.h"
 
 class Drawable {
 private:
     DataModel * dataModel;
-    Transformable* transformable;
+    TransformCollection* transformable;
 public:
     Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
 

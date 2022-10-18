@@ -7,7 +7,7 @@
 
 Drawable::Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color) {
     this->dataModel = new DataModel(size, data, vertex_count, vertex_size, has_color);
-    this->transformable = new Transformable();
+    this->transformable = new TransformCollection();
 }
 
 void Drawable::render() {

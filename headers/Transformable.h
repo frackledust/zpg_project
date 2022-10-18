@@ -15,7 +15,6 @@
 
 class Transformable {
 public:
-    std::vector<Transformable*> components;
     virtual glm::mat4 transform() const;
     virtual glm::mat4 transform(glm::mat4 mat) const;
 };
