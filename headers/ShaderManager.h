@@ -22,12 +22,11 @@ private:
 public:
     ShaderManager() = default;
     ShaderManager(const char *vertex_shader, const char *fragment_shader);
-    ShaderManager(const char *vertex_shader, const char *fragment_shader, const char *matrix_name);
 
     void add_shader(GLenum shader_type, const char** source);
     int link_shaders() const;
     void use_shaders() const;
-    int link_matrix_name(const char *matrix_name);
+    ShaderManager* link_matrix_name(const char *matrix_name);
     void set_uniform(int matrix_id, glm::mat4 matrix) const;
 
 

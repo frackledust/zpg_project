@@ -60,13 +60,14 @@ void App::draw_frame() {
 
     camera->update_position(window);
 
-    auto view = camera->get_view();
-    auto proj = window->get_projection(glm::radians(45.0f));
-    glUniformMatrix4fv(0, 1, GL_FALSE, &proj[0][0]);
-    glUniformMatrix4fv(1, 1, GL_FALSE, &view[0][0]);
-
-
     for (auto &drawable: drawables) {
+        drawable->shaderManager->use_shaders();
+
+        auto view = camera->get_view();
+        auto proj = window->get_projection(glm::radians(45.0f));
+        glUniformMatrix4fv(0, 1, GL_FALSE, &proj[0][0]);
+        glUniformMatrix4fv(1, 1, GL_FALSE, &view[0][0]);
+
         drawable->render();
     }
 

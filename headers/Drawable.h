@@ -16,7 +16,6 @@
 class Drawable {
 private:
     DataModel * dataModel;
-    ShaderManager* shaderManager;
     Transformable* transformable;
 public:
     Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
@@ -28,6 +27,8 @@ public:
     Drawable * add_transformation(Transformable *transformation);
 
     Transformable * get_transformation();
+
+    ShaderManager* shaderManager;
 };
 
 

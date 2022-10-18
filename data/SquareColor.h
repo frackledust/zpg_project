@@ -6,6 +6,49 @@
 #define ZPG_PROJECT_SQUARECOLOR_H
 const int VERTEX_SIZE = 3;
 
+const char* vertex_shader_phong =
+        "#version 330\n"
+        "layout(location=0) in vec3 vp;"
+        "layout(location=1) in vec3 vc;"
+        "out vec4 world_pos;"
+        "out vec3 world_norm;"
+        "uniform mat4 model;"
+        "uniform mat4 view;"
+        "uniform mat4 projection;"
+        "void main () {"
+        "     gl_Position = projection * view * model * vec4(vp, 1);"
+        "     world_pos = model * vec4(vp, 1.0f);"
+        "     world_norm = vc;"
+        "}";
+
+const char* fragment_shader_phong =
+        "#version 330\n"
+        "out vec4 frag_colour;"
+        "in vec4 world_pos;"
+        "in vec3 world_norm;"
+        "void main () {"
+        "     vec3 light = vec3(0.1, 0.0, 0.0);"
+        "     light = vec3(light.x - world_pos.x, light.y - world_pos.y, light.z - world_pos.z);"
+        "     float dot_product = max(dot(light, normalize(world_norm)), 0.0);"
+        "     vec4 diffuse = dot_product * vec4( 0.385, 0.647, 0.812, 1.0);"
+        "     vec4 ambient = vec4( 0.1, 0.1, 0.1, 1.0);"
+        "     frag_colour = ambient + diffuse;"
+        "}";
+
+
+const char* vertex_shader_no_col =
+        "#version 330\n"
+        "layout(location=0) in vec3 vp;"
+        "layout(location=1) in vec3 vc;"
+        "out vec4 colors;"
+        "uniform mat4 model;"
+        "uniform mat4 view;"
+        "uniform mat4 projection;"
+        "void main () {"
+        "     gl_Position = projection * view * model * vec4(vp, 1);"
+        "     colors = vec4(vp, 1);"
+        "}";
+
 const char* vertex_shader =
         "#version 330\n"
         "layout(location=0) in vec3 vp;"

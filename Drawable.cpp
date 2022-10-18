@@ -15,7 +15,6 @@ void Drawable::render() {
     auto model = transformable->transform();
     glUniformMatrix4fv(2, 1, GL_FALSE, &model[0][0]);
 
-    shaderManager->use_shaders();
     dataModel->draw();
 }
 

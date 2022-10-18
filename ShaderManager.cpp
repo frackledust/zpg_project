@@ -11,11 +11,6 @@ ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_sha
     this->link_shaders();
 }
 
-ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_shader, const char *matrix_name)
-: ShaderManager(vertex_shader, fragment_shader){
-    this->matrixID = this->link_matrix_name(matrix_name);
-}
-
 void ShaderManager::add_shader(GLenum shader_type, const char** source) {
     GLuint shader = glCreateShader(shader_type);
     shaderIds.push_back(shader);
@@ -47,10 +42,10 @@ void ShaderManager::use_shaders() const {
     glUseProgram(this->shaderProgram);
 }
 
-int ShaderManager::link_matrix_name(const char* matrix_name) {
+ShaderManager* ShaderManager::link_matrix_name(const char* matrix_name) {
     this->matrixID = glGetUniformLocation(this->shaderProgram, matrix_name);
     std::cout << "MATRIX " << matrix_name << " ID: " << this->matrixID << "\n";
-    return this->matrixID;
+    return this;
 }
 
 void ShaderManager::set_uniform(int matrix_id, glm::mat4 matrix) const {
