@@ -22,18 +22,17 @@
 #include "ShaderManager.h"
 #include "Drawable.h"
 #include "Camera.h"
+#include "Scene.h"
 
 class App {
 private:
     std::vector<Drawable *> drawables;
-public:
+    Window *window;
     Camera *camera;
-
+public:
     App(int width, int height);
 
     ~App();
-
-    void set_window(int width, int height);
 
     static void print_info();
 
@@ -43,7 +42,7 @@ public:
 
     void draw_frame();
 
-    Window *window;
+    Scene *scene;
 };
 
 

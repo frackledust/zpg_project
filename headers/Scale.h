@@ -11,7 +11,7 @@ class Scale : public Transformable {
 public:
     Scale() = default;
     explicit Scale(glm::vec3 direction) : direction(direction){}
-    $glm::mat4 transform(glm::mat4 mat) const override;
+    glm::mat4 transform(glm::mat4 mat) const override;
 };
 
 

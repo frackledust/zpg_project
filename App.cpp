@@ -18,18 +18,19 @@ App::App(int width, int height) {
         exit(EXIT_FAILURE);
     }
 
-    this->set_window(width, height);
-
-    glewExperimental = GL_TRUE;
-    glewInit();
-}
-
-void App::set_window(int width, int height) {
     window = new Window(width, height, "Hi");
-
+    CallbackController::app_window = window;
     window->bind_callbacks();
 
     camera = new Camera();
+    CallbackController::camera = camera;
+
+    scene = new Scene();
+
+    glewExperimental = GL_TRUE;
+    glewInit();
+
+    glfwSwapInterval(1);
 }
 
 void App::print_info() {
@@ -48,16 +49,10 @@ void App::draw_frame() {
 
     camera->update_position(window);
 
-    for (auto &drawable: drawables) {
-        drawable->shaderManager->use_shaders();
+    auto proj = window->get_projection();
+    auto view = camera->get_view();
 
-        auto view = camera->get_view();
-        auto proj = window->get_projection();
-        glUniformMatrix4fv(0, 1, GL_FALSE, &proj[0][0]);
-        glUniformMatrix4fv(1, 1, GL_FALSE, &view[0][0]);
-
-        drawable->render();
-    }
+    scene->draw(&proj[0][0], &view[0][0]);
 
     glfwPollEvents();
     window->update_view();
