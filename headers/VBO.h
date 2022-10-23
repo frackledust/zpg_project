@@ -12,7 +12,7 @@ private:
     GLuint VBO_id = 0;
 public:
     VBO();
-    VBO(GLsizeiptr size, const void * data);
+    VBO(GLsizeiptr size, const void *data);
 
     void bind_buffer() const;
     void set_buffer(GLsizeiptr size, const void *data);

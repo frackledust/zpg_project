@@ -18,16 +18,16 @@ void Drawable::render() {
     dataModel->draw();
 }
 
-Drawable * Drawable::link_shader(ShaderManager * shader) {
+Drawable *Drawable::link_shader(ShaderManager *shader) {
     this->shaderManager = shader;
     return this;
 }
 
-Drawable * Drawable::add_transformation(Transformable *transformation) {
+Drawable *Drawable::add_transformation(Transformable *transformation) {
     this->transformable->components.push_back(transformation);
     return this;
 }
 
-Transformable * Drawable::get_transformation() {
+Transformable *Drawable::get_transformation() {
     return this->transformable;
 }

@@ -7,6 +7,7 @@
 
 
 #include "Transformable.h"
+
 class TransformCollection : public Transformable {
 
     glm::mat4 transform(glm::mat4 mat) const;
@@ -14,7 +15,7 @@ class TransformCollection : public Transformable {
 public:
     glm::mat4 transform() const;
 
-    std::vector<Transformable*> components;
+    std::vector<Transformable *> components;
 };
 
 

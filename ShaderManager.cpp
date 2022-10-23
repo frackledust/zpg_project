@@ -11,7 +11,7 @@ ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_sha
     this->link_shaders();
 }
 
-void ShaderManager::add_shader(GLenum shader_type, const char** source) {
+void ShaderManager::add_shader(GLenum shader_type, const char **source) {
     GLuint shader = glCreateShader(shader_type);
     shaderIds.push_back(shader);
     glShaderSource(shader, 1, source, nullptr);
@@ -24,11 +24,10 @@ int ShaderManager::link_shaders() const {
 
     GLint status;
     glGetProgramiv(this->shaderProgram, GL_LINK_STATUS, &status);
-    if (status == GL_FALSE)
-    {
+    if (status == GL_FALSE) {
         GLint infoLogLength;
         glGetProgramiv(this->shaderProgram, GL_INFO_LOG_LENGTH, &infoLogLength);
-        auto* strInfoLog = new GLchar[infoLogLength + 1];
+        auto *strInfoLog = new GLchar[infoLogLength + 1];
         glGetProgramInfoLog(this->shaderProgram, infoLogLength, nullptr, strInfoLog);
         fprintf(stderr, "Linker failure: %s\n", strInfoLog);
         delete[] strInfoLog;
@@ -42,7 +41,7 @@ void ShaderManager::use_shaders() const {
     glUseProgram(this->shaderProgram);
 }
 
-ShaderManager* ShaderManager::link_matrix_name(const char* matrix_name) {
+ShaderManager *ShaderManager::link_matrix_name(const char *matrix_name) {
     this->matrixID = glGetUniformLocation(this->shaderProgram, matrix_name);
     std::cout << "MATRIX " << matrix_name << " ID: " << this->matrixID << "\n";
     return this;

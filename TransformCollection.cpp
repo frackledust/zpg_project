@@ -6,7 +6,7 @@
 
 glm::mat4 TransformCollection::transform(glm::mat4 mat) const {
 
-    for(auto& c : components){
+    for (auto &c: components) {
         mat = c->transform(mat);
     }
 

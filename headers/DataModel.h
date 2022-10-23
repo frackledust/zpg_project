@@ -11,8 +11,8 @@
 
 class DataModel {
 private:
-    VBO* vbo;
-    VAO* vao;
+    VBO *vbo;
+    VAO *vao;
 
     GLenum mode;
     int vertex_size;

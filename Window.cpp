@@ -4,7 +4,7 @@
 
 #include "Window.h"
 
-Window::Window(int width, int height, const char* title) : width(width), height(height){
+Window::Window(int width, int height, const char *title) : width(width), height(height) {
     this->window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
     if (!this->window) {
@@ -53,14 +53,14 @@ void Window::bind_callbacks() const {
     glfwSetScrollCallback(window, CallbackController::scroll_callback);
 }
 
-void Window::change_size(int width, int height){
+void Window::change_size(int width, int height) {
     glViewport(0, 0, width, height);
     this->width = width;
     this->height = height;
 }
 
-void Window::change_zoom(double y_offset){
-    zoom -= (float)y_offset;
+void Window::change_zoom(double y_offset) {
+    zoom -= (float) y_offset;
     if (zoom < 1.0f)
         zoom = 1.0f;
 //    if (zoom > 45.0f)
@@ -68,6 +68,6 @@ void Window::change_zoom(double y_offset){
 }
 
 glm::mat4 Window::get_projection() const {
-    return glm::perspective(glm::radians(zoom), (float) width/ (float) height, 0.1f, 100.0f);
+    return glm::perspective(glm::radians(zoom), (float) width / (float) height, 0.1f, 100.0f);
 }
 

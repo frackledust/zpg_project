@@ -3,6 +3,7 @@
 //
 
 #include "Transformable.h"
+
 glm::mat4 Transformable::transform(glm::mat4 mat) const {
     return mat;
 }

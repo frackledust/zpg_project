@@ -16,6 +16,7 @@
 class Transformable {
 public:
     virtual glm::mat4 transform() const;
+
     virtual glm::mat4 transform(glm::mat4 mat) const;
 };
 

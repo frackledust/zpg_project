@@ -13,8 +13,11 @@ private:
     size_t vertex_count = 0;
 public:
     VAO();
+
     VAO(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
+
     void add_vertex(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
+
     void bind_vertex_array() const;
 };
 

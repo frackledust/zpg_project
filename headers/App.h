@@ -25,18 +25,19 @@
 
 class App {
 private:
-    std::vector<Drawable*> drawables;
+    std::vector<Drawable *> drawables;
 public:
-    Camera* camera;
+    Camera *camera;
 
     App(int width, int height);
+
     ~App();
 
     void set_window(int width, int height);
 
     static void print_info();
 
-    __attribute__((unused)) Drawable * add_drawable(Drawable *drawable);
+    __attribute__((unused)) Drawable *add_drawable(Drawable *drawable);
 
     bool is_open() const;
 

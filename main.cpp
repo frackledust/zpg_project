@@ -29,8 +29,8 @@ int main() {
     glfwSwapInterval(1);
     auto first_shader = new ShaderManager(vertex_shader, fragment_shader);
     first_shader->link_matrix_name("projection")
-                ->link_matrix_name("view")
-                ->link_matrix_name("model");
+            ->link_matrix_name("view")
+            ->link_matrix_name("model");
 
     auto second_shader = new ShaderManager(vertex_shader_no_col, fragment_shader);
     second_shader->link_matrix_name("projection")
