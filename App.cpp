@@ -11,7 +11,7 @@ App::~App() {
 
 
 App::App(int width, int height) {
-    CallbackController::bind_callbacks();
+//    CallbackController::bind_callbacks();
 
     if (!glfwInit()) {
         fprintf(stderr, "ERROR: could not start GLFW3\n");
@@ -19,11 +19,11 @@ App::App(int width, int height) {
     }
 
     window = new Window(width, height, "Hi");
-    CallbackController::app_window = window;
+//    CallbackController::app_window = window;
     window->bind_callbacks();
 
     camera = new Camera();
-    CallbackController::camera = camera;
+//    CallbackController::camera = camera;
 
     scene = new Scene();
 

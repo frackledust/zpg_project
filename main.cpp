@@ -15,7 +15,7 @@
 
 int main() {
     App *app = new App(800, 600);
-    CallbackController::bind_callbacks();
+//    CallbackController::bind_callbacks();
     app->scene->init();
 
     while (app->is_open()) {

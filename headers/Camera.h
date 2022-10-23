@@ -10,10 +10,10 @@
 #include "glm/vec3.hpp"
 #include "glm/fwd.hpp"
 #include <glm/gtc/matrix_transform.hpp>
-
+#include "Observer.h"
 class Window;
 
-class Camera {
+class Camera : public Observer {
 private:
     bool firstMouse = true;
     float lastX = 400;
@@ -31,37 +31,9 @@ public:
 
     glm::mat4 get_view() const;
 
-    void mouse_callback(float xpos, float ypos) {
+    void update(float x, float y);
+    void mouse_callback(float xpos, float ypos);
 
-        if (firstMouse) {
-            lastX = xpos;
-            lastY = ypos;
-            firstMouse = false;
-        }
-
-        float x_offset = xpos - lastX;
-        float y_offset = lastY - ypos;
-        lastX = xpos;
-        lastY = ypos;
-
-        float sensitivity = 0.1f;
-        x_offset *= sensitivity;
-        y_offset *= sensitivity;
-
-        yaw += x_offset;
-        pitch += y_offset;
-
-        if (pitch > 89.0f)
-            pitch = 89.0f;
-        if (pitch < -89.0f)
-            pitch = -89.0f;
-
-        glm::vec3 direction;
-        direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-        direction.y = sin(glm::radians(pitch));
-        direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-        cameraFront = glm::normalize(direction);
-    }
 };
 
 

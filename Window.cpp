@@ -38,19 +38,23 @@ void Window::update_view() const {
 }
 
 void Window::bind_callbacks() const {
-    glfwSetKeyCallback(window, CallbackController::key_callback);
+    auto pos_callback = [](GLFWwindow *w, double x, double y) {CallbackController::getInstance()->cursor_callback(w, x, y);};
+    glfwSetCursorPosCallback(window, pos_callback);
 
-    glfwSetCursorPosCallback(window, CallbackController::cursor_callback);
+    auto button_callback = [](GLFWwindow *w, int button, int action, int mode) {CallbackController::getInstance()->button_callback(w, button, action, mode);};
+    glfwSetMouseButtonCallback(window, button_callback);
 
-    glfwSetMouseButtonCallback(window, CallbackController::button_callback);
+    auto focus_callback = [](GLFWwindow *w, int focused) {CallbackController::getInstance()->window_focus_callback(w, focused);};
+    glfwSetWindowFocusCallback(window, focus_callback);
 
-    glfwSetWindowFocusCallback(window, CallbackController::window_focus_callback);
+    auto iconify_callback = [](GLFWwindow *w, int iconified){CallbackController::getInstance()->window_iconify_callback(w, iconified);};
+    glfwSetWindowIconifyCallback(window, iconify_callback);
 
-    glfwSetWindowIconifyCallback(window, CallbackController::window_iconify_callback);
+    auto size_callback = [](GLFWwindow *w, int w_width, int w_height){CallbackController::getInstance()->window_size_callback(w, w_width, w_height);};
+    glfwSetWindowSizeCallback(window, size_callback);
 
-    glfwSetWindowSizeCallback(window, CallbackController::window_size_callback);
-
-    glfwSetScrollCallback(window, CallbackController::scroll_callback);
+    auto scroll_callback = [](GLFWwindow *w, double x, double y){CallbackController::getInstance()->scroll_callback(w, x, y);};
+    glfwSetScrollCallback(window, scroll_callback);
 }
 
 void Window::change_size(int width, int height) {

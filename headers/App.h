@@ -28,7 +28,6 @@ class App {
 private:
     std::vector<Drawable *> drawables;
     Window *window;
-    Camera *camera;
 public:
     App(int width, int height);
 
@@ -43,6 +42,7 @@ public:
     void draw_frame();
 
     Scene *scene;
+    Camera *camera;
 };
 
 
