@@ -16,9 +16,17 @@ public:
         observers.push_back(observer);
     };
 
-    virtual void removeObserver(Observer *observer){};
+    virtual void notify(){
+        for(auto& o : observers){
+            o->update();
+        }
+    };
 
-    virtual void notifyObservers(){};
+    virtual void notify_observers(float x, float y){
+        for(auto& o : observers){
+            o->update(x, y);
+        }
+    };
 };
 
 #endif //ZPG_PROJECT_SUBJECT_H

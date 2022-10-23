@@ -6,7 +6,9 @@
 #define ZPG_PROJECT_OBSERVER_H
 
 
-class Observer {
+class Observer { ;
+public:
+    virtual void update() {}
     virtual void update(float x, float y) {};
 };
 

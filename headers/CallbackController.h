@@ -24,7 +24,6 @@ private:
 public:
     static CallbackController* getInstance();
 
-    Camera *camera = nullptr;
     Window *app_window = nullptr;
 
     void bind_callbacks();

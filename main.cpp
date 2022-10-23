@@ -1,21 +1,16 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
-//Include GLM  
-#include <glm/vec3.hpp> // glm::vec3
-#include <glm/vec4.hpp> // glm::vec4
-
 #include <cstdlib>
 #include <iostream>
-//
-#include "Drawable.h"
-#include "ShaderManager.h"
+
 #include "App.h"
 #include "CallbackController.h"
 
 int main() {
     App *app = new App(800, 600);
-//    CallbackController::bind_callbacks();
+    auto cb = CallbackController::getInstance();
+    cb->bind_callbacks();
+    cb->registerObserver(app->camera);
+    cb->app_window = app->window;
+
     app->scene->init();
 
     while (app->is_open()) {
