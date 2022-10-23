@@ -8,20 +8,24 @@
 #include <cstdlib>
 #include <cstdio>
 #include "GLFW/glfw3.h"
+#include "Camera.h"
+class Camera;
+class Window;
 
 class CallbackController {
 private:
     static void error_callback(int error, const char* description);
 public:
+    static Camera* camera;
+    static Window* app_window;
     static void bind_callbacks();
-
     static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
     static void window_focus_callback(GLFWwindow* window, int focused);
     static void window_iconify_callback(GLFWwindow* window, int iconified);
     static void window_size_callback(GLFWwindow* window, int width, int height);
     static void cursor_callback(GLFWwindow *window, double x, double y);
     static void button_callback(GLFWwindow* window, int button, int action, int mode);
-
+    static void scroll_callback(GLFWwindow *window, double x, double y);
 };
 
 

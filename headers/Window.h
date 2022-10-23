@@ -19,6 +19,8 @@
 class Window {
     int width;
     int height;
+
+    float zoom = 45;
 public:
     Window(int width, int height, const char* title);
     ~Window();
@@ -27,11 +29,15 @@ public:
     void clear_view();
     void update_view() const;
 
-    void bind_callbacks();
+    void bind_callbacks() const;
 
-    glm::mat4 get_projection(float d) const;
+    glm::mat4 get_projection() const;
 
     GLFWwindow* window;
+
+
+    void change_zoom(double y_offset);
+    void change_size(int width, int height);
 };
 
 

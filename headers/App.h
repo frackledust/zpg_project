@@ -25,20 +25,15 @@
 
 class App {
 private:
-    Window *window;
     std::vector<Drawable*> drawables;
 public:
-    ShaderManager* shaderManager;
     Camera* camera;
 
-    App();
-    ~App();
     App(int width, int height);
+    ~App();
 
     void set_window(int width, int height);
 
-    static void init_glfw();
-    static void init_glew();
     static void print_info();
 
     __attribute__((unused)) Drawable * add_drawable(Drawable *drawable);
@@ -46,6 +41,8 @@ public:
     bool is_open() const;
 
     void draw_frame();
+
+    Window *window;
 };
 
 

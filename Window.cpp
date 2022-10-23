@@ -13,6 +13,7 @@ Window::Window(int width, int height, const char* title) : width(width), height(
     }
 
     glfwMakeContextCurrent(this->window);
+//    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     glViewport(0, 0, width, height); // window size
 }
@@ -36,7 +37,7 @@ void Window::update_view() const {
     glfwSwapBuffers(window);
 }
 
-void Window::bind_callbacks() {
+void Window::bind_callbacks() const {
     glfwSetKeyCallback(window, CallbackController::key_callback);
 
     glfwSetCursorPosCallback(window, CallbackController::cursor_callback);
@@ -49,9 +50,24 @@ void Window::bind_callbacks() {
 
     glfwSetWindowSizeCallback(window, CallbackController::window_size_callback);
 
+    glfwSetScrollCallback(window, CallbackController::scroll_callback);
 }
 
-glm::mat4 Window::get_projection(float d) const {
-    return glm::perspective(d, (float) width/ (float) height, 0.1f, 100.0f);
+void Window::change_size(int width, int height){
+    glViewport(0, 0, width, height);
+    this->width = width;
+    this->height = height;
+}
+
+void Window::change_zoom(double y_offset){
+    zoom -= (float)y_offset;
+    if (zoom < 1.0f)
+        zoom = 1.0f;
+//    if (zoom > 45.0f)
+//        zoom = 45.0f;
+}
+
+glm::mat4 Window::get_projection() const {
+    return glm::perspective(glm::radians(zoom), (float) width/ (float) height, 0.1f, 100.0f);
 }
 

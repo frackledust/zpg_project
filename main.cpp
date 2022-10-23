@@ -23,6 +23,8 @@
 int main() {
     App *app = new App(800, 600);
     CallbackController::bind_callbacks();
+    CallbackController::camera = app->camera;
+    CallbackController::app_window = app->window;
 
     glfwSwapInterval(1);
     auto first_shader = new ShaderManager(vertex_shader, fragment_shader);

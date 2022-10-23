@@ -4,21 +4,24 @@
 
 #include "App.h"
 
-App::App() {
-    CallbackController::bind_callbacks();
-    App::init_glfw();
-}
-
 App::~App() {
     delete window;
     glfwTerminate();
 }
 
 
-App::App(int width, int height) : App() {
+App::App(int width, int height) {
+    CallbackController::bind_callbacks();
+
+    if (!glfwInit()) {
+        fprintf(stderr, "ERROR: could not start GLFW3\n");
+        exit(EXIT_FAILURE);
+    }
+
     this->set_window(width, height);
 
-    init_glew();
+    glewExperimental = GL_TRUE;
+    glewInit();
 }
 
 void App::set_window(int width, int height) {
@@ -27,21 +30,6 @@ void App::set_window(int width, int height) {
     window->bind_callbacks();
 
     camera = new Camera();
-}
-
-
-void App::init_glfw() {
-
-    if (!glfwInit()) {
-        fprintf(stderr, "ERROR: could not start GLFW3\n");
-        exit(EXIT_FAILURE);
-    }
-
-}
-
-void App::init_glew() {
-    glewExperimental = GL_TRUE;
-    glewInit();
 }
 
 void App::print_info() {
@@ -64,7 +52,7 @@ void App::draw_frame() {
         drawable->shaderManager->use_shaders();
 
         auto view = camera->get_view();
-        auto proj = window->get_projection(glm::radians(45.0f));
+        auto proj = window->get_projection();
         glUniformMatrix4fv(0, 1, GL_FALSE, &proj[0][0]);
         glUniformMatrix4fv(1, 1, GL_FALSE, &view[0][0]);
 
@@ -79,7 +67,7 @@ bool App::is_open() const {
     return window->is_open();
 }
 
-Drawable * App::add_drawable(Drawable *drawable) {
+Drawable *App::add_drawable(Drawable *drawable) {
     drawables.push_back(drawable);
     return drawable;
 }
