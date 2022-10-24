@@ -11,7 +11,7 @@ int main() {
     cb->registerObserver(app->camera);
     cb->app_window = app->window;
 
-    app->scene->init();
+    app->scene->init_spheres();
 
     while (app->is_open()) {
         app->draw_frame();

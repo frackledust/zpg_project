@@ -19,11 +19,9 @@ App::App(int width, int height) {
     }
 
     window = new Window(width, height, "Hi");
-//    CallbackController::app_window = window;
     window->bind_callbacks();
 
     camera = new Camera();
-//    CallbackController::camera = camera;
 
     scene = new Scene();
 

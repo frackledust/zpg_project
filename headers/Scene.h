@@ -16,6 +16,7 @@ public:
     void draw(float *proj, float *view);
 
     void init();
+    void init_spheres();
 };
 
 
