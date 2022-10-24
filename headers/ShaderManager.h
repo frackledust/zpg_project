@@ -13,16 +13,18 @@
 #include "GL/glew.h"
 #include "glm/fwd.hpp"
 #include "glm/detail/type_mat4x4.hpp"
+#include "../ShaderLoader/ShaderLoader.h"
 
-class ShaderManager {
+class ShaderManager : public ShaderLoader {
 private:
     GLuint shaderProgram = glCreateProgram();
     std::vector<GLuint> shaderIds; //probably not needed
-    GLint matrixID;
 public:
     ShaderManager() = default;
 
-    ShaderManager(const char *vertex_shader, const char *fragment_shader);
+    ShaderManager(const char *vertex_shader_file, const char *fragment_shader_file);
+
+    void add_shader(GLenum shader_type, const char *file);
 
     void add_shader(GLenum shader_type, const char **source);
 

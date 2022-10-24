@@ -5,9 +5,18 @@
 
 #include "ShaderManager.h"
 
-ShaderManager::ShaderManager(const char *vertex_shader, const char *fragment_shader) {
-    this->add_shader(GL_VERTEX_SHADER, &vertex_shader);
-    this->add_shader(GL_FRAGMENT_SHADER, &fragment_shader);
+ShaderManager::ShaderManager(const char *vertex_shader_file, const char *fragment_shader_file) {
+    string vertexShaderString = loadFile(vertex_shader_file);
+    string fragmentShaderString = loadFile(fragment_shader_file);
+
+    if (vertexShaderString.empty()) printf("Empty Vertex Shader\n");
+    if (fragmentShaderString.empty()) printf("Empty Fragment Shader\n");
+
+    const char *vertex = vertexShaderString.c_str();
+    const char *fragment = fragmentShaderString.c_str();
+
+    this->add_shader(GL_VERTEX_SHADER, &vertex);
+    this->add_shader(GL_FRAGMENT_SHADER, &fragment);
     this->link_shaders();
 }
 
@@ -42,11 +51,15 @@ void ShaderManager::use_shaders() const {
 }
 
 ShaderManager *ShaderManager::link_matrix_name(const char *matrix_name) {
-    this->matrixID = glGetUniformLocation(this->shaderProgram, matrix_name);
-    std::cout << "MATRIX " << matrix_name << " ID: " << this->matrixID << "\n";
+    int m_id = glGetUniformLocation(this->shaderProgram, matrix_name);
+    std::cout << "MATRIX " << matrix_name << " ID: " << m_id << "\n";
     return this;
 }
 
 void ShaderManager::set_uniform(int matrix_id, glm::mat4 matrix) const {
+
+}
+
+void ShaderManager::add_shader(GLenum shader_type, const char *file) {
 
 }

@@ -27,12 +27,12 @@ void Scene::draw(float *proj, float *view) {
 }
 
 void Scene::init_spheres() {
-    auto constant_shader = new ShaderManager(vertex_shader, fragment_shader);
+    auto constant_shader = new ShaderManager("../shaders/const.vs", "../shaders/const.fs");
     constant_shader->link_matrix_name("projection")
             ->link_matrix_name("view")
             ->link_matrix_name("model");
 
-    auto phong_shader = new ShaderManager(vertex_shader_phong, fragment_shader_phong);
+    auto phong_shader = new ShaderManager("../shaders/phong.vs", "../shaders/phong.fs");
     phong_shader->link_matrix_name("projection")
             ->link_matrix_name("view")
             ->link_matrix_name("model");
@@ -70,23 +70,17 @@ void Scene::init_spheres() {
 }
 
 void Scene::init() {
-
-    auto first_shader = new ShaderManager(vertex_shader, fragment_shader);
-    first_shader->link_matrix_name("projection")
+    auto constant_shader = new ShaderManager("../shaders/const.vs", "../shaders/const.fs");
+    constant_shader->link_matrix_name("projection")
             ->link_matrix_name("view")
             ->link_matrix_name("model");
 
-    auto second_shader = new ShaderManager(vertex_shader_no_col, fragment_shader);
-    second_shader->link_matrix_name("projection")
-            ->link_matrix_name("view")
-            ->link_matrix_name("model");
-
-    auto lambert_shader = new ShaderManager(vertex_shader_phong, fragment_shader_lamber);
+    auto lambert_shader = new ShaderManager("../shaders/phong.vs", "../shaders/lambert.fs");
     lambert_shader->link_matrix_name("projection")
             ->link_matrix_name("view")
             ->link_matrix_name("model");
 
-    auto phong_shader = new ShaderManager(vertex_shader_phong, fragment_shader_phong);
+    auto phong_shader = new ShaderManager("../shaders/phong.vs", "../shaders/phong.fs");
     phong_shader->link_matrix_name("projection")
             ->link_matrix_name("view")
             ->link_matrix_name("model");
@@ -102,30 +96,30 @@ void Scene::init() {
             ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
 
     add_drawable(new Drawable(sizeof(data), data, VERTEX_COUNT, VERTEX_SIZE, true))
-            ->link_shader(first_shader)
+            ->link_shader(constant_shader)
             ->add_transformation(new Move(glm::vec3(3.0, 3.0, -20)));
 
     auto trans = add_drawable(new Drawable(sizeof(data), data, VERTEX_COUNT, VERTEX_SIZE, true))
-            ->link_shader(first_shader)
+            ->link_shader(constant_shader)
             ->add_transformation(new Rotate(90, glm::vec3(0.0, 0.0, 1.0), true))
             ->add_transformation(new Move(glm::vec3(3.0, 3.0, -10)))
             ->get_transformation();
 
     add_drawable(new Drawable(sizeof(data), data, VERTEX_COUNT, VERTEX_SIZE, true))
-            ->link_shader(second_shader)
+            ->link_shader(lambert_shader)
             ->add_transformation(trans)
             ->add_transformation(new Rotate(180, -glm::vec3(0.0, 0.0, 1.0), true))
             ->add_transformation(new Move(glm::vec3(3.0, 0.0, 0.0)))
             ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
 
     add_drawable(new Drawable(sizeof(ax), ax, 4, 3, true))
-            ->link_shader(second_shader);
+            ->link_shader(lambert_shader);
 
     add_drawable(new Drawable(sizeof(ax), ax, 4, 3, true))
-            ->link_shader(first_shader)
+            ->link_shader(lambert_shader)
             ->add_transformation(new Rotate(90, glm::vec3(0.0, 0.0, 0.1)));
 
     add_drawable(new Drawable(sizeof(ax), ax, 4, 3, true))
-            ->link_shader(first_shader)
+            ->link_shader(constant_shader)
             ->add_transformation(new Rotate(-90, glm::vec3(0.0, 1.0, 0.0)));
 }
