@@ -5,7 +5,7 @@
 #include "Camera.h"
 
 glm::mat4 Camera::get_view() const {
-    return glm::lookAt(cameraPos, cameraFront, cameraUp);
+    return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
 void Camera::update_position(Window *window) {
