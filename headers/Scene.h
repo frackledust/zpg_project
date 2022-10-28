@@ -7,8 +7,10 @@
 
 #include "Drawable.h"
 #include "Camera.h"
+
 #include "Move.h"
 #include "Scale.h"
+#include "Rotate.h"
 
 class Scene {
 private:
@@ -16,6 +18,7 @@ private:
     std::vector<Drawable *> drawables;
 
 public:
+    virtual ~Scene() = default;
     ShaderManager *add_shader(ShaderManager *shader);
 
     Drawable *add_drawable(Drawable *drawable);

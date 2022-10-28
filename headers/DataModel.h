@@ -11,11 +11,9 @@
 
 class DataModel {
 private:
-    VBO *vbo;
     VAO *vao;
 
     GLenum mode;
-    int vertex_size;
     int vertex_count;
     bool has_colour;
 public:

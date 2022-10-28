@@ -3,17 +3,18 @@
 //
 
 #include "App.h"
-#include "SceneFactory.h"
-
 
 App::~App() {
     delete window;
+    delete camera;
+    delete scene;
     glfwTerminate();
 }
 
 
 App::App(int width, int height) {
-    CallbackController::get_instance()->bind_callbacks();
+    auto cb = CallbackController::get_instance();
+    cb->bind_callbacks();
 
     if (!glfwInit()) {
         fprintf(stderr, "ERROR: could not start GLFW3\n");
@@ -29,9 +30,12 @@ App::App(int width, int height) {
     glfwSwapInterval(1);
 
     camera = new Camera();
-    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
+    scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
     scene->init();
     scene->link_shaders(camera, window);
+
+    cb->registerObserver(camera);
+    cb->set_window(window);
 }
 
 void App::print_info() {
@@ -58,11 +62,6 @@ void App::draw_frame() const {
 
 bool App::is_open() const {
     return window->is_open();
-}
-
-Drawable *App::add_drawable(Drawable *drawable) {
-    drawables.push_back(drawable);
-    return drawable;
 }
 
 

@@ -9,13 +9,12 @@
 #include "Transformable.h"
 
 class TransformCollection : public Transformable {
-
-    glm::mat4 transform(glm::mat4 mat) const;
-
 public:
-    glm::mat4 transform() const;
-
     std::vector<Transformable *> components;
+
+    [[nodiscard]] glm::mat4 transform(glm::mat4 mat) const override;
+
+    [[nodiscard]] glm::mat4 transform() const override;
 };
 
 

@@ -9,8 +9,8 @@
 #include <map>
 #include <memory>
 #include "Scene.h"
-#include "scenes/SpheresDiffScene.h"
-#include "scenes/SpheresPhongScene.h"
+#include "../scenes/SpheresDiffScene.h"
+#include "../scenes/SpheresPhongScene.h"
 
 class SceneFactory {
     std::map<std::string, std::shared_ptr<Scene>> prototypes;

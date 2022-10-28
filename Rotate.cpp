@@ -6,9 +6,7 @@
 
 glm::mat4 Rotate::transform() const {
     auto trans = Transformable::transform();
-    auto a = glm::radians(angle);
-    a = move ? (float) glfwGetTime() * a : a;
-    return glm::rotate(trans, a, direction);;
+    return this->transform(trans);
 }
 
 glm::mat4 Rotate::transform(glm::mat4 mat) const {

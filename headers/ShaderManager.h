@@ -19,7 +19,6 @@
 class ShaderManager : public ShaderLoader, public Observer {
 private:
     GLuint shaderProgram = glCreateProgram();
-    std::vector<GLuint> shaderIds; //probably not needed
 public:
     ShaderManager() = default;
 
@@ -35,7 +34,7 @@ public:
 
     void set_uniform(const char *matrix_name, glm::mat4 matrix) const;
 
-    void update(const char* matrix_name, glm::mat4 matrix) override;
+    void update(const char *matrix_name, glm::mat4 matrix) override;
 };
 
 

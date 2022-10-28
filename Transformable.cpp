@@ -9,6 +9,6 @@ glm::mat4 Transformable::transform(glm::mat4 mat) const {
 }
 
 glm::mat4 Transformable::transform() const {
-    return this->transform(glm::mat4(1.0f));
+    return glm::mat4(1.0f);
 }
 

@@ -58,3 +58,7 @@ void CallbackController::scroll_callback(GLFWwindow *window, double x, double y)
 void CallbackController::bind_callbacks() {
     glfwSetErrorCallback(error_callback);
 }
+
+void CallbackController::set_window(Window *window) {
+    this->app_window = window;
+}

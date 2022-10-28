@@ -12,19 +12,20 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Observer.h"
 #include "Subject.h"
+
 class Window;
 
 class Camera : public Observer, public Subject {
 private:
-    bool firstMouse = true;
-    float lastX = 400;
-    float lastY = 300;
+    bool first_mouse = true;
+    float last_x = 400;
+    float last_y = 300;
     float yaw = -90.0f;
     float pitch = 0;
 
-    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-    glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-    glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
+    glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
 public:
     Camera() = default;
 
@@ -33,6 +34,7 @@ public:
     glm::mat4 get_view() const;
 
     void update(float x, float y) override;
+
     void mouse_callback(float xpos, float ypos);
 
 };

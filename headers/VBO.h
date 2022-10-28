@@ -13,9 +13,6 @@ private:
 public:
     VBO();
     VBO(GLsizeiptr size, const void *data);
-
-    void bind_buffer() const;
-    void set_buffer(GLsizeiptr size, const void *data);
 };
 
 

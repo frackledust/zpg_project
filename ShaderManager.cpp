@@ -22,7 +22,6 @@ ShaderManager::ShaderManager(const char *vertex_shader_file, const char *fragmen
 
 void ShaderManager::add_shader(GLenum shader_type, const char **source) {
     GLuint shader = glCreateShader(shader_type);
-    shaderIds.push_back(shader);
     glShaderSource(shader, 1, source, nullptr);
     glCompileShader(shader);
     glAttachShader(this->shaderProgram, shader);
@@ -51,11 +50,11 @@ void ShaderManager::use_shaders() const {
 }
 
 ShaderManager *ShaderManager::link_matrix_name(const char *matrix_name) {
-    int m_id = glGetUniformLocation(this->shaderProgram, matrix_name);
+    glGetUniformLocation(this->shaderProgram, matrix_name);
     return this;
 }
 
-void ShaderManager::set_uniform(const char* matrix_name, glm::mat4 matrix) const {
+void ShaderManager::set_uniform(const char *matrix_name, glm::mat4 matrix) const {
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, matrix_name), 1, GL_FALSE, &(matrix)[0][0]);
 }
 

@@ -18,6 +18,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 class Window : public Subject {
+    GLFWwindow *window;
+
     int width;
     int height;
 
@@ -33,12 +35,11 @@ public:
 
     void update_view() const;
 
+    bool is_pressed(int key) const;
+
     void bind_callbacks() const;
 
     glm::mat4 get_projection() const;
-
-    GLFWwindow *window;
-
 
     void change_zoom(double y_offset);
 

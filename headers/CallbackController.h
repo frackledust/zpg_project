@@ -21,10 +21,10 @@ private:
 
     static CallbackController* instance;
     CallbackController() = default;
-public:
-    static CallbackController* get_instance();
 
     Window *app_window = nullptr;
+public:
+    static CallbackController* get_instance();
 
     void bind_callbacks();
 
@@ -41,6 +41,8 @@ public:
     void button_callback(GLFWwindow *window, int button, int action, int mode);
 
     void scroll_callback(GLFWwindow *window, double x, double y);
+
+    void set_window(Window *window);
 };
 
 

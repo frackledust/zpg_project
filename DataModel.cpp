@@ -5,9 +5,9 @@
 #include "DataModel.h"
 
 DataModel::DataModel(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color)
-        : has_colour(has_color), vertex_size(vertex_size), vertex_count(vertex_count) {
+        : has_colour(has_color), vertex_count(vertex_count) {
 
-    this->vbo = new VBO(size, data);
+    VBO(size, data);
 
     this->vao = new VAO();
     int stride = has_color ? 2 * vertex_size : vertex_size;
@@ -28,6 +28,6 @@ DataModel::DataModel(GLsizeiptr size, const void *data, int vertex_count, int ve
 }
 
 void DataModel::draw() const {
-    this->vao->bind_vertex_array();
+    vao->bind_vertex_array();
     glDrawArrays(this->mode, 0, this->vertex_count); //mode,first,count
 }

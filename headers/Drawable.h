@@ -8,14 +8,13 @@
 #include "DataModel.h"
 #include "ShaderManager.h"
 #include "TransformCollection.h"
-#include "Rotate.h"
 
 class Drawable {
 private:
     DataModel *data_model;
     TransformCollection *transformable;
-public:
     ShaderManager *shader_manager = nullptr;
+public:
     explicit Drawable(DataModel *data_model);
 
     Drawable *link_shader(ShaderManager *shader);
@@ -23,6 +22,7 @@ public:
     void render();
 
     Drawable *add_transformation(Transformable *transformation);
+
     Transformable *get_transformation();
 };
 
