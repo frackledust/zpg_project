@@ -11,9 +11,10 @@
 #include "glm/fwd.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include "Observer.h"
+#include "Subject.h"
 class Window;
 
-class Camera : public Observer {
+class Camera : public Observer, public Subject {
 private:
     bool firstMouse = true;
     float lastX = 400;

@@ -16,9 +16,15 @@ public:
         observers.push_back(observer);
     };
 
-    virtual void notify(){
+    virtual void notify_observers(){
         for(auto& o : observers){
             o->update();
+        }
+    };
+
+    virtual void notify_observers(const char* matrix_name, glm::mat4 matrix){
+        for(auto& o : observers){
+            o->update(matrix_name, matrix);
         }
     };
 

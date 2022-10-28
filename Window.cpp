@@ -61,6 +61,8 @@ void Window::change_size(int width, int height) {
     glViewport(0, 0, width, height);
     this->width = width;
     this->height = height;
+
+    notify_observers("projection", get_projection());
 }
 
 void Window::change_zoom(double y_offset) {
@@ -69,6 +71,8 @@ void Window::change_zoom(double y_offset) {
         zoom = 1.0f;
     if (zoom > 45.0f)
         zoom = 45.0f;
+
+    notify_observers("projection", get_projection());
 }
 
 glm::mat4 Window::get_projection() const {

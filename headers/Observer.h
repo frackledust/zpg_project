@@ -5,11 +5,14 @@
 #ifndef ZPG_PROJECT_OBSERVER_H
 #define ZPG_PROJECT_OBSERVER_H
 
+#include "glm/fwd.hpp"
+#include "glm/detail/type_mat4x4.hpp"
 
 class Observer { ;
 public:
     virtual void update() {}
     virtual void update(float x, float y) {};
+    virtual void update(const char* matrix_name, glm::mat4 matrix){};
 };
 
 

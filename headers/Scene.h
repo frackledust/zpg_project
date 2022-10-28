@@ -7,17 +7,26 @@
 
 
 #include "Drawable.h"
+#include "Camera.h"
 
 class Scene {
 private:
+    std::vector<ShaderManager *> shaders;
     std::vector<Drawable *> drawables;
 public:
-    Drawable *add_drawable(Drawable *drawable);
-    void draw(float *proj, float *view);
+    ShaderManager *add_shader(ShaderManager *shader);
 
-    void init(){};
+    Drawable *add_drawable(Drawable *drawable);
+
+    void draw(const glm::mat4 &proj, const glm::mat4 &view);
+
+    void init() {};
+
     void init_spheres_phong();
+
     void init_spheres_different();
+
+    void link_shaders(Camera *camera, Window *window);
 };
 
 

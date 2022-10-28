@@ -23,11 +23,16 @@ App::App(int width, int height) {
 
     camera = new Camera();
     scene = new Scene();
-
     glewExperimental = GL_TRUE;
     glewInit();
 
     glfwSwapInterval(1);
+
+    auto proj = window->get_projection();
+    auto view = camera->get_view();
+    scene->init_spheres_different();
+    scene->link_shaders(camera, window);
+
 }
 
 void App::print_info() {
@@ -48,8 +53,7 @@ void App::draw_frame() const {
 
     auto proj = window->get_projection();
     auto view = camera->get_view();
-
-    scene->draw(&proj[0][0], &view[0][0]);
+    scene->draw(proj, view);
 
     glfwPollEvents();
     window->update_view();

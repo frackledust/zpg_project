@@ -10,14 +10,27 @@ glm::mat4 Camera::get_view() const {
 
 void Camera::update_position(Window *window) {
     const float cameraSpeed = 0.05f;
-    if (glfwGetKey(window->window, GLFW_KEY_W) == GLFW_PRESS)
+    bool updated = false;
+    if (glfwGetKey(window->window, GLFW_KEY_W) == GLFW_PRESS){
         cameraPos += cameraSpeed * cameraFront;
-    if (glfwGetKey(window->window, GLFW_KEY_S) == GLFW_PRESS)
+        updated = true;
+    }
+    if (glfwGetKey(window->window, GLFW_KEY_S) == GLFW_PRESS){
         cameraPos -= cameraSpeed * cameraFront;
-    if (glfwGetKey(window->window, GLFW_KEY_A) == GLFW_PRESS)
+        updated = true;
+    }
+    if (glfwGetKey(window->window, GLFW_KEY_A) == GLFW_PRESS){
         cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-    if (glfwGetKey(window->window, GLFW_KEY_D) == GLFW_PRESS)
+        updated = true;
+    }
+    if (glfwGetKey(window->window, GLFW_KEY_D) == GLFW_PRESS){
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+        updated = true;
+    }
+
+    if(updated){
+        notify_observers("view", get_view());
+    }
 }
 
 void Camera::update(float x, float y) {
@@ -54,4 +67,6 @@ void Camera::mouse_callback(float xpos, float ypos) {
     direction.y = sin(glm::radians(pitch));
     direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(direction);
+
+    notify_observers("view", get_view());
 }

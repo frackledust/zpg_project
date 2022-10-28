@@ -52,14 +52,14 @@ void ShaderManager::use_shaders() const {
 
 ShaderManager *ShaderManager::link_matrix_name(const char *matrix_name) {
     int m_id = glGetUniformLocation(this->shaderProgram, matrix_name);
-    std::cout << "MATRIX " << matrix_name << " ID: " << m_id << "\n";
     return this;
 }
 
-void ShaderManager::set_uniform(int matrix_id, glm::mat4 matrix) const {
-
+void ShaderManager::set_uniform(const char* matrix_name, glm::mat4 matrix) const {
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, matrix_name), 1, GL_FALSE, &(matrix)[0][0]);
 }
 
-void ShaderManager::add_shader(GLenum shader_type, const char *file) {
-
+void ShaderManager::update(const char *matrix_name, glm::mat4 matrix) {
+    use_shaders();
+    set_uniform(matrix_name, matrix);
 }
