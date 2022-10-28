@@ -15,8 +15,9 @@ public:
     Drawable *add_drawable(Drawable *drawable);
     void draw(float *proj, float *view);
 
-    void init();
-    void init_spheres();
+    void init(){};
+    void init_spheres_phong();
+    void init_spheres_different();
 };
 
 

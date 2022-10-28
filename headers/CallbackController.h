@@ -20,7 +20,7 @@ private:
     static void error_callback(int error, const char *description);
 
     static CallbackController* instance;
-    CallbackController();
+    CallbackController() = default;
 public:
     static CallbackController* getInstance();
 

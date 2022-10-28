@@ -11,7 +11,7 @@ App::~App() {
 
 
 App::App(int width, int height) {
-//    CallbackController::bind_callbacks();
+    CallbackController::getInstance()->bind_callbacks();
 
     if (!glfwInit()) {
         fprintf(stderr, "ERROR: could not start GLFW3\n");
@@ -22,7 +22,6 @@ App::App(int width, int height) {
     window->bind_callbacks();
 
     camera = new Camera();
-
     scene = new Scene();
 
     glewExperimental = GL_TRUE;
@@ -42,7 +41,7 @@ void App::print_info() {
     printf("Using GLFW %i.%i.%i\n", major, minor, revision);
 }
 
-void App::draw_frame() {
+void App::draw_frame() const {
     window->clear_view();
 
     camera->update_position(window);

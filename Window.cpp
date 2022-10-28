@@ -67,8 +67,8 @@ void Window::change_zoom(double y_offset) {
     zoom -= (float) y_offset;
     if (zoom < 1.0f)
         zoom = 1.0f;
-//    if (zoom > 45.0f)
-//        zoom = 45.0f;
+    if (zoom > 45.0f)
+        zoom = 45.0f;
 }
 
 glm::mat4 Window::get_projection() const {

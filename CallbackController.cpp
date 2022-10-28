@@ -6,8 +6,6 @@
 
 CallbackController *CallbackController::instance = nullptr;
 
-CallbackController::CallbackController() {}
-
 CallbackController *CallbackController::getInstance() {
     if (instance == nullptr) {
         instance = new CallbackController();

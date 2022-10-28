@@ -7,11 +7,10 @@
 int main() {
     App *app = new App(800, 600);
     auto cb = CallbackController::getInstance();
-    cb->bind_callbacks();
     cb->registerObserver(app->camera);
     cb->app_window = app->window;
 
-    app->scene->init_spheres();
+    app->scene->init_spheres_different();
 
     while (app->is_open()) {
         app->draw_frame();

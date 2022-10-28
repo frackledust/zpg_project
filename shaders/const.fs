@@ -1,6 +1,6 @@
 #version 330
     out vec4 frag_colour;
-    in vec4 colors;
     void main () {
-        frag_colour = colors;
+        vec4 ambient = vec4( 0.1, 0.1, 0.1, 1.0);
+        frag_colour = ambient;
     }

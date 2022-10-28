@@ -38,7 +38,7 @@ public:
 
     bool is_open() const;
 
-    void draw_frame();
+    void draw_frame() const;
 
     Scene *scene;
     Camera *camera;

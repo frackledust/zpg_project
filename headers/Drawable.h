@@ -15,21 +15,19 @@
 
 class Drawable {
 private:
-    DataModel *dataModel;
+    DataModel *data_model;
     TransformCollection *transformable;
 public:
+    ShaderManager *shader_manager = nullptr;
     Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
+    explicit Drawable(DataModel *data_model);
 
     Drawable *link_shader(ShaderManager *shader);
 
     void render();
 
-
     Drawable *add_transformation(Transformable *transformation);
-
     Transformable *get_transformation();
-
-    ShaderManager *shaderManager;
 };
 
 
