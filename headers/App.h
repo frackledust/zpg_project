@@ -24,6 +24,9 @@
 #include "Camera.h"
 #include "Scene.h"
 
+#include "../scenes/SpheresPhongScene.h"
+#include "../scenes/SpheresDiffScene.h"
+
 class App {
 private:
     std::vector<Drawable *> drawables;

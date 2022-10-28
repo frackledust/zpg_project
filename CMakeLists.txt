@@ -7,12 +7,13 @@ include_directories(${PROJECT_SOURCE_DIR}/data)
 
 file(GLOB SOURCES "*.cpp")
 set(SHADER-LOAD ShaderLoader/ShaderLoader.h ShaderLoader/ShaderLoader.cpp)
+set(SCENES scenes/SpheresPhongScene.cpp scenes/SpheresPhongScene.h scenes/SpheresDiffScene.cpp scenes/SpheresDiffScene.h)
 
 link_directories(${PROJECT_SOURCE_DIR}/lib/lib-mingw-w64)
 link_directories(${PROJECT_SOURCE_DIR}/lib/glew-x64)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
-add_executable(zpg_project ${SOURCES} ${SHADER-LOAD})
+add_executable(zpg_project ${SOURCES} ${SHADER-LOAD} ${SCENES})
 
 target_link_libraries(zpg_project glfw3 gdi32 opengl32 glew32)

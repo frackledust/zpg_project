@@ -3,6 +3,8 @@
 //
 
 #include "App.h"
+#include "SceneFactory.h"
+
 
 App::~App() {
     delete window;
@@ -11,7 +13,7 @@ App::~App() {
 
 
 App::App(int width, int height) {
-    CallbackController::getInstance()->bind_callbacks();
+    CallbackController::get_instance()->bind_callbacks();
 
     if (!glfwInit()) {
         fprintf(stderr, "ERROR: could not start GLFW3\n");
@@ -21,18 +23,15 @@ App::App(int width, int height) {
     window = new Window(width, height, "Hi");
     window->bind_callbacks();
 
-    camera = new Camera();
-    scene = new Scene();
     glewExperimental = GL_TRUE;
     glewInit();
 
     glfwSwapInterval(1);
 
-    auto proj = window->get_projection();
-    auto view = camera->get_view();
-    scene->init_spheres_different();
+    camera = new Camera();
+    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
+    scene->init();
     scene->link_shaders(camera, window);
-
 }
 
 void App::print_info() {
@@ -51,9 +50,7 @@ void App::draw_frame() const {
 
     camera->update_position(window);
 
-    auto proj = window->get_projection();
-    auto view = camera->get_view();
-    scene->draw(proj, view);
+    scene->draw();
 
     glfwPollEvents();
     window->update_view();

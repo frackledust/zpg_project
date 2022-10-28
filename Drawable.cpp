@@ -9,16 +9,11 @@ Drawable::Drawable(DataModel *data_model) {
     this->transformable = new TransformCollection();
 }
 
-
-Drawable::Drawable(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color) {
-    this->data_model = new DataModel(size, data, vertex_count, vertex_size, has_color);
-    this->transformable = new TransformCollection();
-}
-
 void Drawable::render() {
+    shader_manager->use_shaders();
 
     auto model = transformable->transform();
-    glUniformMatrix4fv(2, 1, GL_FALSE, &model[0][0]);
+    shader_manager->set_uniform("model", model);
 
     data_model->draw();
 }

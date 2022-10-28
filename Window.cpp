@@ -38,22 +38,22 @@ void Window::update_view() const {
 }
 
 void Window::bind_callbacks() const {
-    auto pos_callback = [](GLFWwindow *w, double x, double y) {CallbackController::getInstance()->cursor_callback(w, x, y);};
+    auto pos_callback = [](GLFWwindow *w, double x, double y) { CallbackController::get_instance()->cursor_callback(w, x, y);};
     glfwSetCursorPosCallback(window, pos_callback);
 
-    auto button_callback = [](GLFWwindow *w, int button, int action, int mode) {CallbackController::getInstance()->button_callback(w, button, action, mode);};
+    auto button_callback = [](GLFWwindow *w, int button, int action, int mode) { CallbackController::get_instance()->button_callback(w, button, action, mode);};
     glfwSetMouseButtonCallback(window, button_callback);
 
-    auto focus_callback = [](GLFWwindow *w, int focused) {CallbackController::getInstance()->window_focus_callback(w, focused);};
+    auto focus_callback = [](GLFWwindow *w, int focused) { CallbackController::get_instance()->window_focus_callback(w, focused);};
     glfwSetWindowFocusCallback(window, focus_callback);
 
-    auto iconify_callback = [](GLFWwindow *w, int iconified){CallbackController::getInstance()->window_iconify_callback(w, iconified);};
+    auto iconify_callback = [](GLFWwindow *w, int iconified){ CallbackController::get_instance()->window_iconify_callback(w, iconified);};
     glfwSetWindowIconifyCallback(window, iconify_callback);
 
-    auto size_callback = [](GLFWwindow *w, int w_width, int w_height){CallbackController::getInstance()->window_size_callback(w, w_width, w_height);};
+    auto size_callback = [](GLFWwindow *w, int w_width, int w_height){ CallbackController::get_instance()->window_size_callback(w, w_width, w_height);};
     glfwSetWindowSizeCallback(window, size_callback);
 
-    auto scroll_callback = [](GLFWwindow *w, double x, double y){CallbackController::getInstance()->scroll_callback(w, x, y);};
+    auto scroll_callback = [](GLFWwindow *w, double x, double y){ CallbackController::get_instance()->scroll_callback(w, x, y);};
     glfwSetScrollCallback(window, scroll_callback);
 }
 

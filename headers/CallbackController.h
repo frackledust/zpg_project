@@ -22,7 +22,7 @@ private:
     static CallbackController* instance;
     CallbackController() = default;
 public:
-    static CallbackController* getInstance();
+    static CallbackController* get_instance();
 
     Window *app_window = nullptr;
 

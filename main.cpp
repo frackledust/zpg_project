@@ -6,7 +6,7 @@
 
 int main() {
     App *app = new App(800, 600);
-    auto cb = CallbackController::getInstance();
+    auto cb = CallbackController::get_instance();
     cb->registerObserver(app->camera);
     cb->app_window = app->window;
 
