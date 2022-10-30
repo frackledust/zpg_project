@@ -8,7 +8,7 @@
 
         vec3 normal = normalize(world_norm);
 
-        vec3 light = vec3(0, 0, 0);
+        vec3 light = vec3(0, 5, 0);
         vec4 color = vec4( 0.385, 0.647, 0.812, 1.0);
 
         vec3 light_dir = normalize(light.xyz - world_pos.xyz);
@@ -23,6 +23,6 @@
 
         float spec = pow(max(dot(view_dir, reflect_dir), 0.0), 32);
         vec4 specular = specular_strength * spec * color;
-        specular = dot_product <= 0.0 ? vec4(0, 0, 0, 0) : specular;
+        // specular = dot_product <= 0.0 ? vec4(0, 0, 0, 0) : specular;
         frag_colour = ambient + diffuse + specular;
 }

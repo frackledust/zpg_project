@@ -35,30 +35,25 @@ void SpheresDiffScene::init() {
 
     auto sphere_model = new DataModel(sizeof(sphere), sphere, 2880, 3, true);
 
-//    add_drawable(new Drawable(sphere_model))
-//            ->link_shader(constant_shader)
-//            ->add_transformation(new Move(glm::vec3(-1.0, 0, 0)))
-//            ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
+    add_drawable(new Drawable(sphere_model))
+            ->link_shader(constant_shader)
+            ->add_transformation(new Move(glm::vec3(-1.0, 0, 0)))
+            ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
+
+    add_drawable(new Drawable(sphere_model))
+            ->link_shader(lambert_shader)
+            ->add_transformation(new Move(glm::vec3(1.0, 0, 0)))
+            ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
 
     add_drawable(new Drawable(sphere_model))
             ->link_shader(phong_shader)
-            ->add_transformation(new Move(glm::vec3(0, 0, 1)))
+            ->add_transformation(new Move(glm::vec3(0, -1, 0)))
             ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
 
-//    add_drawable(new Drawable(sphere_model))
-//            ->link_shader(lambert_shader)
-//            ->add_transformation(new Move(glm::vec3(1.0, 0, 0)))
-//            ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
-//
-//    add_drawable(new Drawable(sphere_model))
-//            ->link_shader(phong_shader)
-//            ->add_transformation(new Move(glm::vec3(0, -1, 0)))
-//            ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
-//
-//    add_drawable(new Drawable(sphere_model))
-//            ->link_shader(blinn_shader)
-//            ->add_transformation(new Move(glm::vec3(0, 1, 0)))
-//            ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
+    add_drawable(new Drawable(sphere_model))
+            ->link_shader(blinn_shader)
+            ->add_transformation(new Move(glm::vec3(0, 1, 0)))
+            ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
 
 
     auto ax_model = new DataModel(sizeof(ax), ax, 4, 3, true);

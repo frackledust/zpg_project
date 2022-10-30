@@ -7,7 +7,7 @@ include_directories(${PROJECT_SOURCE_DIR}/data)
 
 file(GLOB SOURCES "*.cpp")
 set(SHADER-LOAD ShaderLoader/ShaderLoader.h ShaderLoader/ShaderLoader.cpp)
-set(SCENES scenes/SpheresPhongScene.cpp scenes/SpheresPhongScene.h scenes/SpheresDiffScene.cpp scenes/SpheresDiffScene.h)
+set(SCENES scenes/SpheresPhongScene.cpp scenes/SpheresPhongScene.h scenes/SpheresDiffScene.cpp scenes/SpheresDiffScene.h scenes/ManyObjectsScene.cpp scenes/ManyObjectsScene.h)
 
 link_directories(${PROJECT_SOURCE_DIR}/lib/lib-mingw-w64)
 link_directories(${PROJECT_SOURCE_DIR}/lib/glew-x64)
