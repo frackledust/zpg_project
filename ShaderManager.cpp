@@ -58,6 +58,10 @@ void ShaderManager::set_uniform(const char *matrix_name, glm::mat4 matrix) const
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, matrix_name), 1, GL_FALSE, &(matrix)[0][0]);
 }
 
+void ShaderManager::set_uniform(const char *vec_name, glm::vec3 vec) const {
+    glUniform3fv(glGetUniformLocation(shaderProgram, vec_name), 1, &vec[0]);
+}
+
 void ShaderManager::update(const char *matrix_name, glm::mat4 matrix) {
     use_shaders();
     set_uniform(matrix_name, matrix);

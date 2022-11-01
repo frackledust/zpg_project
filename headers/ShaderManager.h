@@ -35,6 +35,8 @@ public:
     void set_uniform(const char *matrix_name, glm::mat4 matrix) const;
 
     void update(const char *matrix_name, glm::mat4 matrix) override;
+
+    void set_uniform(const char *vec_name, glm::vec3 vec) const;
 };
 
 

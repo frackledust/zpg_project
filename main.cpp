@@ -2,7 +2,6 @@
 #include <iostream>
 
 #include "App.h"
-#include "CallbackController.h"
 
 int main() {
     App *app = new App(800, 600);

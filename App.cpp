@@ -38,10 +38,13 @@ App::App(int width, int height) {
         exit(EXIT_FAILURE);
     }
     scene->init();
+    scene->link_light(new Light(10, 0, 0));
     scene->link_shaders(camera, window);
 
     cb->registerObserver(camera);
     cb->set_window(window);
+
+    print_info();
 }
 
 void App::print_info() {

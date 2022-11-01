@@ -3,10 +3,10 @@
     in vec4 world_pos;
     in vec3 world_norm;
     uniform mat4 view;
+    uniform vec3 light;
     void main () {
         vec4 ambient = vec4( 0.1, 0.1, 0.1, 1.0);
 
-        vec3 light = vec3(0, 0, 0);
         vec4 color = vec4( 0.385, 0.647, 0.812, 1.0);
 
         vec3 normal = normalize(world_norm);

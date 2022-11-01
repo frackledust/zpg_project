@@ -18,13 +18,19 @@ void Scene::link_shaders(Camera *camera, Window *window) {
     auto proj = window->get_projection();
     auto view = camera->get_view();
 
+
+
     for (auto &shader: shaders) {
         camera->registerObserver(shader);
         window->registerObserver(shader);
 
         shader->use_shaders();
-        shader->set_uniform("projection", proj);
-        shader->set_uniform("view", view);
+
+        if(light){
+            shader->set_uniform("projection", proj);
+            shader->set_uniform("view", view);
+            shader->set_uniform("light", light->get_position());
+        }
     }
 }
 
@@ -32,6 +38,10 @@ void Scene::draw() {
     for (auto &drawable: drawables) {
         drawable->render();
     }
+}
+
+void Scene::link_light(Light *l) {
+    this->light = l;
 }
 
 

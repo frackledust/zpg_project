@@ -11,9 +11,11 @@
 #include "Move.h"
 #include "Scale.h"
 #include "Rotate.h"
+#include "Light.h"
 
 class Scene {
 private:
+    Light* light = nullptr;
     std::vector<ShaderManager *> shaders;
     std::vector<Drawable *> drawables;
 
@@ -28,6 +30,8 @@ public:
     virtual void init() {};
 
     void link_shaders(Camera *camera, Window *window);
+
+    void link_light(Light* l);
 
     virtual Scene* clone() = 0;
 };
