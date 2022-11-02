@@ -1,10 +1,3 @@
-//
-// Created by pavli on 30/10/2022.
-//
-
-#ifndef ZPG_PROJECT_TREE_H
-#define ZPG_PROJECT_TREE_H
-
 // Export model
 // glDrawArrays(GL_TRIANGLES, 0, 92814);
 
@@ -92824,5 +92817,3 @@ const float tree[] = {
 0.823, 2.029, 0.293, 0.243, 0.933, 0.265,
 0.927, 2.015, 0.210, 0.303, 0.949, 0.086,
 };
-
-#endif //ZPG_PROJECT_TREE_H

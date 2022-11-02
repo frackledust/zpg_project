@@ -1,14 +1,7 @@
-//
-// Created by pavli on 30/10/2022.
-//
-
-#ifndef ZPG_PROJECT_BUSHES_H
-#define ZPG_PROJECT_BUSHES_H
-
 // Export model
 // glDrawArrays(GL_TRIANGLES, 0, 8730);
 
-const float bush[] = {
+const float plain[] = {
         -0.010, -0.001, 0.010, -0.760, 0.489, 0.429,
         0.016, 0.036, 0.020, -0.705, 0.615, -0.353,
         0.016, 0.036, 0.017, -0.785, 0.533, 0.316,
@@ -9045,5 +9038,3 @@ const float bush[] = {
         -0.001, 0.152, -0.014, 0.287, 0.115, 0.951,
         -0.005, 0.101, -0.008, 0.417, 0.045, 0.908,
 };
-
-#endif //ZPG_PROJECT_BUSHES_H

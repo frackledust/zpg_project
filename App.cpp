@@ -48,14 +48,14 @@ App::App(int width, int height) {
 }
 
 void App::print_info() {
-    printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
-    printf("Using GLEW %s\n", glewGetString(GLEW_VERSION));
+    printf("OpenGL Version: %s\n", glGetString(GL_VERSION)); // 4.5.0
+    printf("Using GLEW %s\n", glewGetString(GLEW_VERSION)); // 2.1
     printf("Vendor %s\n", glGetString(GL_VENDOR));
     printf("Renderer %s\n", glGetString(GL_RENDERER));
-    printf("GLSL %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+    printf("GLSL %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION)); // 4.5
     int major, minor, revision;
     glfwGetVersion(&major, &minor, &revision);
-    printf("Using GLFW %i.%i.%i\n", major, minor, revision);
+    printf("Using GLFW %i.%i.%i\n", major, minor, revision); // 3.3.8
 }
 
 void App::draw_frame() const {

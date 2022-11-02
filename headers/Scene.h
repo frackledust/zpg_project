@@ -8,6 +8,15 @@
 #include "Drawable.h"
 #include "Camera.h"
 
+#include "models/SphereModel.h"
+#include "models/TreeModel.h"
+#include "models/BushModel.h"
+#include "models/PlainModel.h"
+#include "models/SuziSmoothModel.h"
+#include "models/SuziFlatModel.h"
+#include "models/GiftModel.h"
+
+
 #include "Move.h"
 #include "Scale.h"
 #include "Rotate.h"
@@ -18,6 +27,9 @@ private:
     Light* light = nullptr;
     std::vector<ShaderManager *> shaders;
     std::vector<Drawable *> drawables;
+
+protected:
+    void create_axes(ShaderManager *shader);
 
 public:
     virtual ~Scene() = default;

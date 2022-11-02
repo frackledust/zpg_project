@@ -1,10 +1,3 @@
-//
-// Created by pavli on 30/10/2022.
-//
-
-#ifndef ZPG_PROJECT_GIFT_H
-#define ZPG_PROJECT_GIFT_H
-
 // Export model
 // glDrawArrays(GL_TRIANGLES, 0, 66624);
 
@@ -66634,5 +66627,3 @@ const float gift[] = {
 -0.003, 0.002, -0.028, -0.577, 0.578, -0.577,
 0.150, 0.002, -0.028, -0.302, 0.319, -0.898,
 };
-
-#endif //ZPG_PROJECT_GIFT_H

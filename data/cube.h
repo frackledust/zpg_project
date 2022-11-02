@@ -1,7 +1,3 @@
-//
-// Created by pavli on 05/10/2022.
-//
-
 #ifndef ZPG_PROJECT_SQUARECOLOR_H
 #define ZPG_PROJECT_SQUARECOLOR_H
 const int CUBE_VERTEX_SIZE = 3;

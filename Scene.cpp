@@ -3,6 +3,7 @@
 //
 
 #include "Scene.h"
+#include "data/axes.h"
 
 ShaderManager *Scene::add_shader(ShaderManager *shader) {
     shaders.push_back(shader);
@@ -42,6 +43,21 @@ void Scene::draw() {
 
 void Scene::link_light(Light *l) {
     this->light = l;
+}
+
+void Scene::create_axes(ShaderManager* shader) {
+    auto ax_model = new DataModel(sizeof(ax), ax, 4, 3, true);
+
+    add_drawable(new Drawable(ax_model))
+            ->link_shader(shader);
+
+    add_drawable(new Drawable(ax_model))
+            ->link_shader(shader)
+            ->add_transformation(new Rotate(90, glm::vec3(0.0, 0.0, 0.1)));
+
+    add_drawable(new Drawable(ax_model))
+            ->link_shader(shader)
+            ->add_transformation(new Rotate(-90, glm::vec3(0.0, 1.0, 0.0)));
 }
 
 
