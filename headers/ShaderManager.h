@@ -13,8 +13,11 @@
 #include "GL/glew.h"
 #include "glm/fwd.hpp"
 #include "glm/detail/type_mat4x4.hpp"
+
 #include "ShaderLoader/ShaderLoader.h"
 #include "Observer.h"
+#include "Camera.h"
+#include "Light.h"
 
 class ShaderManager : public ShaderLoader, public Observer {
 private:
@@ -40,6 +43,8 @@ public:
     void update(Subject *subject, Event event) override;
 
     void set_uniform(const char *vec_name, float value) const;
+
+    void set_uniform(const std::string &light_name, const Light &light) const;
 };
 
 

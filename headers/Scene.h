@@ -24,7 +24,6 @@
 
 class Scene {
 private:
-    Light* light = nullptr;
     std::vector<ShaderManager *> shaders;
     std::vector<Drawable *> drawables;
 
@@ -33,6 +32,7 @@ protected:
 
 public:
     virtual ~Scene() = default;
+
     ShaderManager *add_shader(ShaderManager *shader);
 
     Drawable *add_drawable(Drawable *drawable);
@@ -43,9 +43,7 @@ public:
 
     void link_shaders(Camera *camera, Window *window);
 
-    void link_light(Light* l);
-
-    virtual Scene* clone() = 0;
+    virtual Scene *clone() = 0;
 };
 
 

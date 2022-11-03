@@ -94,7 +94,9 @@ void main () {
         }
     }
 
-    result += AddSpotLight(spotlight, normal, view_dir);
+    if(spotlight.type == SPOT){
+        result += AddSpotLight(spotlight, normal, view_dir);
+    }
 
     frag_colour = vec4(result, 1);
 }

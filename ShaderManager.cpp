@@ -4,7 +4,6 @@
 
 
 #include "ShaderManager.h"
-#include "Camera.h"
 
 ShaderManager::ShaderManager(const char *vertex_shader_file, const char *fragment_shader_file) {
     string vertexShaderString = loadFile(vertex_shader_file);
@@ -67,6 +66,15 @@ void ShaderManager::set_uniform(const char *vec_name, glm::vec3 vec) const {
 void ShaderManager::set_uniform(const char *vec_name, float value) const {
     use_shaders();
     glUniform1f(glGetUniformLocation(shaderProgram, vec_name), value);
+}
+
+void ShaderManager::set_uniform(const std::string &light_name, const Light &light) const {
+    use_shaders();
+    set_uniform((light_name + ".type").c_str(), light.get_type());
+    set_uniform((light_name + ".position").c_str(), light.get_position());
+    set_uniform((light_name + ".direction").c_str(), light.get_direction());
+    set_uniform((light_name + ".cut_off").c_str(), light.get_cut_off());
+    set_uniform((light_name + ".cut_out_off").c_str(), light.get_cut_out_off());
 }
 
 void ShaderManager::update(Subject *subject, Event event) {
