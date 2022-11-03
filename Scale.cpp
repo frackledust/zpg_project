@@ -3,6 +3,7 @@
 //
 
 #include "Scale.h"
+
 glm::mat4 Scale::transform(glm::mat4 mat) const {
     return glm::scale(mat, direction);
 }

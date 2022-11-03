@@ -20,14 +20,13 @@ void Scene::link_shaders(Camera *camera, Window *window) {
     auto view = camera->get_view();
 
 
-
     for (auto &shader: shaders) {
         camera->registerObserver(shader);
         window->registerObserver(shader);
 
         shader->use_shaders();
 
-        if(light){
+        if (light) {
             shader->set_uniform("projection", proj);
             shader->set_uniform("view", view);
             shader->set_uniform("light", light->get_position());
@@ -45,7 +44,7 @@ void Scene::link_light(Light *l) {
     this->light = l;
 }
 
-void Scene::create_axes(ShaderManager* shader) {
+void Scene::create_axes(ShaderManager *shader) {
     auto ax_model = new DataModel(sizeof(ax), ax, 4, 3, true);
 
     add_drawable(new Drawable(ax_model))

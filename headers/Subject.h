@@ -6,7 +6,10 @@
 #define ZPG_PROJECT_SUBJECT_H
 
 #include "vector"
+#include <bits/stdc++.h>
 #include "Observer.h"
+#include "Event.h"
+class Observer;
 
 class Subject {
 private:
@@ -16,23 +19,11 @@ public:
         observers.push_back(observer);
     };
 
-    virtual void notify_observers(){
-        for(auto& o : observers){
-            o->update();
-        }
+    virtual void removeObserver(Observer *observer){
+        std::remove(observers.begin(),observers.end(),observer);
     };
 
-    virtual void notify_observers(const char* matrix_name, glm::mat4 matrix){
-        for(auto& o : observers){
-            o->update(matrix_name, matrix);
-        }
-    };
-
-    virtual void notify_observers(float x, float y){
-        for(auto& o : observers){
-            o->update(x, y);
-        }
-    };
+    virtual void notify_observers(Event event);
 };
 
 #endif //ZPG_PROJECT_SUBJECT_H

@@ -78,7 +78,7 @@ void Window::change_size(int w, int h) {
     this->width = w;
     this->height = h;
     glViewport(0, 0, w, h);
-    notify_observers("projection", get_projection());
+    notify_observers(Event::WINDOW_SIZE_CHANGE);
 }
 
 void Window::change_zoom(double y_offset) {
@@ -88,7 +88,7 @@ void Window::change_zoom(double y_offset) {
 //    if (zoom > 45.0f)
 //        zoom = 45.0f;
 
-    notify_observers("projection", get_projection());
+    notify_observers(Event::ZOOM_UPDATE);
 }
 
 glm::mat4 Window::get_projection() const {
@@ -97,5 +97,15 @@ glm::mat4 Window::get_projection() const {
 
 bool Window::is_pressed(int key) const {
     return glfwGetKey(window, key) == GLFW_PRESS;
+}
+
+void Window::update(Subject *subject, Event event) {
+    if (event == Event::ZOOM_UPDATE) {
+        auto data = CallbackController::get_instance()->get_last_data();
+        change_zoom(data[1]);
+    } else if (event == Event::WINDOW_SIZE_CHANGE) {
+        auto data = CallbackController::get_instance()->get_last_data();
+        change_size(data[0], data[1]);
+    }
 }
 

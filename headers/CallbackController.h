@@ -17,12 +17,11 @@ class Window;
 
 class CallbackController : public Subject {
 private:
+    double* data = new double[4];
     static void error_callback(int error, const char *description);
 
     static CallbackController* instance;
     CallbackController() = default;
-
-    Window *app_window = nullptr;
 public:
     static CallbackController* get_instance();
 
@@ -42,7 +41,7 @@ public:
 
     void scroll_callback(GLFWwindow *window, double x, double y);
 
-    void set_window(Window *window);
+    const double *get_last_data();
 };
 
 

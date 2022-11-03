@@ -42,7 +42,7 @@ App::App(int width, int height) {
     scene->link_shaders(camera, window);
 
     cb->registerObserver(camera);
-    cb->set_window(window);
+    cb->registerObserver(window);
 
     print_info();
 }

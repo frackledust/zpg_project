@@ -10,10 +10,8 @@ CallbackController *CallbackController::get_instance() {
     if (instance == nullptr) {
         instance = new CallbackController();
     }
-
     return instance;
 }
-
 
 void CallbackController::error_callback(int error, const char *description) {
     fputs(description, stderr);
@@ -34,15 +32,15 @@ void CallbackController::window_iconify_callback(GLFWwindow *window, int iconifi
 }
 
 void CallbackController::window_size_callback(GLFWwindow *window, int width, int height) {
-    printf("resize %d, %d \n", width, height);
-    if (app_window != nullptr) {
-        app_window->change_size(width, height);
-    }
+    data[0] = width;
+    data[1] = height;
+    notify_observers(WINDOW_SIZE_CHANGE);
 }
 
 void CallbackController::cursor_callback(GLFWwindow *window, double x, double y) {
-    printf("cursor_callback \n");
-    notify_observers((float) x, (float) y);
+    data[0] = x;
+    data[1] = y;
+    notify_observers(VIEW_UPDATE);
 }
 
 void CallbackController::button_callback(GLFWwindow *window, int button, int action, int mode) {
@@ -50,15 +48,15 @@ void CallbackController::button_callback(GLFWwindow *window, int button, int act
 }
 
 void CallbackController::scroll_callback(GLFWwindow *window, double x, double y) {
-    if (app_window != nullptr) {
-        app_window->change_zoom(y);
-    }
+    data[0] = x;
+    data[1] = y;
+    notify_observers(ZOOM_UPDATE);
 }
 
 void CallbackController::bind_callbacks() {
     glfwSetErrorCallback(error_callback);
 }
 
-void CallbackController::set_window(Window *window) {
-    this->app_window = window;
+const double *CallbackController::get_last_data() {
+    return data;
 }

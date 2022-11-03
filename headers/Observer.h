@@ -7,12 +7,14 @@
 
 #include "glm/fwd.hpp"
 #include "glm/detail/type_mat4x4.hpp"
+#include "Subject.h"
+#include "Event.h"
+
+class Subject;
 
 class Observer { ;
 public:
-    virtual void update() {}
-    virtual void update(float x, float y) {};
-    virtual void update(const char* matrix_name, glm::mat4 matrix){};
+    virtual void update(Subject* subject, Event event) {}
 };
 
 

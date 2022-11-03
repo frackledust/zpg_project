@@ -33,10 +33,9 @@ public:
 
     glm::mat4 get_view() const;
 
-    void update(float x, float y) override;
-
     void mouse_callback(float xpos, float ypos);
 
+    void update(Subject *subject, Event event);
 };
 
 

@@ -17,7 +17,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-class Window : public Subject {
+class Window : public Subject, public Observer {
     GLFWwindow *window;
 
     int width;
@@ -44,6 +44,8 @@ public:
     void change_zoom(double y_offset);
 
     void change_size(int width, int height);
+
+    void update(Subject *subject, Event event);
 };
 
 

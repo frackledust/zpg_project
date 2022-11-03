@@ -4,6 +4,7 @@
 
 
 #include "ShaderManager.h"
+#include "Camera.h"
 
 ShaderManager::ShaderManager(const char *vertex_shader_file, const char *fragment_shader_file) {
     string vertexShaderString = loadFile(vertex_shader_file);
@@ -27,7 +28,7 @@ void ShaderManager::add_shader(GLenum shader_type, const char **source) {
     glAttachShader(this->shaderProgram, shader);
 }
 
-int ShaderManager::link_shaders() const {
+void ShaderManager::link_shaders() const {
     glLinkProgram(this->shaderProgram);
 
     GLint status;
@@ -42,7 +43,6 @@ int ShaderManager::link_shaders() const {
 
         exit(EXIT_FAILURE);
     }
-    return 0;
 }
 
 void ShaderManager::use_shaders() const {
@@ -55,14 +55,26 @@ ShaderManager *ShaderManager::link_matrix_name(const char *matrix_name) {
 }
 
 void ShaderManager::set_uniform(const char *matrix_name, glm::mat4 matrix) const {
+    use_shaders();
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, matrix_name), 1, GL_FALSE, &(matrix)[0][0]);
 }
 
 void ShaderManager::set_uniform(const char *vec_name, glm::vec3 vec) const {
+    use_shaders();
     glUniform3fv(glGetUniformLocation(shaderProgram, vec_name), 1, &vec[0]);
 }
 
-void ShaderManager::update(const char *matrix_name, glm::mat4 matrix) {
-    use_shaders();
-    set_uniform(matrix_name, matrix);
+void ShaderManager::update(Subject *subject, Event event) {
+    glm::mat4 matrix;
+    switch (event) {
+        case Event::VIEW_UPDATE:
+            matrix = ((Camera *) subject)->get_view();
+            set_uniform("view", matrix);
+            break;
+        case Event::WINDOW_SIZE_CHANGE:
+        case Event::ZOOM_UPDATE:
+            matrix = ((Window *) subject)->get_projection();
+            set_uniform("projection", matrix);
+            break;
+    }
 }

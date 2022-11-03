@@ -37,12 +37,15 @@ void Camera::update_position(Window *window) {
     }
 
     if(updated){
-        notify_observers("view", get_view());
+        notify_observers(Event::VIEW_UPDATE);
     }
 }
 
-void Camera::update(float x, float y) {
-    mouse_callback(x, y);
+void Camera::update(Subject* subject, Event event) {
+    if(event == Event::VIEW_UPDATE){
+        auto data = CallbackController::get_instance()->get_last_data();
+        mouse_callback((float) data[0], (float) data[1]);
+    }
 }
 
 void Camera::mouse_callback(float xpos, float ypos) {
@@ -76,5 +79,5 @@ void Camera::mouse_callback(float xpos, float ypos) {
     direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     camera_front = glm::normalize(direction);
 
-    notify_observers("view", get_view());
+    notify_observers(Event::VIEW_UPDATE);
 }

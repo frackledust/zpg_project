@@ -11,7 +11,8 @@
 class SpheresPhongScene : public Scene {
 
     void init() override;
-    Scene* clone() override{ return new SpheresPhongScene();};
+
+    Scene *clone() override { return new SpheresPhongScene(); };
 };
 
 

@@ -6,11 +6,14 @@
 #define ZPG_PROJECT_SCALE_H
 
 #include "Transformable.h"
+
 class Scale : public Transformable {
     glm::vec3 direction = glm::vec3(1.0, 1.0, 1.0);
 public:
     Scale() = default;
-    explicit Scale(glm::vec3 direction) : direction(direction){}
+
+    explicit Scale(glm::vec3 direction) : direction(direction) {}
+
     [[nodiscard]] glm::mat4 transform(glm::mat4 mat) const override;
 };
 
