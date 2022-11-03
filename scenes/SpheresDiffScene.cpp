@@ -5,11 +5,11 @@
 #include "SpheresDiffScene.h"
 
 void SpheresDiffScene::init() {
-    auto constant_shader = add_shader(new ShaderManager("../shaders/const.vs", "../shaders/const.fs"));
-    auto color_shader = add_shader(new ShaderManager("../shaders/rand_color.vs", "../shaders/rand_color.fs"));
-    auto lambert_shader = add_shader(new ShaderManager("../shaders/phong.vs", "../shaders/lambert.fs"));
-    auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vs", "../shaders/phong.fs"));
-    auto blinn_shader = add_shader(new ShaderManager("../shaders/phong.vs", "../shaders/blinn.fs"));
+    auto constant_shader = add_shader(new ShaderManager("../shaders/const.vsh", "../shaders/const.fsh"));
+    auto color_shader = add_shader(new ShaderManager("../shaders/rand_color.vsh", "../shaders/rand_color.fsh"));
+    auto lambert_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/lambert.fsh"));
+    auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/phong.fsh"));
+    auto blinn_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/blinn.fsh"));
 
 
     auto sphere_model = new SphereModel();

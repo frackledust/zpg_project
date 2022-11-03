@@ -38,6 +38,8 @@ public:
     void set_uniform(const char *vec_name, glm::vec3 vec) const;
 
     void update(Subject *subject, Event event) override;
+
+    void set_uniform(const char *vec_name, float value) const;
 };
 
 

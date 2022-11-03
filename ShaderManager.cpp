@@ -64,11 +64,19 @@ void ShaderManager::set_uniform(const char *vec_name, glm::vec3 vec) const {
     glUniform3fv(glGetUniformLocation(shaderProgram, vec_name), 1, &vec[0]);
 }
 
+void ShaderManager::set_uniform(const char *vec_name, float value) const {
+    use_shaders();
+    glUniform1f(glGetUniformLocation(shaderProgram, vec_name), value);
+}
+
 void ShaderManager::update(Subject *subject, Event event) {
     glm::mat4 matrix;
     switch (event) {
         case Event::VIEW_UPDATE:
             matrix = ((Camera *) subject)->get_view();
+
+            set_uniform("spotlight.position", ((Camera *) subject)->camera_pos);
+            set_uniform("spotlight.direction", ((Camera *) subject)->camera_front);
             set_uniform("view", matrix);
             break;
         case Event::WINDOW_SIZE_CHANGE:
