@@ -29,7 +29,8 @@ void Scene::link_shaders(Camera *camera, Window *window) {
         if (light) {
             shader->set_uniform("projection", proj);
             shader->set_uniform("view", view);
-            shader->set_uniform("light", light->get_position());
+            shader->set_uniform("lights[0].position", light->get_position());
+            shader->set_uniform("lights[1].position", glm::vec3(10, 10, 1));
         }
     }
 }

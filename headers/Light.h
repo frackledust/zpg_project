@@ -9,6 +9,7 @@
 #include "glm/vec3.hpp"
 
 class Light {
+    int light_type;
     glm::vec3 position = glm::vec3(-10, 0, 0);
     glm::vec3 direction;
 public:

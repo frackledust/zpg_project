@@ -30,8 +30,8 @@ App::App(int width, int height) {
     glfwSwapInterval(1);
 
     camera = new Camera();
-//    scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
-    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
+    scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
+//    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
 //    scene = SceneFactory::get_instance()->create_scene("ManyObjectsScene");
     if(scene == nullptr){
         fprintf(stderr, "ERROR: could not find the scene\n");
