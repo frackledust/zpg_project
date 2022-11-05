@@ -81,3 +81,11 @@ void Camera::mouse_callback(float xpos, float ypos) {
 
     notify_observers(Event::VIEW_UPDATE);
 }
+
+glm::vec3 Camera::get_position() {
+    return camera_pos;
+}
+
+glm::vec3 Camera::get_direction() {
+    return camera_front;
+}

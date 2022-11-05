@@ -13,39 +13,19 @@ enum LightType {
 };
 
 class Light {
-    LightType type;
-    glm::vec3 position = glm::vec3(0, 0, 0);
-    glm::vec3 direction = glm::vec3(0, 1, 0);
-    float cut_off = glm::cos(glm::radians(12.5f));
-    float cut_out_off = glm::cos(glm::radians(15.0f));
-
+protected:
+    LightType type = OFF;
+    glm::vec3 color = glm::vec3( 0.385, 0.647, 0.812);
+    Light() = default;
 public:
-    Light(LightType type, float x, float y, float z) {
-        if (type == DIR) {
-            this->type = DIR;
-            direction = glm::vec3(x, y, z);
-        } else {
-            this->type = POINT;
-            position = glm::vec3(x, y, z);
-        }
-    }
-
-    Light(LightType type, glm::vec3 position, glm::vec3 direction) {
-        this->type = type;
-        this->position = position;
-        this->direction = direction;
-    }
-
-    [[nodiscard]] glm::vec3 get_position() const { return position; }
-
-    [[nodiscard]] glm::vec3 get_direction() const { return direction; }
-
-    [[nodiscard]] float get_cut_off() const { return cut_off; }
-
-    [[nodiscard]] float get_cut_out_off() const { return cut_out_off; }
-
     [[nodiscard]] int get_type() const { return type; }
-};
 
+    virtual Light* set_color(float r, float g, float b){
+        this->color = glm::vec3(r, g, b);
+        return this;
+    }
+
+    [[nodiscard]] glm::vec3 get_color() const { return color; }
+};
 
 #endif //ZPG_PROJECT_LIGHT_H

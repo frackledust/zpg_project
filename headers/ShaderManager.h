@@ -18,12 +18,15 @@
 #include "Observer.h"
 #include "Camera.h"
 #include "Light.h"
+#include "DirLight.h"
+#include "PointLight.h"
+#include "SpotLight.h"
 
 class ShaderManager : public ShaderLoader, public Observer {
 private:
     GLuint shaderProgram = glCreateProgram();
 
-    void add_shader(GLenum shader_type, const char **source);
+    void add_shader(GLenum shader_type, const char **source) const;
 
     void link_shaders() const;
 
@@ -44,7 +47,13 @@ public:
 
     void set_uniform(const char *vec_name, float value) const;
 
-    void set_uniform(const std::string &light_name, const Light &light) const;
+    void set_uniform(const char *vec_name, int value) const;
+
+    void set_uniform(const std::string &light_name, DirLight *light) const;
+
+    void set_uniform(const std::string &light_name, PointLight *light) const;
+
+    void set_uniform(const string &light_name, SpotLight *light) const;
 };
 
 

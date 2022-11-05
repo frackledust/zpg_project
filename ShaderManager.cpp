@@ -20,7 +20,7 @@ ShaderManager::ShaderManager(const char *vertex_shader_file, const char *fragmen
     this->link_shaders();
 }
 
-void ShaderManager::add_shader(GLenum shader_type, const char **source) {
+void ShaderManager::add_shader(GLenum shader_type, const char **source) const {
     GLuint shader = glCreateShader(shader_type);
     glShaderSource(shader, 1, source, nullptr);
     glCompileShader(shader);
@@ -63,18 +63,38 @@ void ShaderManager::set_uniform(const char *vec_name, glm::vec3 vec) const {
     glUniform3fv(glGetUniformLocation(shaderProgram, vec_name), 1, &vec[0]);
 }
 
+void ShaderManager::set_uniform(const char *vec_name, int value) const {
+    use_shaders();
+    glUniform1i(glGetUniformLocation(shaderProgram, vec_name), value);
+}
+
 void ShaderManager::set_uniform(const char *vec_name, float value) const {
     use_shaders();
     glUniform1f(glGetUniformLocation(shaderProgram, vec_name), value);
 }
 
-void ShaderManager::set_uniform(const std::string &light_name, const Light &light) const {
-    use_shaders();
-    set_uniform((light_name + ".type").c_str(), light.get_type());
-    set_uniform((light_name + ".position").c_str(), light.get_position());
-    set_uniform((light_name + ".direction").c_str(), light.get_direction());
-    set_uniform((light_name + ".cut_off").c_str(), light.get_cut_off());
-    set_uniform((light_name + ".cut_out_off").c_str(), light.get_cut_out_off());
+void ShaderManager::set_uniform(const string &light_name, DirLight *light) const {
+    set_uniform((light_name + ".type").c_str(), light->get_type());
+    set_uniform((light_name + ".color").c_str(), light->get_color());
+
+    set_uniform((light_name + ".direction").c_str(), light->get_direction());
+
+}
+
+void ShaderManager::set_uniform(const string &light_name, PointLight *light) const {
+    set_uniform((light_name + ".type").c_str(), light->get_type());
+    set_uniform((light_name + ".color").c_str(), light->get_color());
+
+    set_uniform((light_name + ".position").c_str(), light->get_position());
+}
+
+void ShaderManager::set_uniform(const string &light_name, SpotLight *light) const {
+    set_uniform((light_name + ".type").c_str(), light->get_type());
+    set_uniform((light_name + ".color").c_str(), light->get_color());
+
+    set_uniform((light_name + ".position").c_str(), light->get_position());
+    set_uniform((light_name + ".direction").c_str(), light->get_direction());
+    set_uniform((light_name + ".cut_off").c_str(), light->get_cut_off());
 }
 
 void ShaderManager::update(Subject *subject, Event event) {
@@ -83,8 +103,8 @@ void ShaderManager::update(Subject *subject, Event event) {
         case Event::VIEW_UPDATE:
             matrix = ((Camera *) subject)->get_view();
 
-            set_uniform("spotlight.position", ((Camera *) subject)->camera_pos);
-            set_uniform("spotlight.direction", ((Camera *) subject)->camera_front);
+            set_uniform("spotlight.position", ((Camera *) subject)->get_position());
+            set_uniform("spotlight.direction", ((Camera *) subject)->get_direction());
             set_uniform("view", matrix);
             break;
         case Event::WINDOW_SIZE_CHANGE:

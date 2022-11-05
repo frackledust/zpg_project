@@ -16,7 +16,6 @@
 #include "models/SuziFlatModel.h"
 #include "models/GiftModel.h"
 
-
 #include "Move.h"
 #include "Scale.h"
 #include "Rotate.h"
