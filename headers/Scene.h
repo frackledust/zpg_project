@@ -12,6 +12,7 @@
 #include "models/TreeModel.h"
 #include "models/BushModel.h"
 #include "models/PlainModel.h"
+#include "models/PlainUVModel.h"
 #include "models/SuziSmoothModel.h"
 #include "models/SuziFlatModel.h"
 #include "models/GiftModel.h"

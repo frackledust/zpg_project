@@ -19,9 +19,9 @@ void Scene::link_shaders(Camera *camera, Window *window) {
     auto proj = window->get_projection();
     auto view = camera->get_view();
 
-    auto point_light = (new PointLight(0, 10, 0))->set_color(2, 0.647, 1.812);
+    auto point_light = (new PointLight(0, 0, 0))->set_color(2, 0.647, 1.812);
     auto dir_light = (new DirLight(0, 1, 0))->set_color(0.0, 0.31, 0.1);
-    auto spot_light = (new SpotLight(camera->get_position(), camera->get_direction()))->set_color( 0.885, 0.647, 0.112);;
+    auto spot_light = (new SpotLight(camera->get_position(), camera->get_direction()))->set_color(0.885, 0.647, 0.112);
 
     for (auto &shader: shaders) {
         camera->registerObserver(shader);

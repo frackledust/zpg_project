@@ -15,11 +15,13 @@ private:
 
     GLenum mode;
     int vertex_count;
-    bool has_colour;
-public:
-    DataModel(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
+protected:
+    DataModel(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color, bool has_uv);
 
+public:
     void draw() const;
+
+    DataModel(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
 };
 
 

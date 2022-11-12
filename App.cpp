@@ -33,6 +33,7 @@ App::App(int width, int height) {
 //    scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
 //    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
     scene = SceneFactory::get_instance()->create_scene("ManyObjectsScene");
+    scene = SceneFactory::get_instance()->create_scene("TexturesScene");
     if(scene == nullptr){
         fprintf(stderr, "ERROR: could not find the scene\n");
         exit(EXIT_FAILURE);

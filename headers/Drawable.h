@@ -12,6 +12,7 @@
 class Drawable {
 private:
     DataModel *data_model;
+    GLuint texture;
     TransformCollection *transformable;
     ShaderManager *shader_manager = nullptr;
 public:
@@ -24,6 +25,8 @@ public:
     Drawable *add_transformation(Transformable *transformation);
 
     Transformable *get_transformation();
+
+    Drawable *link_texture(const char *path, int colors = GL_RGB);
 };
 
 

@@ -6,6 +6,7 @@
 #define ZPG_PROJECT_PLAINMODEL_H
 
 #include "DataModel.h"
+#include <iostream>
 
 class PlainModel : public DataModel{
 public:
