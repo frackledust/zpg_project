@@ -13,13 +13,14 @@ class TexturesScene : public Scene {
 
     void init() override {
         auto texture_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/textures.fsh"));
+        auto text_light_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/text_light.fsh"));
         auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/phong.fsh"));
         auto plain_model = new PlainUVModel();
         auto tree_model = new TreeModel();
 
         add_drawable(new Drawable(plain_model))
                 ->link_texture("../textures/wall.jpg", GL_RGB)
-                ->link_shader(texture_shader)
+                ->link_shader(text_light_shader)
                 ->add_transformation(new Rotate(90, glm::vec3(1, 0, 0)))
                 ;
 

@@ -44,6 +44,8 @@ public:
     void link_shaders(Camera *camera, Window *window);
 
     virtual Scene *clone() = 0;
+
+    void link_lights();
 };
 
 
