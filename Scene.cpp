@@ -15,16 +15,18 @@ Drawable *Scene::add_drawable(Drawable *drawable) {
     return drawable;
 }
 
-void Scene::link_lights(){
+void Scene::link_lights() {
 
     auto point_light = (new PointLight(0, 1, 0))->set_color(2, 0.647, 1.812);
     auto dir_light = (new DirLight(0, 1, 0))->set_color(0.0, 0.31, 0.1);
+//    auto spot_light = (new SpotLight(glm::vec3(0, 3, 0), glm::vec3(0, -1, 0)))->set_color(1, 1, 1);
 
     for (auto &shader: shaders) {
         shader->use_shaders();
 
         shader->set_uniform("lights[0]", point_light);
         shader->set_uniform("lights[1]", dir_light);
+//        shader->set_uniform("lights[3]", spot_light);
     }
 
 }
@@ -55,7 +57,7 @@ void Scene::draw() {
 }
 
 void Scene::create_axes(ShaderManager *shader) {
-    auto ax_model = new DataModel(sizeof(ax), ax, 4, 3, true);
+    auto ax_model = new DataModel(4, sizeof(ax), ax, 3, 3);
 
     add_drawable(new Drawable(ax_model))
             ->link_shader(shader);

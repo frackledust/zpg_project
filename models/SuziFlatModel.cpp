@@ -5,4 +5,4 @@
 #include "SuziFlatModel.h"
 #include "data/suzi_flat.h"
 
-SuziFlatModel::SuziFlatModel() : DataModel(sizeof(suziFlat), suziFlat, 2904, 3, true) {}
+SuziFlatModel::SuziFlatModel() : DataModel(2904, sizeof(suziFlat), suziFlat, 3, 3) {}

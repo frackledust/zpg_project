@@ -5,4 +5,4 @@
 #include "SphereModel.h"
 #include "data/sphere.h"
 
-SphereModel::SphereModel() : DataModel(sizeof(sphere), sphere, 2880, 3, true){}
+SphereModel::SphereModel() : DataModel(2880, sizeof(sphere), sphere, 3, 3) {}

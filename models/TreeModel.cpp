@@ -5,4 +5,4 @@
 #include "TreeModel.h"
 #include "data/tree.h"
 
-TreeModel::TreeModel() : DataModel(sizeof(tree), tree, 92814, 3, true) {}
+TreeModel::TreeModel() : DataModel(92814, sizeof(tree), tree, 3, 3) {}

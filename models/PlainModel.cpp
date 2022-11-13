@@ -5,4 +5,4 @@
 #include "PlainModel.h"
 #include "data/plain.h"
 
-PlainModel::PlainModel() : DataModel(sizeof(plain), plain, 6, 3, true) {}
+PlainModel::PlainModel() : DataModel(6, sizeof(plain), plain, 3, 3) {}

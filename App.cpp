@@ -32,12 +32,13 @@ App::App(int width, int height) {
     camera = new Camera();
 //    scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
 //    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
-    scene = SceneFactory::get_instance()->create_scene("ManyObjectsScene");
+//    scene = SceneFactory::get_instance()->create_scene("ManyObjectsScene");
     scene = SceneFactory::get_instance()->create_scene("TexturesScene");
     if(scene == nullptr){
         fprintf(stderr, "ERROR: could not find the scene\n");
         exit(EXIT_FAILURE);
     }
+
     scene->init();
     scene->link_shaders(camera, window);
     scene->link_lights();
@@ -45,7 +46,7 @@ App::App(int width, int height) {
     cb->registerObserver(camera);
     cb->registerObserver(window);
 
-    print_info();
+    //print_info();
 }
 
 void App::print_info() {

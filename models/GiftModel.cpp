@@ -5,4 +5,4 @@
 #include "GiftModel.h"
 #include "data/gift.h"
 
-GiftModel::GiftModel() : DataModel(sizeof(gift), gift, 66624, 3, true){}
+GiftModel::GiftModel() : DataModel(36, sizeof(gift), gift, 3, 3){}

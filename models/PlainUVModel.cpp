@@ -5,4 +5,4 @@
 #include "PlainUVModel.h"
 #include "data/plain_uv.h"
 
-PlainUVModel::PlainUVModel() : DataModel(sizeof(plain), plain, 6, 3, true, true) {}
+PlainUVModel::PlainUVModel() : DataModel(6, sizeof(plain), plain, 3, 3, 2) {}

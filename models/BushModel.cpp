@@ -5,4 +5,4 @@
 #include "BushModel.h"
 #include "data/bushes.h"
 
-BushModel::BushModel() : DataModel(sizeof(plain), plain, 8730, 3, true) {}
+BushModel::BushModel() : DataModel(8730, sizeof(plain), plain, 3) {}

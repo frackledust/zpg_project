@@ -5,4 +5,4 @@
 #include "SuziSmoothModel.h"
 #include "data/suzi_smooth.h"
 
-SuziSmoothModel::SuziSmoothModel() : DataModel(sizeof(suziSmooth), suziSmooth, 2904, 3, true) {}
+SuziSmoothModel::SuziSmoothModel() : DataModel(2904, sizeof(suziSmooth), suziSmooth, 3, 3) {}

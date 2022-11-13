@@ -13,15 +13,16 @@ class DataModel {
 private:
     VAO *vao;
 
-    GLenum mode;
+    GLenum mode = GL_TRIANGLES;
     int vertex_count;
 protected:
-    DataModel(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color, bool has_uv);
+    DataModel(int vertex_count, GLsizeiptr size, const void *data, int vertex_size);
 
+    DataModel(int vertex_count, GLsizeiptr size, const void *data, int vertex_size, int normal_size, int uv_size);
 public:
     void draw() const;
 
-    DataModel(GLsizeiptr size, const void *data, int vertex_count, int vertex_size, bool has_color);
+    DataModel(int vertex_count, GLsizeiptr size, const void *data, int vertex_size, int normal_size);
 };
 
 
