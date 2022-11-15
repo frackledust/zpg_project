@@ -12,9 +12,14 @@
 class Drawable {
 private:
     DataModel *data_model;
-    GLuint texture;
     TransformCollection *transformable;
+protected:
+    GLuint texture;
+
     ShaderManager *shader_manager = nullptr;
+
+    Drawable *link_texture(const string &folder, vector<string> paths);
+
 public:
     explicit Drawable(DataModel *data_model);
 

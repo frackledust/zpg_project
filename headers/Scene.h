@@ -17,6 +17,8 @@
 #include "models/SuziFlatModel.h"
 #include "models/GiftModel.h"
 
+#include "CubeMap.h"
+
 #include "Move.h"
 #include "Scale.h"
 #include "Rotate.h"
@@ -24,6 +26,7 @@
 
 class Scene {
 private:
+    CubeMap *cubemap = nullptr;
     std::vector<ShaderManager *> shaders;
     std::vector<Drawable *> drawables;
 
@@ -31,6 +34,10 @@ protected:
     void create_axes(ShaderManager *shader);
 
 public:
+    virtual void init() = 0;
+
+    virtual Scene *clone() = 0;
+
     virtual ~Scene() = default;
 
     ShaderManager *add_shader(ShaderManager *shader);
@@ -39,13 +46,11 @@ public:
 
     void draw();
 
-    virtual void init() {};
-
     void link_shaders(Camera *camera, Window *window);
 
-    virtual Scene *clone() = 0;
-
     void link_lights();
+
+    void add_cubemap(string folder);
 };
 
 

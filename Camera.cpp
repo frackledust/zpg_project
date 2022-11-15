@@ -65,18 +65,18 @@ void Camera::mouse_callback(float xpos, float ypos) {
     x_offset *= sensitivity;
     y_offset *= sensitivity;
 
-    yaw += x_offset;
-    pitch += y_offset;
+    angle_to_sides += x_offset;
+    angle_updown += y_offset;
 
-    if (pitch > 89.0f)
-        pitch = 89.0f;
-    if (pitch < -89.0f)
-        pitch = -89.0f;
+    if (angle_updown > 89.0f)
+        angle_updown = 89.0f;
+    if (angle_updown < -89.0f)
+        angle_updown = -89.0f;
 
     glm::vec3 direction;
-    direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    direction.y = sin(glm::radians(pitch));
-    direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    direction.x = cos(glm::radians(angle_to_sides)) * cos(glm::radians(angle_updown));
+    direction.y = sin(glm::radians(angle_updown));
+    direction.z = sin(glm::radians(angle_to_sides)) * cos(glm::radians(angle_updown));
     camera_front = glm::normalize(direction);
 
     notify_observers(Event::VIEW_UPDATE);

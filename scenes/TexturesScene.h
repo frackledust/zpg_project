@@ -12,6 +12,8 @@ class TexturesScene : public Scene {
     Scene *clone() override { return new TexturesScene(); };
 
     void init() override {
+        add_cubemap("../textures/skybox/");
+
         auto texture_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/textures.fsh"));
         auto text_light_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/text_light.fsh"));
         auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/phong.fsh"));

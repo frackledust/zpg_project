@@ -50,11 +50,24 @@ void Scene::link_shaders(Camera *camera, Window *window) {
     }
 }
 
+void Scene::add_cubemap(std::string folder) {
+    cubemap = new CubeMap(folder);
+    add_shader(cubemap->get_shader());
+}
+
 void Scene::draw() {
+
+    if(cubemap){
+        glDepthFunc(GL_LEQUAL);
+        cubemap->render();
+        glDepthFunc(GL_LESS);
+    }
+
     for (auto &drawable: drawables) {
         drawable->render();
     }
 }
+
 
 void Scene::create_axes(ShaderManager *shader) {
     auto ax_model = new DataModel(4, sizeof(ax), ax, 3, 3);
@@ -70,5 +83,4 @@ void Scene::create_axes(ShaderManager *shader) {
             ->link_shader(shader)
             ->add_transformation(new Rotate(-90, glm::vec3(0.0, 1.0, 0.0)));
 }
-
 

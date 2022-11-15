@@ -20,8 +20,8 @@ private:
     bool first_mouse = true;
     float last_x = 400;
     float last_y = 300;
-    float yaw = -90.0f;
-    float pitch = 0;
+    float angle_to_sides = -90.0f;
+    float angle_updown = 0;
 
     glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
     glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
