@@ -9,6 +9,7 @@ file(GLOB SOURCES "*.cpp")
 set(SHADER-LOAD ShaderLoader/ShaderLoader.h ShaderLoader/ShaderLoader.cpp)
 file(GLOB MODELS "models/*.cpp")
 
+# static libraries
 link_directories(${PROJECT_SOURCE_DIR}/lib/assimp)
 link_directories(${PROJECT_SOURCE_DIR}/lib/lib-mingw-w64)
 link_directories(${PROJECT_SOURCE_DIR}/lib/glew-x64)

@@ -42,6 +42,8 @@ public:
     void scroll_callback(GLFWwindow *window, double x, double y);
 
     const double *get_last_data();
+
+    void calculate_position(double xpos, double pos);
 };
 
 

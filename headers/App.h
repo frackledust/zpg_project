@@ -17,12 +17,15 @@
 #include "Window.h"
 #include "Camera.h"
 #include "Scene.h"
+#include "Plotter.h"
 
 class App {
 private:
     Window *window;
     Camera *camera;
     Scene *scene;
+
+    Plotter* plotter;
 public:
     App(int width, int height);
 

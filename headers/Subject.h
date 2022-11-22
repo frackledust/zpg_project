@@ -12,7 +12,7 @@
 class Observer;
 
 class Subject {
-private:
+protected:
     std::vector<Observer*> observers;
 public:
     virtual void registerObserver(Observer *observer){

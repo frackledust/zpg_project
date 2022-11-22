@@ -26,6 +26,9 @@ class ShaderManager : public ShaderLoader, public Observer {
 private:
     GLuint shaderProgram = glCreateProgram();
 
+    glm::mat4 view;
+    glm::mat4 projection;
+
     void add_shader(GLenum shader_type, const char **source) const;
 
     void link_shaders() const;

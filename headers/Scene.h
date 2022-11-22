@@ -29,10 +29,8 @@ private:
     CubeMap *cubemap = nullptr;
     std::vector<ShaderManager *> shaders;
     std::vector<Drawable *> drawables;
-
 protected:
     void create_axes(ShaderManager *shader);
-
 public:
     virtual void init() = 0;
 

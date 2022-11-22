@@ -28,8 +28,11 @@ bool Window::is_open() const {
 }
 
 void Window::clear_view() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_STENCIL_TEST);
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 }
 
 
@@ -107,5 +110,9 @@ void Window::update(Subject *subject, Event event) {
         auto data = CallbackController::get_instance()->get_last_data();
         change_size(data[0], data[1]);
     }
+}
+
+glm::vec4 Window::get_viewport() const {
+    return {0, 0, width, height};
 }
 

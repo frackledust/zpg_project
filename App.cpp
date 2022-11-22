@@ -30,6 +30,8 @@ App::App(int width, int height) {
     glfwSwapInterval(1);
 
     camera = new Camera();
+
+
 //    scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
 //    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
 //    scene = SceneFactory::get_instance()->create_scene("ManyObjectsScene");
@@ -39,12 +41,15 @@ App::App(int width, int height) {
         exit(EXIT_FAILURE);
     }
 
+    plotter = new Plotter(scene);
+
     scene->init();
     scene->link_shaders(camera, window);
     scene->link_lights();
 
     cb->registerObserver(camera);
     cb->registerObserver(window);
+    cb->registerObserver(plotter);
 
     //print_info();
 }

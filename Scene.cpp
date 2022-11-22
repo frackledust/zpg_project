@@ -19,14 +19,14 @@ void Scene::link_lights() {
 
     auto point_light = (new PointLight(0, 1, 0))->set_color(2, 0.647, 1.812);
     auto dir_light = (new DirLight(0, 1, 0))->set_color(0.0, 0.31, 0.1);
-//    auto spot_light = (new SpotLight(glm::vec3(0, 3, 0), glm::vec3(0, -1, 0)))->set_color(1, 1, 1);
+    auto spot_light = (new SpotLight(glm::vec3(0, 3, 0), glm::vec3(0, -1, 0)))->set_color(1, 1, 1);
 
     for (auto &shader: shaders) {
         shader->use_shaders();
 
         shader->set_uniform("lights[0]", point_light);
         shader->set_uniform("lights[1]", dir_light);
-//        shader->set_uniform("lights[3]", spot_light);
+        shader->set_uniform("lights[3]", spot_light);
     }
 
 }
@@ -63,8 +63,11 @@ void Scene::draw() {
         glDepthFunc(GL_LESS);
     }
 
+    int i = 1;
     for (auto &drawable: drawables) {
+        glStencilFunc(GL_ALWAYS, i, 0xFF);
         drawable->render();
+        i++;
     }
 }
 

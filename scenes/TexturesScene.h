@@ -20,10 +20,19 @@ class TexturesScene : public Scene {
         auto plain_model = new PlainUVModel();
         auto tree_model = new TreeModel();
 
-        add_drawable(new Drawable(new DataModel("../data/model.obj")))
+        add_drawable(new Drawable(new DataModel("../data/files/model.obj")))
                 ->link_texture("../textures/model.png", GL_RGBA)
                 ->link_shader(text_light_shader)
+                ->add_transformation(new Move(glm::vec3(0, -1, 1)))
                 ;
+
+        add_drawable(new Drawable(new DataModel("../data/files/zombie.obj")))
+                ->link_texture("../textures/zombie.png", GL_RGBA)
+                ->link_shader(text_light_shader)
+                ->add_transformation(new Move(glm::vec3(1.5, -1, 0)))
+                ->add_transformation(new Rotate(-45, glm::vec3(0, 1, 0)))
+                ;
+
 
         add_drawable(new Drawable(plain_model))
                 ->link_texture("../textures/wooden_fence.png", GL_RGBA)

@@ -46,6 +46,8 @@ public:
     void change_size(int width, int height);
 
     void update(Subject *subject, Event event);
+
+    glm::vec4 get_viewport() const;
 };
 
 
