@@ -4,6 +4,46 @@
 
 #include "DataModel.h"
 
+#include <assimp/Importer.hpp>
+#include<assimp/scene.h>
+#include<assimp/postprocess.h>
+
+DataModel::DataModel(const char *file_path) {
+    unsigned int count = 0;
+    Assimp::Importer importer;
+    unsigned int importOptions = aiProcess_Triangulate
+                                 | aiProcess_OptimizeMeshes              // join small fragments
+                                 | aiProcess_JoinIdenticalVertices
+                                 | aiProcess_CalcTangentSpace;           // tangent for normal map
+    const aiScene *scene = importer.ReadFile(file_path, importOptions);
+    std::vector<float> data;
+    if (scene) {
+        aiMesh *mesh = scene->mMeshes[0]; // take first object
+        count = mesh->mNumFaces * 3; // each triange 3 verticles
+        for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
+            for (unsigned int j = 0; j < 3; j++) {
+                data.push_back(mesh->mVertices[mesh->mFaces[i].mIndices[j]].x);
+                data.push_back(mesh->mVertices[mesh->mFaces[i].mIndices[j]].y);
+                data.push_back(mesh->mVertices[mesh->mFaces[i].mIndices[j]].z);
+                data.push_back(mesh->mNormals[mesh->mFaces[i].mIndices[j]].x);
+                data.push_back(mesh->mNormals[mesh->mFaces[i].mIndices[j]].y);
+                data.push_back(mesh->mNormals[mesh->mFaces[i].mIndices[j]].z);
+                data.push_back(mesh->mTextureCoords[0][mesh->mFaces[i].mIndices[j]].x);
+                data.push_back(mesh->mTextureCoords[0][mesh->mFaces[i].mIndices[j]].y);
+            }
+        }
+    }
+
+    this->vertex_count = (int) count;
+
+    VBO((GLsizeiptr) (data.size() * sizeof(float)), &data[0]);
+
+    this->vao = new VAO();
+    vao->add_vertex(0, 3, GL_FLOAT, GL_FALSE, (int) (8 * sizeof(float)), (void *) (0 * sizeof(float)));
+    vao->add_vertex(1, 3, GL_FLOAT, GL_FALSE, (int) (8 * sizeof(float)), (void *) (3 * sizeof(float)));
+    vao->add_vertex(2, 2, GL_FLOAT, GL_FALSE, (int) (8 * sizeof(float)), (void *) (6 * sizeof(float)));
+}
+
 DataModel::DataModel(int vertex_count, GLsizeiptr size, const void *data) {
     this->vertex_count = vertex_count;
 

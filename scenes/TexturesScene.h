@@ -20,8 +20,13 @@ class TexturesScene : public Scene {
         auto plain_model = new PlainUVModel();
         auto tree_model = new TreeModel();
 
+        add_drawable(new Drawable(new DataModel("../data/model.obj")))
+                ->link_texture("../textures/model.png", GL_RGBA)
+                ->link_shader(text_light_shader)
+                ;
+
         add_drawable(new Drawable(plain_model))
-                ->link_texture("../textures/wall.jpg", GL_RGB)
+                ->link_texture("../textures/wooden_fence.png", GL_RGBA)
                 ->link_shader(text_light_shader)
                 ->add_transformation(new Rotate(90, glm::vec3(1, 0, 0)))
                 ;

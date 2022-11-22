@@ -4,6 +4,7 @@
 #include "App.h"
 
 int main() {
+
     App *app = new App(800, 600);
 
     while (app->is_open()) {
