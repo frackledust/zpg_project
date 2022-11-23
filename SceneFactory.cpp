@@ -4,8 +4,6 @@
 
 #include "SceneFactory.h"
 
-SceneFactory *SceneFactory::instance = nullptr;
-
 SceneFactory *SceneFactory::get_instance() {
     if (instance == nullptr) {
         instance = new SceneFactory();

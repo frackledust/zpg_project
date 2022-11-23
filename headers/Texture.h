@@ -9,16 +9,19 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <map>
 
 class Texture {
-    GLenum texture_type = GL_TEXTURE_2D;
+    inline static std::map<std::string, GLuint> textures;
+
+    GLuint texture_id;
 public:
     Texture(const char *path, int colors);
     Texture(const std::string &folder, std::vector<std::string> paths);
 
     void bind() const;
 
-    GLuint texture_id;
+    bool check_if_loaded(const char *path);
 };
 
 

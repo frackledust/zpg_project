@@ -47,6 +47,9 @@ void Scene::link_shaders(Camera *camera, Window *window) {
         shader->set_uniform("view", view);
 
         shader->set_uniform("spotlight", spot_light);
+
+        shader->set_uniform("texture_0", 0);
+        shader->set_uniform("texture_1", 1);
     }
 }
 

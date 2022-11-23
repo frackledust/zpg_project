@@ -9,24 +9,30 @@ Drawable::Drawable(DataModel *data_model) {
     this->transformable = new TransformCollection();
 }
 
-Drawable::Drawable(DataModel *data_model, bool plotted) : Drawable(data_model){
+Drawable::Drawable(DataModel *data_model, bool plotted) : Drawable(data_model) {
     this->plotted = plotted;
 }
 
-bool Drawable::was_plotted() const{
+bool Drawable::was_plotted() const {
     return plotted;
 }
 
 void Drawable::render() {
     auto model = transformable->transform();
 
-    if(shader_manager){
+    if (shader_manager) {
         shader_manager->use_shaders();
         shader_manager->set_uniform("model", model);
     }
 
-    if(texture){
+    if (texture) {
+        glActiveTexture(GL_TEXTURE0);
         texture->bind();
+    }
+
+    if(texture_second){
+        glActiveTexture(GL_TEXTURE1);
+        texture_second->bind();
     }
 
     data_model->draw();
@@ -38,7 +44,11 @@ Drawable *Drawable::link_shader(ShaderManager *shader) {
 }
 
 Drawable *Drawable::link_texture(const char *path, int colors) {
-    texture = new Texture(path, colors);
+    if (texture == nullptr) {
+        texture = new Texture(path, colors);
+    } else {
+        texture_second = new Texture(path, colors);
+    }
     return this;
 }
 

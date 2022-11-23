@@ -8,7 +8,20 @@
 
 #include "stb_image.h"
 
+bool Texture::check_if_loaded(const char *path) {
+    auto it = Texture::textures.find(path);
+
+    if (it == Texture::textures.end()) {
+        return false;
+    } else {
+        texture_id = it->second;
+        return true;
+    }
+}
+
 Texture::Texture(const char *path, int colors) {
+    if (check_if_loaded(path)) return;
+
     stbi_set_flip_vertically_on_load(true);
     //glActiveTexture(GL_TEXTURE0);
 
@@ -27,10 +40,11 @@ Texture::Texture(const char *path, int colors) {
         std::cout << "Failed to load texture" << std::endl;
     }
     stbi_image_free(data);
+
+    Texture::textures.insert({path, texture_id});
 }
 
 Texture::Texture(const std::string &folder, std::vector<std::string> paths) {
-    texture_type = GL_TEXTURE_CUBE_MAP;
 
     glGenTextures(1, &texture_id);
     glBindTexture(GL_TEXTURE_CUBE_MAP, texture_id);

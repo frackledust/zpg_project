@@ -23,7 +23,7 @@ class SceneFactory {
         prototypes.insert({ "ManyObjectsScene", make_shared<ManyObjectsScene>()});
         prototypes.insert({ "TexturesScene", make_shared<TexturesScene>()});
     }
-    static SceneFactory *instance;
+    inline static SceneFactory *instance = nullptr;
 public:
     Scene* create_scene(const string& shape) {
         auto it = prototypes[shape];

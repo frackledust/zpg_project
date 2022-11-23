@@ -17,9 +17,12 @@ private:
     TransformCollection *transformable;
 protected:
     Texture *texture = nullptr;
+    Texture *texture_second = nullptr;
+
     ShaderManager *shader_manager = nullptr;
 
     Drawable *link_texture(const string &folder, vector<string> paths);
+
 public:
     explicit Drawable(DataModel *data_model);
 

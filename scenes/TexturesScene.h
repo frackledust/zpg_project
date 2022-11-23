@@ -16,6 +16,7 @@ class TexturesScene : public Scene {
 
         auto texture_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/textures.fsh"));
         auto text_light_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/text_light.fsh"));
+        auto text_mix_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/textures_mix.fsh"));
         auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/phong.fsh"));
         auto plain_model = new PlainUVModel();
         auto tree_model = new TreeModel();
@@ -42,7 +43,8 @@ class TexturesScene : public Scene {
 
         add_drawable(new Drawable(plain_model))
                 ->link_texture("../textures/wooden_fence.png", GL_RGBA)
-                ->link_shader(texture_shader)
+                ->link_texture("../textures/grass.png", GL_RGBA)
+                ->link_shader(text_mix_shader)
                 ->add_transformation(new Move(glm::vec3(0, -0.9, 1)))
                 ->add_transformation(new Scale(glm::vec3(5, 8, 12)))
                 ;
@@ -60,12 +62,17 @@ class TexturesScene : public Scene {
                 ->add_transformation(new Scale(glm::vec3(0.3, 0.3, 0.3)))
                 ;
 
-        add_drawable(new Drawable(tree_from_obj))
-                ->link_texture("../textures/tree.png", GL_RGBA)
-                ->link_shader(texture_shader)
-                ->add_transformation(new Move(glm::vec3(-8, -1, -20)))
-                ->add_transformation(new Scale(glm::vec3(0.2, 0.2, 0.2)))
-                ;
+        srand(0);
+        for(int i = 0; i < 50; i++){
+            double z = -100 + rand() % 100;
+            double x = - 8 - (rand() % 100);
+            add_drawable(new Drawable(tree_from_obj))
+                    ->link_texture("../textures/tree.png", GL_RGBA)
+                    ->link_shader(text_light_shader)
+                    ->add_transformation(new Move(glm::vec3(x, -1, z)))
+                    ->add_transformation(new Scale(glm::vec3(0.2, 0.2, 0.2)))
+                    ;
+        }
     }
 };
 
