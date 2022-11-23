@@ -19,6 +19,7 @@ class TexturesScene : public Scene {
         auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/phong.fsh"));
         auto plain_model = new PlainUVModel();
         auto tree_model = new TreeModel();
+        auto tree_from_obj = new DataModel("../data/files/tree.obj");
 
         add_drawable(new Drawable(new DataModel("../data/files/model.obj")))
                 ->link_texture("../textures/model.png", GL_RGBA)
@@ -56,7 +57,14 @@ class TexturesScene : public Scene {
         add_drawable(new Drawable(tree_model))
                 ->link_shader(phong_shader)
                 ->add_transformation(new Move(glm::vec3(-1, -1, 1)))
-                ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)))
+                ->add_transformation(new Scale(glm::vec3(0.3, 0.3, 0.3)))
+                ;
+
+        add_drawable(new Drawable(tree_from_obj))
+                ->link_texture("../textures/tree.png", GL_RGBA)
+                ->link_shader(texture_shader)
+                ->add_transformation(new Move(glm::vec3(-8, -1, -20)))
+                ->add_transformation(new Scale(glm::vec3(0.2, 0.2, 0.2)))
                 ;
     }
 };

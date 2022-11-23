@@ -8,6 +8,7 @@
 #include "DataModel.h"
 #include "ShaderManager.h"
 #include "TransformCollection.h"
+#include "Texture.h"
 
 class Drawable {
 private:
@@ -15,12 +16,10 @@ private:
     DataModel *data_model;
     TransformCollection *transformable;
 protected:
-    GLuint texture;
-
+    Texture *texture = nullptr;
     ShaderManager *shader_manager = nullptr;
 
     Drawable *link_texture(const string &folder, vector<string> paths);
-
 public:
     explicit Drawable(DataModel *data_model);
 
