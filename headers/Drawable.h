@@ -11,6 +11,7 @@
 
 class Drawable {
 private:
+    bool plotted = false;
     DataModel *data_model;
     TransformCollection *transformable;
 protected:
@@ -23,6 +24,8 @@ protected:
 public:
     explicit Drawable(DataModel *data_model);
 
+    Drawable(DataModel *data_model, bool plotted);
+
     Drawable *link_shader(ShaderManager *shader);
 
     void render();
@@ -32,6 +35,8 @@ public:
     Transformable *get_transformation();
 
     Drawable *link_texture(const char *path, int colors = GL_RGB);
+
+    bool was_plotted() const;
 };
 
 

@@ -18,11 +18,16 @@ void Plotter::update(Subject *subject, Event event) {
         double x = data[0];
         double y = data[1];
         double z = data[2];
+        int index = data[3];
 
-        scene->add_drawable(new Drawable(this->model))
-                ->link_shader(this->shader)
-                ->add_transformation(new Move(glm::vec3(x, y, z)))
-                ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)))
-                ;
+        if (scene->can_delete_on_index(index)) {
+            return;
+        }
+        else{
+            scene->add_drawable(new Drawable(this->model, true))
+                    ->link_shader(this->shader)
+                    ->add_transformation(new Move(glm::vec3(x, y, z)))
+                    ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
+        }
     }
 }

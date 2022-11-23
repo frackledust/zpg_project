@@ -57,7 +57,9 @@ void Scene::add_cubemap(std::string folder) {
 
 void Scene::draw() {
 
-    if(cubemap){
+    if (cubemap) {
+        glStencilFunc(GL_ALWAYS, 0, 0xFF);
+
         glDepthFunc(GL_LEQUAL);
         cubemap->render();
         glDepthFunc(GL_LESS);
@@ -85,5 +87,17 @@ void Scene::create_axes(ShaderManager *shader) {
     add_drawable(new Drawable(ax_model))
             ->link_shader(shader)
             ->add_transformation(new Rotate(-90, glm::vec3(0.0, 1.0, 0.0)));
+}
+
+bool Scene::can_delete_on_index(int i) {
+    i = i - 1;
+    if (i < 0) return false;
+    if (i >= drawables.size()) return false;
+
+    if (drawables[i]->was_plotted()) {
+        drawables.erase(drawables.begin() + i);
+        return true;
+    };
+    return false;
 }
 

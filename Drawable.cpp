@@ -13,6 +13,14 @@ Drawable::Drawable(DataModel *data_model) {
     this->transformable = new TransformCollection();
 }
 
+Drawable::Drawable(DataModel *data_model, bool plotted) : Drawable(data_model){
+    this->plotted = plotted;
+}
+
+bool Drawable::was_plotted() const{
+    return plotted;
+}
+
 void Drawable::render() {
     shader_manager->use_shaders();
 

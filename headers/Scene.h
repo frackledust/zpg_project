@@ -49,6 +49,8 @@ public:
     void link_lights();
 
     void add_cubemap(string folder);
+
+    bool can_delete_on_index(int i);
 };
 
 

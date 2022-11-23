@@ -33,17 +33,23 @@ class TexturesScene : public Scene {
                 ->add_transformation(new Rotate(-45, glm::vec3(0, 1, 0)))
                 ;
 
-
         add_drawable(new Drawable(plain_model))
-                ->link_texture("../textures/wooden_fence.png", GL_RGBA)
+                ->link_texture("../textures/wall.jpg", GL_RGB)
                 ->link_shader(text_light_shader)
                 ->add_transformation(new Rotate(90, glm::vec3(1, 0, 0)))
                 ;
 
         add_drawable(new Drawable(plain_model))
+                ->link_texture("../textures/wooden_fence.png", GL_RGBA)
+                ->link_shader(texture_shader)
+                ->add_transformation(new Move(glm::vec3(0, -0.9, 1)))
+                ->add_transformation(new Scale(glm::vec3(5, 8, 12)))
+                ;
+
+        add_drawable(new Drawable(new DataModel("../data/files/teren.obj")))
                 ->link_texture("../textures/grass.jpg", GL_RGB)
                 ->link_shader(texture_shader)
-                ->add_transformation(new Move(glm::vec3(0, -1, 1)))
+                ->add_transformation(new Move(glm::vec3(0, -1, 0)))
                 ->add_transformation(new Scale(glm::vec3(15, 15, 15)))
                 ;
 

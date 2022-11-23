@@ -78,6 +78,7 @@ void CallbackController::calculate_position(double xpos, double ypos) {
     data[0] = pos.x;
     data[1] = pos.y;
     data[2] = pos.z;
+    data[3] = index;
     notify_observers(CLICK_UPDATE);
 }
 
