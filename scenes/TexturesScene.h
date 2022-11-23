@@ -17,19 +17,45 @@ class TexturesScene : public Scene {
         auto texture_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/textures.fsh"));
         auto text_light_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/text_light.fsh"));
         auto text_mix_shader = add_shader(new ShaderManager("../shaders/textures.vsh", "../shaders/textures_mix.fsh"));
+        auto normal_map_shader = add_shader(new ShaderManager("../shaders/normal_map.vsh", "../shaders/normal_map.fsh"));
         auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/phong.fsh"));
         auto plain_model = new PlainUVModel();
         auto tree_model = new TreeModel();
-        auto tree_from_obj = new DataModel("../data/files/tree.obj");
+        auto tree_from_obj = new DataModel("../files/tree/tree.obj");
+        auto box_tangent = new DataModel("../files/box/model.obj", TANGENT_DATA);
 
-        add_drawable(new Drawable(new DataModel("../data/files/model.obj")))
-                ->link_texture("../textures/model.png", GL_RGBA)
+        add_drawable(new Drawable(box_tangent))
+                ->link_texture("../files/box/albedo.png", GL_RGBA)
+                ->link_texture("../files/box/normalmap.png", GL_RGB)
+                ->link_shader(texture_shader)
+                ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)))
+                ->add_transformation(new Move(glm::vec3(-1.5, -1.2, 0)))
+                ;
+
+        add_drawable(new Drawable(box_tangent))
+                ->link_texture("../files/box/albedo.png", GL_RGBA)
+                ->link_texture("../files/box/normalmap.png", GL_RGB)
                 ->link_shader(text_light_shader)
+                ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)))
+                ->add_transformation(new Move(glm::vec3(0, -1.2, 0)))
+                ;
+
+        add_drawable(new Drawable(box_tangent))
+                ->link_texture("../files/box/albedo.png", GL_RGBA)
+                ->link_texture("../files/box/normalmap.png", GL_RGB)
+                ->link_shader(normal_map_shader)
+                ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)))
+                ->add_transformation(new Move(glm::vec3(1.5, -1.2, 0)))
+                ;
+
+        add_drawable(new Drawable(new DataModel("../files/house/model.obj")))
+                ->link_texture("../files/house/test.png", GL_RGBA)
+                ->link_shader(texture_shader)
                 ->add_transformation(new Move(glm::vec3(0, -1, 1)))
                 ;
 
-        add_drawable(new Drawable(new DataModel("../data/files/zombie.obj")))
-                ->link_texture("../textures/zombie.png", GL_RGBA)
+        add_drawable(new Drawable(new DataModel("../files/zombie/zombie.obj")))
+                ->link_texture("../files/zombie/zombie.png", GL_RGBA)
                 ->link_shader(text_light_shader)
                 ->add_transformation(new Move(glm::vec3(1.5, -1, 0)))
                 ->add_transformation(new Rotate(-45, glm::vec3(0, 1, 0)))
@@ -37,19 +63,20 @@ class TexturesScene : public Scene {
 
         add_drawable(new Drawable(plain_model))
                 ->link_texture("../textures/wall.jpg", GL_RGB)
-                ->link_shader(text_light_shader)
+                ->link_shader(texture_shader)
+                ->add_transformation(new Move(glm::vec3(0, 0, -1)))
                 ->add_transformation(new Rotate(90, glm::vec3(1, 0, 0)))
                 ;
 
         add_drawable(new Drawable(plain_model))
                 ->link_texture("../textures/wooden_fence.png", GL_RGBA)
-                ->link_texture("../textures/grass.png", GL_RGBA)
+                ->link_texture("../textures/grass.jpg", GL_RGB)
                 ->link_shader(text_mix_shader)
                 ->add_transformation(new Move(glm::vec3(0, -0.9, 1)))
                 ->add_transformation(new Scale(glm::vec3(5, 8, 12)))
                 ;
 
-        add_drawable(new Drawable(new DataModel("../data/files/teren.obj")))
+        add_drawable(new Drawable(new DataModel("../files/teren/teren.obj")))
                 ->link_texture("../textures/grass.jpg", GL_RGB)
                 ->link_shader(texture_shader)
                 ->add_transformation(new Move(glm::vec3(0, -1, 0)))
@@ -67,8 +94,8 @@ class TexturesScene : public Scene {
             double z = -100 + rand() % 100;
             double x = - 8 - (rand() % 100);
             add_drawable(new Drawable(tree_from_obj))
-                    ->link_texture("../textures/tree.png", GL_RGBA)
-                    ->link_shader(text_light_shader)
+                    ->link_texture("../files/tree/tree.png", GL_RGBA)
+                    ->link_shader(texture_shader)
                     ->add_transformation(new Move(glm::vec3(x, -1, z)))
                     ->add_transformation(new Scale(glm::vec3(0.2, 0.2, 0.2)))
                     ;

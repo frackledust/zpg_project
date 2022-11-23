@@ -8,7 +8,7 @@
 #include<assimp/scene.h>
 #include<assimp/postprocess.h>
 
-DataModel::DataModel(const char *file_path) {
+void DataModel::load_data(const char *file_path, int stride) {
     unsigned int count = 0;
     Assimp::Importer importer;
     unsigned int importOptions = aiProcess_Triangulate
@@ -22,14 +22,21 @@ DataModel::DataModel(const char *file_path) {
         count = mesh->mNumFaces * 3; // each triange 3 verticles
         for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
             for (unsigned int j = 0; j < 3; j++) {
+                if (stride < COORDS_ONLY) return;
                 data.push_back(mesh->mVertices[mesh->mFaces[i].mIndices[j]].x);
                 data.push_back(mesh->mVertices[mesh->mFaces[i].mIndices[j]].y);
                 data.push_back(mesh->mVertices[mesh->mFaces[i].mIndices[j]].z);
+                if (stride < NORMAL_DATA) continue;
                 data.push_back(mesh->mNormals[mesh->mFaces[i].mIndices[j]].x);
                 data.push_back(mesh->mNormals[mesh->mFaces[i].mIndices[j]].y);
                 data.push_back(mesh->mNormals[mesh->mFaces[i].mIndices[j]].z);
+                if (stride < UV_DATA) continue;
                 data.push_back(mesh->mTextureCoords[0][mesh->mFaces[i].mIndices[j]].x);
                 data.push_back(mesh->mTextureCoords[0][mesh->mFaces[i].mIndices[j]].y);
+                if (stride < TANGENT_DATA) continue;
+                data.push_back(mesh->mTangents[mesh->mFaces[i].mIndices[j]].x);
+                data.push_back(mesh->mTangents[mesh->mFaces[i].mIndices[j]].y);
+                data.push_back(mesh->mTangents[mesh->mFaces[i].mIndices[j]].z);
             }
         }
     }
@@ -37,11 +44,6 @@ DataModel::DataModel(const char *file_path) {
     this->vertex_count = (int) count;
 
     VBO((GLsizeiptr) (data.size() * sizeof(float)), &data[0]);
-
-    this->vao = new VAO();
-    vao->add_vertex(0, 3, GL_FLOAT, GL_FALSE, (int) (8 * sizeof(float)), (void *) (0 * sizeof(float)));
-    vao->add_vertex(1, 3, GL_FLOAT, GL_FALSE, (int) (8 * sizeof(float)), (void *) (3 * sizeof(float)));
-    vao->add_vertex(2, 2, GL_FLOAT, GL_FALSE, (int) (8 * sizeof(float)), (void *) (6 * sizeof(float)));
 }
 
 DataModel::DataModel(int vertex_count, GLsizeiptr size, const void *data) {
@@ -84,6 +86,19 @@ DataModel::DataModel(int vertex_count, GLsizeiptr size, const void *data, int ve
                     (void *) (uv_offset * sizeof(float)));
 }
 
+DataModel::DataModel(const char *file_path, int stride) {
+    load_data(file_path, stride);
+
+    this->vao = new VAO();
+    if (stride < COORDS_ONLY) return;
+    vao->add_vertex(0, 3, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void *) (0 * sizeof(float)));
+    if (stride < NORMAL_DATA) return;
+    vao->add_vertex(1, 3, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void *) (3 * sizeof(float)));
+    if (stride < UV_DATA) return;
+    vao->add_vertex(2, 2, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void *) (6 * sizeof(float)));
+    if (stride < TANGENT_DATA) return;
+    vao->add_vertex(3, 3, GL_FLOAT, GL_FALSE, (int) (stride * sizeof(float)), (void *) (8 * sizeof(float)));
+}
 
 void DataModel::draw() const {
     vao->bind_vertex_array();
