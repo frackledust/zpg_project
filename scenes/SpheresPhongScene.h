@@ -12,6 +12,19 @@ class SpheresPhongScene : public Scene {
 
     Scene *clone() override { return new SpheresPhongScene(); };
 
+    void link_lights() override {
+
+        auto point_light = (new PointLight(0, 0, 0))->set_color(1, 1, 1);
+
+        for (auto &shader: shaders) {
+            shader->use_shaders();
+
+            shader->set_uniform("lights[0]", point_light);
+        }
+
+    }
+
+
     void init() override {
         auto color_shader = add_shader(new ShaderManager("../shaders/rand_color.vsh", "../shaders/rand_color.fsh"));
         auto phong_shader = add_shader(new ShaderManager("../shaders/phong.vsh", "../shaders/phong.fsh"));

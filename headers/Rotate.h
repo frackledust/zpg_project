@@ -19,9 +19,9 @@ public:
 
     explicit Rotate(float angle, glm::vec3 direction, bool move) : angle(angle), direction(direction), move(move) {}
 
-    [[nodiscard]] glm::mat4 transform() const override;
+    [[nodiscard]] glm::mat4 transform() override;
 
-    [[nodiscard]] glm::mat4 transform(glm::mat4 mat) const override;
+    [[nodiscard]] glm::mat4 transform(glm::mat4 mat) override;
 };
 
 

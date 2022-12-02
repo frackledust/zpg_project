@@ -15,7 +15,7 @@ uniform mat4 projection;
 void main () {
     gl_Position = projection * view * model * vec4(vp, 1);
 
-    world_pos = model * vec4(vp, 1.0f);
+    world_pos = model * vec4(vp, 1.0f); // position of the fragment in global view
 
     mat3 normal_mat = transpose(inverse(mat3(model)));
     world_norm = normalize(normal_mat * vn);

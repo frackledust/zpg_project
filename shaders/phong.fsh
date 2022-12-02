@@ -82,7 +82,7 @@ void main () {
     vec3 view_dir = normalize(camera_pos.xyz - world_pos.xyz);
 
     vec3 result = vec3(0.1, 0.1, 0.1);
-    for (int i = 0; i < 2; i++){
+    for (int i = 0; i < MAX_LIGHTS; i++){
         if (lights[i].type == SPOT){
             result += AddSpotLight(lights[i], normal, view_dir);
         }

@@ -11,6 +11,18 @@
 class SpheresDiffScene : public Scene {
     Scene *clone() override { return new SpheresDiffScene(); };
 
+    void link_lights() override {
+
+        auto point_light = (new PointLight(0, 0, 0))->set_color(0.385, 0.647, 0.812);
+
+        for (auto &shader: shaders) {
+            shader->use_shaders();
+
+            shader->set_uniform("lights[0]", point_light);
+        }
+
+    }
+
     void init() override {
 
         auto constant_shader = add_shader(new ShaderManager("../shaders/const.vsh", "../shaders/const.fsh"));

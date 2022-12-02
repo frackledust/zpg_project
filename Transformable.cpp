@@ -4,11 +4,11 @@
 
 #include "Transformable.h"
 
-glm::mat4 Transformable::transform(glm::mat4 mat) const {
+glm::mat4 Transformable::transform(glm::mat4 mat) {
     return mat;
 }
 
-glm::mat4 Transformable::transform() const {
+glm::mat4 Transformable::transform() {
     return glm::mat4(1.0f);
 }
 

@@ -84,8 +84,8 @@ void main () {
     vec3 camera_pos = vec3(inverse(view)[3]);
     vec3 view_dir = normalize(camera_pos.xyz - world_pos.xyz);
 
-    vec3 result = vec3(texture(ourTexture, uv));
-    for (int i = 0; i < 2; i++){
+    vec3 result = texture(ourTexture, uv).rgb;
+    for (int i = 0; i < MAX_LIGHTS; i++){
         if (lights[i].type == SPOT){
             result += AddSpotLight(lights[i], normal, view_dir);
         }

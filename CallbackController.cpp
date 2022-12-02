@@ -72,7 +72,7 @@ void CallbackController::calculate_position(double xpos, double ypos) {
     glm::mat4 view = camera->get_view();
     glm::mat4 projection = my_window->get_projection();
 
-    glm::vec3 pos = glm::unProject(screen_pos, view, projection, viewPort); // window pos into object pos
+    glm::vec3 pos = glm::unProject(screen_pos, view, projection, viewPort); // screen pos into object pos
 
     printf("unProject [%f,%f,%f]\n", pos.x, pos.y, pos.z);
     data[0] = pos.x;

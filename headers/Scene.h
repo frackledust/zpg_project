@@ -22,15 +22,18 @@
 #include "Move.h"
 #include "Scale.h"
 #include "Rotate.h"
+#include "BezierMove.h"
+
 #include "Light.h"
 
 class Scene {
 private:
     CubeMap *cubemap = nullptr;
-    std::vector<ShaderManager *> shaders;
     std::vector<Drawable *> drawables;
 protected:
     void create_axes(ShaderManager *shader);
+
+    std::vector<ShaderManager *> shaders;
 public:
     virtual void init() = 0;
 
@@ -46,7 +49,7 @@ public:
 
     void link_shaders(Camera *camera, Window *window);
 
-    void link_lights();
+    virtual void link_lights();
 
     void add_cubemap(string folder);
 
