@@ -28,6 +28,7 @@ void CallbackController::window_focus_callback(GLFWwindow *window, int focused) 
 
 void CallbackController::window_iconify_callback(GLFWwindow *window, int iconified) {
     printf("window_iconify_callback \n");
+    notify_observers(WINDOW_ICONIFY);
 }
 
 void CallbackController::window_size_callback(GLFWwindow *window, int width, int height) {
@@ -42,13 +43,9 @@ void CallbackController::cursor_callback(GLFWwindow *window, double x, double y)
     notify_observers(VIEW_UPDATE);
 }
 
-void CallbackController::calculate_position(double xpos, double ypos) {
-    GLbyte color[4];
-    GLfloat depth;
-    GLuint index;
+bool CallbackController::check_window_camera() {
+    if (my_window != nullptr && camera != nullptr) return false;
 
-    Camera *camera = nullptr;
-    Window *my_window = nullptr;
     for (auto o: observers) {
         if (my_window == nullptr) {
             my_window = dynamic_cast<Window *>(o);
@@ -57,6 +54,16 @@ void CallbackController::calculate_position(double xpos, double ypos) {
             camera = dynamic_cast<Camera *>(o);
         }
     }
+
+    return my_window == nullptr || camera == nullptr;
+};
+
+void CallbackController::calculate_position(double xpos, double ypos) {
+    GLbyte color[4];
+    GLfloat depth;
+    GLuint index;
+
+    if (check_window_camera()) return;
 
     glm::vec<4, float> viewPort = my_window->get_viewport();
 

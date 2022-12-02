@@ -14,8 +14,10 @@ glm::mat4 BezierMove::transform(glm::mat4 mat) {
     glm::vec3 p = parameters * M;
     mat = glm::translate(mat, p);
 
-    if (t >= 1.0f || t <= 0.0f) delta *= -1;
-    t += delta;
+    if(move){
+        if (t >= 1.0f || t <= 0.0f) delta *= -1;
+        t += delta;
+    }
 
     return mat;
 }

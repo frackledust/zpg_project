@@ -24,7 +24,7 @@ Window::~Window() {
 }
 
 bool Window::is_open() const {
-    return !glfwWindowShouldClose(this->window);
+    return !glfwWindowShouldClose(this->window) || iconified;
 }
 
 void Window::clear_view() {
@@ -78,10 +78,14 @@ void Window::bind_callbacks() const {
 }
 
 void Window::change_size(int w, int h) {
-    this->width = w;
-    this->height = h;
-    glViewport(0, 0, w, h);
-    notify_observers(Event::WINDOW_SIZE_CHANGE);
+    iconified = (w == 0 || h == 0);
+
+    if(!iconified){
+        this->width = w;
+        this->height = h;
+        glViewport(0, 0, w, h);
+        notify_observers(Event::WINDOW_SIZE_CHANGE);
+    }
 }
 
 void Window::change_zoom(double y_offset) {
@@ -109,6 +113,8 @@ void Window::update(Subject *subject, Event event) {
     } else if (event == Event::WINDOW_SIZE_CHANGE) {
         auto data = CallbackController::get_instance()->get_last_data();
         change_size(data[0], data[1]);
+    } else if (event == Event::WINDOW_ICONIFY) {
+        iconified = !iconified;
     }
 }
 

@@ -61,10 +61,11 @@ class TexturesScene : public Scene {
                 ->add_transformation(new Rotate(-45, glm::vec3(0, 1, 0)))
                 ->get_transformation();
 
+        bool move = true;
         auto move_trans = add_drawable(new Drawable(monkey_model))
                 ->link_shader(phong_shader)
                 ->add_transformation(target_trans)
-                ->add_transformation(new Rotate(-45, glm::vec3(0.0, 1.0, 0.0), true))
+                ->add_transformation(new Rotate(-45, glm::vec3(0.0, 1.0, 0.0), move))
                 ->add_transformation(new Move(glm::vec3(1.0, 2.0, 0.0)))
                 ->add_transformation(new Scale(glm::vec3(0.2, 0.2, 0.2)))
                 ->get_transformation();
@@ -72,7 +73,7 @@ class TexturesScene : public Scene {
         add_drawable(new Drawable(monkey_model))
                 ->link_shader(phong_shader)
                 ->add_transformation(move_trans)
-                ->add_transformation(new Rotate(-90, glm::vec3(0, 1, 0), true))
+                ->add_transformation(new Rotate(-90, glm::vec3(0, 1, 0), move))
                 ->add_transformation(new Move(glm::vec3(3.0, 0.0, 0.0)))
                 ->add_transformation(new Scale(glm::vec3(0.2, 0.2, 0.2)))
                 ;
@@ -86,7 +87,7 @@ class TexturesScene : public Scene {
 
         add_drawable(new Drawable(monkey_model))
                 ->link_shader(phong_shader)
-                ->add_transformation(new BezierMove(glm::mat4x3(glm::vec3(-1, 0, 0),
+                ->add_transformation(new BezierMove(0.1, glm::mat4x3(glm::vec3(-1, 0, 0),
                                                                 glm::vec3(-1, 0, 0),
                                                                 glm::vec3(1, 0, 0),
                                                                 glm::vec3(1, 0, 0))))

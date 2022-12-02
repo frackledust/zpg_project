@@ -14,15 +14,17 @@ class BezierMove : public Transformable {
                             glm::vec4(1, 0, 0, 0));
     float t = 0.5;
     float delta = 0.005;
+    bool move = true;
 public:
-    BezierMove() : BezierMove(glm::mat4x3(glm::vec3(-1, 0, 0),
-                                          glm::vec3(0, 1, 0),
-                                          glm::vec3(0, -1, 0),
-                                          glm::vec3(1, 0, 0))) {}
+    BezierMove() : BezierMove(0.5, glm::mat4x3(glm::vec3(-1, 0, 0),
+                                               glm::vec3(0, 1, 0),
+                                               glm::vec3(0, -1, 0),
+                                               glm::vec3(1, 0, 0))) {}
 
-    explicit BezierMove(glm::mat4x3 control_points) {
+    explicit BezierMove(float t, glm::mat4x3 control_points, bool move = true) {
+        this->t = t;
         this->M = M * glm::transpose(control_points); // control_points^T
-//        auto x = glm::translate
+        this->move = move;
     }
 
     [[nodiscard]] glm::mat4 transform() override;

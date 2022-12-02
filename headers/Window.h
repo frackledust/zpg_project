@@ -24,6 +24,8 @@ class Window : public Subject, public Observer {
     int height;
 
     float zoom = 45;
+
+    bool iconified = false;
 public:
     Window(int width, int height, const char *title);
 

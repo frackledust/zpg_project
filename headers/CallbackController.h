@@ -17,6 +17,9 @@ class Window;
 
 class CallbackController : public Subject {
 private:
+    Camera *camera = nullptr;
+    Window *my_window = nullptr;
+
     double* data = new double[4];
     static void error_callback(int error, const char *description);
 
@@ -44,6 +47,8 @@ public:
     const double *get_last_data();
 
     void calculate_position(double xpos, double pos);
+
+    bool check_window_camera();
 };
 
 

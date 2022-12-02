@@ -7,6 +7,7 @@
 enum Event {
     VIEW_UPDATE,
     WINDOW_SIZE_CHANGE,
+    WINDOW_ICONIFY,
     ZOOM_UPDATE,
     CLICK_UPDATE
 };
