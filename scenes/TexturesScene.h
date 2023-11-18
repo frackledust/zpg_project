@@ -64,11 +64,12 @@ class TexturesScene : public Scene {
         bool move = true;
         auto move_trans = add_drawable(new Drawable(monkey_model))
                 ->link_shader(phong_shader)
-                ->add_transformation(target_trans)
+                ->add_transformation(target_trans) // (I * M * R)
                 ->add_transformation(new Rotate(-45, glm::vec3(0.0, 1.0, 0.0), move))
                 ->add_transformation(new Move(glm::vec3(1.0, 2.0, 0.0)))
                 ->add_transformation(new Scale(glm::vec3(0.2, 0.2, 0.2)))
-                ->get_transformation();
+                ->get_transformation()
+                ;
 
         add_drawable(new Drawable(monkey_model))
                 ->link_shader(phong_shader)

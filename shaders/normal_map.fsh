@@ -39,7 +39,7 @@ vec4 AddDirLight(Light light, vec3 normal, vec3 view_dir){
     vec3 reflect_dir = reflect(-light_dir, normal);
     float spec = pow(max(dot(view_dir, reflect_dir), 0.0), 32);
 
-    vec4 diffuse = diff * vec4(light.color, 1) * texture(texture_0, uv);
+    vec4 diffuse = diff * vec4(light.color, 1);
     vec4 specular = spec * vec4(1);
     specular = diff <= 0.0 ? vec4(0) : specular;
     return diffuse + specular;
@@ -54,7 +54,7 @@ vec4 AddPointLight(Light light, vec3 normal, vec3 view_dir){
     float distance = length(light.position - world_pos.xyz);
     float attenuation = max(1.0 / (light_constant + light_linear * distance + light_quadratic * pow(distance, 2)), 0);
 
-    vec4 diffuse = diff * attenuation * vec4(light.color, 1) * texture(texture_0, uv);
+    vec4 diffuse = diff * attenuation * vec4(light.color, 1);
     vec4 specular = spec * attenuation * vec4(1);
     specular = diff <= 0.0 ? vec4(0) : specular;
     return diffuse + specular;
@@ -74,7 +74,7 @@ vec4 AddSpotLight(Light light, vec3 normal, vec3 view_dir){
     if (theta > light.cut_off){
         float intensity = 0.f + 1.f/ (1.f - light.cut_off) * (theta - light.cut_off);
 
-        vec4 diffuse = diff * attenuation * intensity * vec4(light.color, 1) * texture(texture_0, uv);
+        vec4 diffuse = diff * attenuation * intensity * vec4(light.color, 1);
         vec4 specular = spec * vec4(1) * attenuation * intensity;
         specular = diff <= 0.0 ? vec4(0) : specular;
         return diffuse + specular;
