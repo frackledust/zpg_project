@@ -5,8 +5,6 @@
 #ifndef ZPG_PROJECT_CALLBACKCONTROLLER_H
 #define ZPG_PROJECT_CALLBACKCONTROLLER_H
 
-#include <cstdlib>
-#include <cstdio>
 #include "GLFW/glfw3.h"
 #include "Camera.h"
 #include "Subject.h"

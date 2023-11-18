@@ -20,7 +20,7 @@ protected:
 public:
     [[nodiscard]] int get_type() const { return type; }
 
-    virtual Light* set_color(float r, float g, float b){
+    virtual Light* set_color(const float r, const float g, const float b){
         this->color = glm::vec3(r, g, b);
         return this;
     }

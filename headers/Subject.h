@@ -17,13 +17,15 @@ protected:
 public:
     virtual void registerObserver(Observer *observer){
         observers.push_back(observer);
-    };
+    }
 
     virtual void removeObserver(Observer *observer){
         std::remove(observers.begin(),observers.end(),observer);
-    };
+    }
 
     virtual void notify_observers(Event event);
+
+    virtual ~Subject() = default;
 };
 
 #endif //ZPG_PROJECT_SUBJECT_H

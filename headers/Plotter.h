@@ -9,8 +9,6 @@
 #include "Scene.h"
 #include "DataModel.h"
 
-#include "GLFW/glfw3.h"
-
 class Scene;
 
 class Plotter : public Observer {
@@ -18,13 +16,13 @@ class Plotter : public Observer {
     Camera* camera;
     Window* window;
 
-    ShaderManager* shader;
-    DataModel* model;
+    std::shared_ptr<ShaderManager> shader;
+    std::shared_ptr<DataModel> model;
 
-    void update(Subject* subject, Event event);
+    void update(Subject* subject, Event event) override;
 
 public:
-    Plotter(Scene* scene);
+    explicit Plotter(Scene* scene);
 };
 
 

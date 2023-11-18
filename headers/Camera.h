@@ -7,7 +7,6 @@
 
 #include "Window.h"
 
-#include "glm/vec3.hpp"
 #include "glm/fwd.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include "Observer.h"
@@ -31,7 +30,7 @@ public:
 
     void update_position(Window *window);
 
-    glm::mat4 get_view() const;
+    [[nodiscard]] glm::mat4 get_view() const;
 
     glm::vec3 get_position();
 
@@ -39,7 +38,7 @@ public:
 
     void mouse_callback(float xpos, float ypos);
 
-    void update(Subject *subject, Event event);
+    void update(Subject *subject, Event event) override;
 };
 
 

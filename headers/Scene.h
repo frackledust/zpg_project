@@ -31,9 +31,9 @@ private:
     CubeMap *cubemap = nullptr;
     std::vector<Drawable *> drawables;
 protected:
-    void create_axes(ShaderManager *shader);
+    void create_axes(std::shared_ptr<ShaderManager> shader);
 
-    std::vector<ShaderManager *> shaders;
+    std::vector<std::shared_ptr<ShaderManager>> shaders;
 public:
     virtual void init() = 0;
 
@@ -41,7 +41,7 @@ public:
 
     virtual ~Scene() = default;
 
-    ShaderManager *add_shader(ShaderManager *shader);
+    std::shared_ptr<ShaderManager> add_shader(std::shared_ptr<ShaderManager> shader);
 
     Drawable *add_drawable(Drawable *drawable);
 

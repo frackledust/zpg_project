@@ -26,7 +26,7 @@ class SceneFactory {
     inline static SceneFactory *instance = nullptr;
 public:
     Scene* create_scene(const string& shape) {
-        auto it = prototypes[shape];
+        const auto it = prototypes[shape];
         if(it == nullptr){
             return nullptr;
         }

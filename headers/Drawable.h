@@ -13,32 +13,32 @@
 class Drawable {
 private:
     bool plotted = false;
-    DataModel *data_model;
-    TransformCollection *transformable;
+    std::shared_ptr<DataModel> data_model;
+    std::shared_ptr<TransformCollection> transformable;
 protected:
-    Texture *texture = nullptr;
-    Texture *texture_second = nullptr;
+    std::shared_ptr<Texture> texture = nullptr;
+    std::shared_ptr<Texture> texture_second = nullptr;
 
-    ShaderManager *shader_manager = nullptr;
+    std::shared_ptr<ShaderManager> shader_manager = nullptr;
 
     Drawable *link_texture(const string &folder, vector<string> paths);
 
 public:
-    explicit Drawable(DataModel *data_model);
+    explicit Drawable(std::shared_ptr<DataModel> data_model);
 
-    Drawable(DataModel *data_model, bool plotted);
+    Drawable(std::shared_ptr<DataModel> data_model, bool plotted);
 
-    Drawable *link_shader(ShaderManager *shader);
+    Drawable *link_shader(std::shared_ptr<ShaderManager> shader);
 
     void render();
 
-    Drawable *add_transformation(Transformable *transformation);
+    Drawable *add_transformation(std::shared_ptr<Transformable> transformation);
 
-    Transformable *get_transformation();
+    std::shared_ptr<Transformable> get_transformation();
 
     Drawable *link_texture(const char *path, int colors = GL_RGB);
 
-    bool was_plotted() const;
+    [[nodiscard]] bool was_plotted() const;
 };
 
 

@@ -6,11 +6,12 @@
 #define ZPG_PROJECT_TRANSFORMCOLLECTION_H
 
 
+#include <memory>
 #include "Transformable.h"
 
 class TransformCollection : public Transformable {
 public:
-    std::vector<Transformable *> components;
+    std::vector<std::shared_ptr<Transformable>> components;
 
     [[nodiscard]] glm::mat4 transform(glm::mat4 mat) override;
 

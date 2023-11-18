@@ -8,12 +8,14 @@ App::~App() {
     delete window;
     delete camera;
     delete scene;
+
+    delete plotter;
     glfwTerminate();
 }
 
 
-App::App(int width, int height) {
-    auto cb = CallbackController::get_instance();
+App::App(const int width, const int height) {
+    const auto cb = CallbackController::get_instance();
     cb->bind_callbacks();
 
     if (!glfwInit()) {
@@ -32,9 +34,9 @@ App::App(int width, int height) {
     camera = new Camera();
 
 
-//    scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
-//    scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
-//    scene = SceneFactory::get_instance()->create_scene("ManyObjectsScene");
+    // scene = SceneFactory::get_instance()->create_scene("SpheresPhongScene");
+    // scene = SceneFactory::get_instance()->create_scene("SpheresDiffScene");
+    // scene = SceneFactory::get_instance()->create_scene("ManyObjectsScene");
     scene = SceneFactory::get_instance()->create_scene("TexturesScene");
     if(scene == nullptr){
         fprintf(stderr, "ERROR: could not find the scene\n");

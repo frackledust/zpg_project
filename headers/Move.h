@@ -11,7 +11,7 @@ class Move : public Transformable {
 public:
     Move() = default;
 
-    explicit Move(glm::vec3 direction) : direction(direction) {}
+    explicit Move(const glm::vec3 direction) : direction(direction) {}
     [[nodiscard]] glm::mat4 transform() override;
     [[nodiscard]] glm::mat4 transform(glm::mat4 mat) override;
 };

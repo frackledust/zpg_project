@@ -6,7 +6,6 @@
 #define ZPG_PROJECT_DATAMODEL_H
 
 
-#include "VBO.h"
 #include "VAO.h"
 
 #define COORDS_ONLY 3
@@ -32,7 +31,7 @@ public:
 
     DataModel(int vertex_count, GLsizeiptr size, const void *data, int vertex_size, int normal_size);
 
-    DataModel(const char* file_path, int stride = UV_DATA);
+    explicit DataModel(const char* file_path, int stride = UV_DATA);
 
     void load_data(const char *file_path);
 

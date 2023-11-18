@@ -6,8 +6,8 @@
 
 Plotter::Plotter(Scene *scene) {
     this->scene = scene;
-    this->shader = scene->add_shader(new ShaderManager("../shaders/rand_color.vsh", "../shaders/rand_color.fsh"));
-    this->model = new SphereModel();
+    this->shader = scene->add_shader(std::make_shared<ShaderManager>("../shaders/rand_color.vsh", "../shaders/rand_color.fsh"));
+    this->model = make_shared<SphereModel>();
 }
 
 void Plotter::update(Subject *subject, Event event) {
@@ -26,8 +26,8 @@ void Plotter::update(Subject *subject, Event event) {
         else{
             scene->add_drawable(new Drawable(this->model, true))
                     ->link_shader(this->shader)
-                    ->add_transformation(new Move(glm::vec3(x, y, z)))
-                    ->add_transformation(new Scale(glm::vec3(0.5, 0.5, 0.5)));
+                    ->add_transformation(make_shared<Move>(glm::vec3(x, y, z)))
+                    ->add_transformation(make_shared<Scale>(glm::vec3(0.5, 0.5, 0.5)));
         }
     }
 }

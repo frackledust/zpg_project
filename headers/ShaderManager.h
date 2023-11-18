@@ -5,11 +5,6 @@
 #ifndef ZPG_PROJECT_SHADERMANAGER_H
 #define ZPG_PROJECT_SHADERMANAGER_H
 
-#include <cstdio>
-#include <cstdlib>
-#include <vector>
-#include <iostream>
-
 #include "GL/glew.h"
 #include "glm/fwd.hpp"
 #include "glm/detail/type_mat4x4.hpp"
@@ -17,7 +12,6 @@
 #include "ShaderLoader/ShaderLoader.h"
 #include "Observer.h"
 #include "Camera.h"
-#include "Light.h"
 #include "DirLight.h"
 #include "PointLight.h"
 #include "SpotLight.h"

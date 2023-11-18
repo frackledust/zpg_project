@@ -21,15 +21,17 @@ public:
                                                glm::vec3(0, -1, 0),
                                                glm::vec3(1, 0, 0))) {}
 
-    explicit BezierMove(float t, glm::mat4x3 control_points, bool move = true) {
+    explicit BezierMove(const float t, const glm::mat4x3& control_points, const bool move = true) {
         this->t = t;
-        this->M = M * glm::transpose(control_points); // control_points^T
+        this->M = M * transpose(control_points); // control_points^T
         this->move = move;
     }
 
     [[nodiscard]] glm::mat4 transform() override;
 
     [[nodiscard]] glm::mat4 transform(glm::mat4 mat) override;
+
+    ~BezierMove() override = default;
 };
 
 

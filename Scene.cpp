@@ -5,12 +5,12 @@
 #include "Scene.h"
 #include "data/axes.h"
 
-ShaderManager *Scene::add_shader(ShaderManager *shader) {
+std::shared_ptr<ShaderManager> Scene::add_shader(std::shared_ptr<ShaderManager> shader) {
     shaders.push_back(shader);
     return shader;
 }
 
-Drawable *Scene::add_drawable(Drawable *drawable) {
+Drawable* Scene::add_drawable(Drawable* drawable) {
     drawables.push_back(drawable);
     return drawable;
 }
@@ -38,8 +38,8 @@ void Scene::link_shaders(Camera *camera, Window *window) {
     auto spot_light = (new SpotLight(camera->get_position(), camera->get_direction()))->set_color(0.885, 0.647, 0.112);
 
     for (auto &shader: shaders) {
-        camera->registerObserver(shader);
-        window->registerObserver(shader);
+        camera->registerObserver(shader.get());
+        window->registerObserver(shader.get());
 
         shader->use_shaders();
 
@@ -77,19 +77,19 @@ void Scene::draw() {
 }
 
 
-void Scene::create_axes(ShaderManager *shader) {
-    auto ax_model = new DataModel(4, sizeof(ax), ax, 3, 3);
+void Scene::create_axes(std::shared_ptr<ShaderManager> shader) {
+    auto ax_model = make_shared<DataModel>(4, sizeof(ax), ax, 3, 3);
 
     add_drawable(new Drawable(ax_model))
             ->link_shader(shader);
 
     add_drawable(new Drawable(ax_model))
             ->link_shader(shader)
-            ->add_transformation(new Rotate(90, glm::vec3(0.0, 0.0, 0.1)));
+            ->add_transformation(make_shared<Rotate>(90, glm::vec3(0.0, 0.0, 0.1)));
 
     add_drawable(new Drawable(ax_model))
             ->link_shader(shader)
-            ->add_transformation(new Rotate(-90, glm::vec3(0.0, 1.0, 0.0)));
+            ->add_transformation(make_shared<Rotate>(-90, glm::vec3(0.0, 1.0, 0.0)));
 }
 
 bool Scene::can_delete_on_index(int i) {

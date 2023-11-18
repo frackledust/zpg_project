@@ -15,9 +15,9 @@ class Rotate : public Transformable {
 public:
     Rotate() = default;
 
-    explicit Rotate(float angle, glm::vec3 direction) : angle(angle), direction(direction) {}
+    explicit Rotate(const float angle, const glm::vec3 direction) : angle(angle), direction(direction) {}
 
-    explicit Rotate(float angle, glm::vec3 direction, bool move) : angle(angle), direction(direction), move(move) {}
+    explicit Rotate(const float angle, const glm::vec3 direction, const bool move) : angle(angle), direction(direction), move(move) {}
 
     [[nodiscard]] glm::mat4 transform() override;
 

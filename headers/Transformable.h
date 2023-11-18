@@ -18,6 +18,8 @@ public:
     [[nodiscard]] virtual glm::mat4 transform();
 
     [[nodiscard]] virtual glm::mat4 transform(glm::mat4 mat);
+
+    virtual ~Transformable() = default;
 };
 
 

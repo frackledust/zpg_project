@@ -4,12 +4,12 @@
 
 #include "Drawable.h"
 
-Drawable::Drawable(DataModel *data_model) {
+Drawable::Drawable(std::shared_ptr<DataModel> data_model) {
     this->data_model = data_model;
-    this->transformable = new TransformCollection();
+    this->transformable = std::make_shared<TransformCollection>();
 }
 
-Drawable::Drawable(DataModel *data_model, bool plotted) : Drawable(data_model) {
+Drawable::Drawable(std::shared_ptr<DataModel> data_model, bool plotted) : Drawable(data_model) {
     this->plotted = plotted;
 }
 
@@ -38,31 +38,31 @@ void Drawable::render() {
     data_model->draw();
 }
 
-Drawable *Drawable::link_shader(ShaderManager *shader) {
+Drawable *Drawable::link_shader(std::shared_ptr<ShaderManager> shader) {
     this->shader_manager = shader;
     return this;
 }
 
 Drawable *Drawable::link_texture(const char *path, int colors) {
     if (texture == nullptr) {
-        texture = new Texture(path, colors);
+        texture = std::make_shared<Texture>(path, colors);
     } else {
-        texture_second = new Texture(path, colors);
+        texture_second = std::make_shared<Texture>(path, colors);
     }
     return this;
 }
 
 Drawable *Drawable::link_texture(const std::string &folder, std::vector<std::string> paths) {
-    texture = new Texture(folder, paths);
+    texture = std::make_shared<Texture>(folder, paths);
     return this;
 }
 
-Drawable *Drawable::add_transformation(Transformable *transformation) {
+Drawable *Drawable::add_transformation(std::shared_ptr<Transformable> transformation) {
     this->transformable->components.push_back(transformation);
     return this;
 }
 
-Transformable *Drawable::get_transformation() {
+std::shared_ptr<Transformable> Drawable::get_transformation() {
     return this->transformable;
 }
 

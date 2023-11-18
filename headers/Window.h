@@ -5,8 +5,6 @@
 #ifndef ZPG_PROJECT_WINDOW_H
 #define ZPG_PROJECT_WINDOW_H
 
-#include <cstdio>
-#include <cstdlib>
 #include "GLFW/glfw3.h"
 #include "CallbackController.h"
 #include "Subject.h"
@@ -14,7 +12,6 @@
 #include "glm/fwd.hpp"
 #include "glm/detail/type_mat4x4.hpp"
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 class Window : public Subject, public Observer {
@@ -29,27 +26,27 @@ class Window : public Subject, public Observer {
 public:
     Window(int width, int height, const char *title);
 
-    ~Window();
+    ~Window() override;
 
-    bool is_open() const;
+    [[nodiscard]] bool is_open() const;
 
     void clear_view();
 
     void update_view() const;
 
-    bool is_pressed(int key) const;
+    [[nodiscard]] bool is_pressed(int key) const;
 
     void bind_callbacks() const;
 
-    glm::mat4 get_projection() const;
+    [[nodiscard]] glm::mat4 get_projection() const;
 
     void change_zoom(double y_offset);
 
     void change_size(int width, int height);
 
-    void update(Subject *subject, Event event);
+    void update(Subject *subject, Event event) override;
 
-    glm::vec4 get_viewport() const;
+    [[nodiscard]] glm::vec4 get_viewport() const;
 };
 
 

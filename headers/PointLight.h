@@ -10,12 +10,12 @@
 class PointLight : public Light {
     glm::vec3 position = glm::vec3(0, 0, 0);
 public:
-    explicit PointLight(float x, float y, float z) : Light() {
+    explicit PointLight(const float x, const float y, const float z) : Light() {
         this->type = POINT;
         this->position = glm::vec3(x, y, z);
     }
 
-    PointLight* set_color(float r, float g, float b) override{
+    PointLight* set_color(const float r, const float g, const float b) override{
         Light::set_color(r, g, b);
         return this;
     }
