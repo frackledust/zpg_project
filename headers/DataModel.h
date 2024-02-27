@@ -26,14 +26,17 @@ protected:
     DataModel(int vertex_count, GLsizeiptr size, const void *data);
 
     VAO *vao{};
+
 public:
+    ~DataModel() {
+        delete vao;
+    }
+
     void draw() const;
 
     DataModel(int vertex_count, GLsizeiptr size, const void *data, int vertex_size, int normal_size);
 
     explicit DataModel(const char* file_path, int stride = UV_DATA);
-
-    void load_data(const char *file_path);
 
     void load_data(const char *file_path, int stride);
 };

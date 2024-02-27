@@ -29,6 +29,9 @@ void Scene::link_lights() {
         shader->set_uniform("lights[3]", spot_light);
     }
 
+    lights.push_back(point_light);
+    lights.push_back(dir_light);
+    lights.push_back(spot_light);
 }
 
 void Scene::link_shaders(Camera *camera, Window *window) {
@@ -36,6 +39,7 @@ void Scene::link_shaders(Camera *camera, Window *window) {
     auto view = camera->get_view();
 
     auto spot_light = (new SpotLight(camera->get_position(), camera->get_direction()))->set_color(0.885, 0.647, 0.112);
+    lights.push_back(spot_light);
 
     for (auto &shader: shaders) {
         camera->registerObserver(shader.get());

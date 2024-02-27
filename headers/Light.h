@@ -18,6 +18,8 @@ protected:
     glm::vec3 color = glm::vec3( 0.385, 0.647, 0.812);
     Light() = default;
 public:
+    virtual ~Light() = default;
+
     [[nodiscard]] int get_type() const { return type; }
 
     virtual Light* set_color(const float r, const float g, const float b){

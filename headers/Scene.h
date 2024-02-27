@@ -30,6 +30,7 @@ class Scene {
 private:
     CubeMap *cubemap = nullptr;
     std::vector<Drawable *> drawables;
+    std::vector<Light *> lights;
 protected:
     void create_axes(std::shared_ptr<ShaderManager> shader);
 
@@ -39,7 +40,18 @@ public:
 
     virtual Scene *clone() = 0;
 
-    virtual ~Scene() = default;
+    virtual ~Scene(){
+        for (int i = 0; i < drawables.size(); i++) {
+            delete drawables[i];
+        }
+
+        // delete lights
+        for (int i = 0; i < lights.size(); i++) {
+            delete lights[i];
+        }
+
+        delete cubemap;
+    }
 
     std::shared_ptr<ShaderManager> add_shader(std::shared_ptr<ShaderManager> shader);
 
